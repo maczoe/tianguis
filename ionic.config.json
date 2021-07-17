@@ -1,0 +1,7 @@
+{
+  "name": "tianguis",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

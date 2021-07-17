@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "tianguis",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
