@@ -1,0 +1,16 @@
+<ion-toolbar>
+ <!--  <ion-buttons slot="start">
+    <ion-button>
+      <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+    </ion-button>
+  </ion-buttons> -->
+  <ion-title [textContent]="title ? title : 'tianguis'">
+  </ion-title>
+  <ion-buttons slot="end">
+    <app-notification-icon [newNotifications]="10"></app-notification-icon>
+    <app-chat-icon [newNotifications]="10"></app-chat-icon>
+    <ion-button>
+      <ion-icon slot="icon-only" name="menu"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
