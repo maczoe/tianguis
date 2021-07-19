@@ -1,9 +1,52 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>intro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button (click)="close()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+<ion-content class="ion-padding" scroll-y="false">
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <div class="slide">
+        <h1>Compra</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, vehicula arcu
+          mus faucibus gravida conubia malesuada sodales, ad porta tempor
+          bibendum morbi penatibus.
+        </p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide">
+        <h1>Vende</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, vehicula arcu
+          mus faucibus gravida conubia malesuada sodales, ad porta tempor
+          bibendum morbi penatibus.
+        </p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide">
+        <h1>Cotiza</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, vehicula arcu
+          mus faucibus gravida conubia malesuada sodales, ad porta tempor
+          bibendum morbi penatibus.
+        </p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div class="slide">
+        <h1>Emprende</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipiscing elit, vehicula arcu
+          mus faucibus gravida conubia malesuada sodales, ad porta tempor
+          bibendum morbi penatibus.
+        </p>
+        <ion-button expand="block" (click)="start()">Empezar</ion-button>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
