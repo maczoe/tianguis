@@ -33,6 +33,10 @@ const routes: Routes = [
           import('../work/work.module').then((m) => m.WorkPageModule),
       },
       {
+        path: 'menu',
+        loadChildren: () => import('../menu/menu.module').then( m => m.MenuPageModule)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

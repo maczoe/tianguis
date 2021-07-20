@@ -1,17 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-header-bar',
   templateUrl: './header-bar.component.html',
   styleUrls: ['./header-bar.component.scss'],
 })
-export class HeaderBarComponent implements OnInit {
+export class HeaderBarComponent {
 
   @Input()
   title: string;
 
-  constructor() { }
+  constructor(private menu: MenuController) { }
 
-  ngOnInit() {}
+  async openMenu() {
+    console.log('Menu open');
+    this.menu.open('sidemenu');
+  }
 
 }

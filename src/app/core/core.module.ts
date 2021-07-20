@@ -6,8 +6,12 @@ import { NgModule } from '@angular/core';
 import { ChatIconComponent } from './components/chat-icon/chat-icon.component';
 
 @NgModule({
-  declarations: [HeaderBarComponent, ChatIconComponent, NotificationIconComponent],
+  declarations: [
+    HeaderBarComponent,
+    ChatIconComponent,
+    NotificationIconComponent
+  ],
   imports: [IonicModule, CommonModule],
-  exports: [HeaderBarComponent, ChatIconComponent, NotificationIconComponent]
+  exports: [HeaderBarComponent, ChatIconComponent, NotificationIconComponent],
 })
 export class CoreModule {}
