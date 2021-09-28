@@ -1,0 +1,28 @@
+[
+   {
+       "id": 12,
+       "name": "Muebles para el hogar",
+       "image": "https://claudiobarrios.com/wp-content/uploads/2019/08/El-uso-de-los-pavimentos-de-madera-en-el-hogar..jpg"
+    },
+    {
+       "id": 13,
+       "name": "Computadoras",
+       "image": "https://www.altonivel.com.mx/wp-content/uploads/2018/06/mejores-laptops.jpg"
+    },
+    
+    {
+       "id": 14,
+       "name": "Electrónicos",
+       "image": "https://0201.nccdn.net/1_2/000/000/180/582/img_411693535-720x480.jpg"
+    },
+    {
+       "id": 15,
+       "name": "Muebles para el hogar",
+       "image": "https://claudiobarrios.com/wp-content/uploads/2019/08/El-uso-de-los-pavimentos-de-madera-en-el-hogar..jpg"
+    },
+    {
+       "id": 16,
+       "name": "Computadoras",
+       "image": "https://www.altonivel.com.mx/wp-content/uploads/2018/06/mejores-laptops.jpg"
+    }
+]

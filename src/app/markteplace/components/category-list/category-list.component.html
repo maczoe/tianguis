@@ -1,3 +1,23 @@
-<p>
-  category-list works!
-</p>
+<ion-text color="dark">
+  <h4>Categorias</h4>
+</ion-text>
+<swiper
+  [slidesPerView]="2.3"
+  [spaceBetween]="5"
+  
+  class="mySwiper"
+  
+>
+
+  <ng-template swiperSlide *ngFor="let category of categories">
+    <app-category-card [category]="category"></app-category-card>
+  </ng-template>
+
+   
+
+
+   
+
+
+   
+</swiper>
