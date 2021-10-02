@@ -1,9 +1,20 @@
 <ion-card>
-  <img src="https://impomarejo.com/uploads/sin_imagen.png" />
+  <img src="{{product.images[0]}}" />
   <ion-card-header>
-    <ion-card-subtitle>Titulo de producto</ion-card-subtitle>
+    <ion-row >
+      <ion-col class="ion-text-start p-0" center>
+         <ion-card-subtitle ><ion-icon name="star"></ion-icon> {{product.rating}} </ion-card-subtitle>
+      </ion-col> 
+      <ion-col class="ion-text-end p-0">
+        <ion-icon name="heart" class="favorite"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-card-title  class="text-title">{{product.name}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
+    <ion-card-title class="price-desc-title"><del>{{product.oldPrice | currency:'Q'}}</del> </ion-card-title>
+  <ion-card-title class="price-title">{{product.price | currency:'Q'}}</ion-card-title>
+
   </ion-card-content>
+
 </ion-card>

@@ -1,3 +1,26 @@
-<p>
-  recommended-profile-list works!
-</p>
+
+<ion-text color="dark">
+  <h4>Perfiles recomendados</h4>
+</ion-text>
+<swiper
+  [slidesPerView]="1.8"
+  [spaceBetween]="0"
+  
+  class="product-descount"
+  
+>
+
+  <ng-template swiperSlide *ngFor="let profile of [1,2,3,2,5]" >
+    <app-profile-card></app-profile-card>
+    
+
+  </ng-template>
+
+   
+
+
+   
+
+
+   
+</swiper>

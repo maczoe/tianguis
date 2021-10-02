@@ -12,21 +12,21 @@ enum ProductType {
 }
 
 export interface Product {
-  id: number;
-  name: string;
-  description: string;
-  status: ProductStatus;
-  type: ProductType;
+  id?: number;
+  name?: string;
+  description?: string;
+  status?: ProductStatus;
+  type?: ProductType;
   terms?: string;
   paymentTerms?: string;
   oldPrice?: number;
-  price: number;
+  price?: number;
   minPrice?: number;
   maxPrice?: number;
   warranty?: number;
-  profileId: number;
+  profileId?: number;
   images?: string[];
-  rating: number;
-  categories: Category[];
-  favorite: boolean;
+  rating?: number;
+  categories?: Category[];
+  favorite?: boolean;
 }

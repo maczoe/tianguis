@@ -4,5 +4,8 @@
 
 <ion-content [fullscreen]="true">
   <app-category-list class="item-list" [categories]="categories[0]"></app-category-list>
-  <app-product-card></app-product-card>
+  <!-- List Products discounted -->
+  <app-discounted-product-list [products]="products[0]"></app-discounted-product-list>
+  <!-- Profile list -->
+  <app-recommended-profile-list></app-recommended-profile-list>
 </ion-content>

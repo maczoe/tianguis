@@ -1,0 +1,121 @@
+[
+  {
+    "id": 456,
+    "name": "Gamepad ",
+    "description": "Descripcion Gamepad",
+    "status": "NEW",
+    "type": "PRODUCT",
+    "terms": "",
+    "paymentTerms": "",
+    "oldPrice": 195.0,
+    "price": 210.0,
+    "minPrice": 0,
+    "maxPrice": 0,
+    "warranty": 0,
+    "profileId": 0,
+    "images": ["https://m.media-amazon.com/images/I/41ILmfSKujL._AC_.jpg"],
+    "rating": 5.0,
+    "categories": [
+      { "id": 15645, "name": "Juegos" },
+      { "id": 456, "name": "Electronicos" }
+    ],
+    "favorite": false
+  },
+  {
+    "id": 2345,
+    "name": "Audi A4 2.0T 08’ ",
+    "description": "Este RED 2008 AUDI A4 S-LINE es parte de nuestro inventario de AUTOMOBILE Únase a la subasta automática para ofertar por este AUDI A4 S-LINE , que tiene un GA - CERT OF TITLE-SALVAGE. ",
+    "status": "USED",
+    "type": "PRODUCT",
+    "terms": "",
+    "paymentTerms": "",
+    "oldPrice": 35000.0,
+    "price": 30000.0,
+    "minPrice": 0,
+    "maxPrice": 0,
+    "warranty": 0,
+    "profileId": 45695,
+    "images": [
+      "https://cs.copart.com/v1/AUTH_svc.pdoc00001/PIX187/fb661e5a-41b1-44c0-ad1e-09f436c99d99.JPG"
+    ],
+    "rating": 5.0,
+    "categories": [
+      { "id": 15645, "name": "Juegos" },
+      { "id": 456, "name": "Electronicos" }
+    ],
+    "favorite": false
+  },
+  {
+    "id": 645,
+    "name": "Silla Gamer Ocetol Rosa",
+    "description": "SILLA GAMER OCELOT COLOR ROSA CON NEGRO BASE AJUSTABLE Y DE PLASTICO DESCANSA BRAZOS AJUSTABLES ANGULO DE INCLINACION 15",
+    "status": "USED",
+    "type": "PRODUCT",
+    "terms": "",
+    "paymentTerms": "",
+    "oldPrice": 850,
+    "price": 1000,
+    "minPrice": 0,
+    "maxPrice": 0,
+    "warranty": 0,
+    "profileId": 45695,
+    "images": [
+      "https://munintech.mx/8070-large_default/silla-gamer-ocelot-color-rosa-con-negro-base-ajustable-y-de-plastico-descansa-brazos-ajustables-angulo-de-inclinacion-155-grado.jpg"
+    ],
+    "rating": 5.0,
+    "categories": [
+      { "id": 15645, "name": "Juegos" },
+      { "id": 456, "name": "Electronicos" }
+    ],
+    "favorite": false
+  },
+  {
+    "id": 789,
+    "name": "Nike Air Force 1",
+    "description": "",
+    "status": "NEW",
+    "type": "PRODUCT",
+    "terms": "",
+    "paymentTerms": "",
+    "oldPrice": 0,
+    "price": 680,
+    "minPrice": 0,
+    "maxPrice": 0,
+    "warranty": 0,
+    "profileId": 45695,
+    "images": [
+      "https://media.revistagq.com/photos/601c1fc952f4bbd664042c1b/16:9/w_735,h_413,c_limit/nike%20air%20force%201%202.jpg"
+    ],
+    "rating": 5.0,
+    "categories": [
+      { "id": 15645, "name": "Juegos" },
+      { "id": 456, "name": "Electronicos" }
+    ],
+    "favorite": false
+  }
+  ,
+  {
+    "id": 789,
+    "name": "Reparacion de celulares",
+    "description": "",
+    "status": "NEW",
+    "type": "SERVICE",
+    "terms": "",
+    "paymentTerms": "",
+    "oldPrice": 0,
+    "price": 150,
+    "minPrice": 0,
+    "maxPrice": 0,
+    "warranty": 0,
+    "profileId": 45695,
+    "images": [
+      "https://toplearning.org/wp-content/uploads/2021/04/technician-in-antistatic-gloves-using-screwdriver-to-disassemble-borken-mobile-phone-going-to-repair-motherboard-sitting-at-his-workplace-in-laboratory-with-needed-equipment-scaled.jpg"
+    ],
+    "rating": 5.0,
+    "categories": [
+      { "id": 15645, "name": "Juegos" },
+      { "id": 456, "name": "Electronicos" }
+    ],
+    "favorite": false
+  }
+]

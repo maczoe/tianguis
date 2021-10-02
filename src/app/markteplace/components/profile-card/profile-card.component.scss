@@ -1,0 +1,28 @@
+.img-profile {
+margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ion-avatar{
+    width:50%;
+    height:auto ;
+
+    
+} */
+ion-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.favorite {
+  font-size: 2.5rem;
+}
+.text-title {
+  font-size: 1rem;
+}
+
+ion-card-content{
+  
+}
