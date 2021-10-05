@@ -10,8 +10,8 @@
   
 >
 
-  <ng-template swiperSlide *ngFor="let profile of [1,2,3,2,5]" >
-    <app-profile-card></app-profile-card>
+  <ng-template swiperSlide *ngFor="let profile of profiles" >
+    <app-profile-card [profile]="profile"></app-profile-card>
     
 
   </ng-template>

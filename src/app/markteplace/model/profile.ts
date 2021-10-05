@@ -7,18 +7,19 @@ enum ProfileType {
 
 
 export interface Profile {
-  id: number;
+  id?: number;
+  name?: string;
   description?: string;
   phone?: string;
   publicEmail?: string;
   website?: string;
-  address: string;
+  address?: string;
   photo?: string;
-  rating: number;
-  type: ProfileType;
-  sales: number;
-  products: number;
-  verified: boolean;
-  locationIds: number[];
-  favorite: boolean;
+  rating?: number;
+  type?: ProfileType;
+  sales?: number;
+  products?: number;
+  verified?: boolean;
+  locationIds?: number[];
+  favorite?: boolean;
 }

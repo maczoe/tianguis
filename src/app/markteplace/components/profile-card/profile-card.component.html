@@ -3,22 +3,22 @@
  
 <div class="img-profile">
   <ion-avatar >
-    <img src="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg.jpg">
+    <img src="{{profile.photo}}">
   </ion-avatar>
 </div >
   
 <ion-card-header>
-  <ion-card-title class="ion-text-center">Julia Perez</ion-card-title>
-  <ion-card-subtitle class="ion-text-center"><ion-icon name="star"></ion-icon> 5.0 </ion-card-subtitle>
+  <ion-card-title class="ion-text-center">{{profile.name}}</ion-card-title>
+  <ion-card-subtitle class="ion-text-center"><ion-icon name="star"></ion-icon> {{profile.rating}} </ion-card-subtitle>
 </ion-card-header>
   <ion-card-content>
    <ion-row>
-     <ion-col>
-       <p>Ventas: 20</p>
-       <p>Productos: 20</p>
+     <ion-col size="8" class="ion-text-start">
+       <p>Ventas: {{profile.sales}}</p>
+       <p>Productos: {{profile.products}}</p>
 
-     </ion-col>
-     <ion-col class="ion-text-end"> 
+     </ion-col >
+     <ion-col size="4" class="ion-text-end"> 
       <ion-icon name="heart" class="favorite"></ion-icon>
      </ion-col>
    </ion-row>

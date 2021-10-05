@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../markteplace/model/category';
 import { CategoriesService } from '../markteplace/services/categories.service';
 import { ProductsService } from '../markteplace/services/products.service';
+import { ProfilesService } from '../markteplace/services/profiles.service';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +11,12 @@ import { ProductsService } from '../markteplace/services/products.service';
 export class HomePage implements OnInit {
 
   categories = [];
-  products= [];
+  products = [];
+  profiles= [];
 
   constructor(private categoriesService: CategoriesService,
-              private productsService: ProductsService
+              private productsService: ProductsService,
+              private profilesService: ProfilesService
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,12 @@ export class HomePage implements OnInit {
     this.productsService.getProducts().then((data) => {
       this.products.push(data);
     });
+
+    this.profilesService.getProfiles().then((data) => {
+      this.profiles.push(data);
+      console.log(this.profiles);
+    });
+
 
   }
 
