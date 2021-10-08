@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
 
   categories = [];
   products = [];
+  productsRecomended = [];
   profiles= [];
 
   constructor(private categoriesService: CategoriesService,
@@ -27,6 +28,10 @@ export class HomePage implements OnInit {
 
     this.productsService.getProducts().then((data) => {
       this.products.push(data);
+    });
+
+    this.productsService.getProductsRecomended().then((data) => {
+      this.productsRecomended.push(data);
     });
 
     this.profilesService.getProfiles().then((data) => {

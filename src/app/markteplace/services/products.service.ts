@@ -26,4 +26,20 @@ export class ProductsService {
 
     });
   }
+
+  getProductsRecomended() {
+    return new Promise((resolve) => {
+
+      if (urlApi) {
+        //TODO: make local JSON file requests
+        this.http.get('./shared/guards/mocks/products.json').subscribe((resp: Product[]) => {
+          resolve(resp.reverse());
+        });
+      } else {
+        //TODO: make requests to the API server
+        resolve([]);
+      }
+
+    });
+  }
 }

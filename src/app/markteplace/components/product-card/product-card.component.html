@@ -12,7 +12,7 @@
     <ion-card-title  class="text-title">{{product.name}}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-card-title class="price-desc-title"><del>{{product.oldPrice | currency:'Q'}}</del> </ion-card-title>
+    <ion-card-title *ngIf="product.oldPrice >0" class="price-desc-title"><del>{{product.oldPrice | currency:'Q'}}</del> </ion-card-title>
   <ion-card-title class="price-title">{{product.price | currency:'Q'}}</ion-card-title>
 
   </ion-card-content>

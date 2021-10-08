@@ -9,6 +9,7 @@ import { SwiperModule } from 'swiper/angular';
 import { DiscountedProductListComponent } from './components/discounted-product-list/discounted-product-list.component';
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { RecommendedProfileListComponent } from './components/recommended-profile-list/recommended-profile-list.component';
+import { RecommendedProductListComponent } from './components/recommended-product-list/recommended-product-list.component';
 
 
 
@@ -20,6 +21,7 @@ import { RecommendedProfileListComponent } from './components/recommended-profil
     DiscountedProductListComponent,
     ProfileCardComponent,
     RecommendedProfileListComponent,
+    RecommendedProductListComponent,
     SearchComponent
   ],
   imports: [
@@ -32,9 +34,10 @@ import { RecommendedProfileListComponent } from './components/recommended-profil
     CategoryCardComponent,
     CategoryListComponent,
     ProductCardComponent,
+    DiscountedProductListComponent,
     ProfileCardComponent,
     RecommendedProfileListComponent,
-    DiscountedProductListComponent,
+    RecommendedProductListComponent,
     SearchComponent
   ]
 })
