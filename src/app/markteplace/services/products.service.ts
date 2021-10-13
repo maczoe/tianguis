@@ -42,4 +42,23 @@ export class ProductsService {
 
     });
   }
+
+  getProductId(idProduct) {
+    return new Promise((resolve) => {
+
+      if (urlApi) {
+        //TODO: make local JSON file requests
+        this.http.get('./shared/guards/mocks/products.json').subscribe((resp: Product[]) => {
+          console.log(idProduct);
+          
+          const product = resp.find((p) => p.id === idProduct);
+          resolve(product);
+        });
+      } else {
+        //TODO: make requests to the API server
+        resolve([]);
+      }
+
+    });
+  }
 }

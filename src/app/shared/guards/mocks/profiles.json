@@ -1,6 +1,6 @@
 [
     {
-        "id": 456585,
+        "id": "456585",
         "name":"Alexis Madrid",
         "description": "",
         "phone": "45565223",
@@ -17,7 +17,7 @@
         "favorite": false
     },
     {
-        "id": 456585,
+        "id": "456585",
         "name":"Maria Lopez",
         "description": "",
         "phone": "45565223",
@@ -34,7 +34,7 @@
         "favorite": false
     },
     {
-        "id": 456585,
+        "id": "456585",
         "name":"Juan Perez",
         "description": "",
         "phone": "45565223",
@@ -51,7 +51,7 @@
         "favorite": false
     },
     {
-        "id": 456585,
+        "id": "456585",
         "name":"Mario Lopez",
         "description": "",
         "phone": "45565223",

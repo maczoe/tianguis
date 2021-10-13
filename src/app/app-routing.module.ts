@@ -26,7 +26,12 @@ const routes: Routes = [
     path: '',
     redirectTo: '/intro',
     pathMatch: 'full',
+  },
+  {
+    path: 'product/:idProduct',
+    loadChildren: () => import('./markteplace/pages/product/product.module').then( m => m.ProductPageModule)
   }
+
 ];
 @NgModule({
   imports: [

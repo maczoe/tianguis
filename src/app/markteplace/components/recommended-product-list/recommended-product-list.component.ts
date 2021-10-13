@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../../model/product';
 
 @Component({
@@ -8,8 +9,13 @@ import { Product } from '../../model/product';
 })
 export class RecommendedProductListComponent implements OnInit {
   @Input() products: Product[] = [];
-  constructor() { }
+  constructor( private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+
+  selectProduc(productId) {
+    this.router.navigateByUrl('/product/'+productId);
+  }
 
 }
