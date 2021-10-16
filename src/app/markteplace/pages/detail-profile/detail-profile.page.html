@@ -26,8 +26,8 @@
   <ion-card-content>
     <ion-row>
       <ion-col size="8" class="ion-text-start">
-        <p><ion-icon name="pricetags"></ion-icon>: {{profile.sales}}</p>
-        <p><ion-icon name="albums"></ion-icon>: {{profile.products}}</p>
+        <p><ion-icon name="pricetags"></ion-icon> Ventas: {{profile.sales}}</p>
+        <p><ion-icon name="albums"></ion-icon> Productos: {{profile.products}}</p>
       </ion-col>
       <ion-col size="4" class="ion-text-end">
         <ion-icon name="heart" class="favorite"></ion-icon>
@@ -52,9 +52,8 @@
       </ion-segment-button>
     </ion-segment>
 
-    <div [ngSwitch]="type">
       <!-- Detail products -->
-      <ion-list *ngSwitchCase="'vewProduct'">
+      <ion-list *ngIf="type === 'vewProduct'">
         <ion-label>Productos</ion-label>
         <ion-row>
           <ion-col
@@ -99,14 +98,19 @@
       </ion-list>
 
       <!-- Detail profile -->
-      <ion-list *ngSwitchCase="'profile'">
-        <ion-label>Dato del perfil</ion-label>
+      <ion-list *ngIf="type === 'profile'">
+        <ion-card-subtitle>Descripción: {{profile.description}}</ion-card-subtitle>
+        <ion-card-subtitle>Teléfono: {{profile.phone}}</ion-card-subtitle>
+        <ion-card-subtitle>Correo: {{profile.publicEmail}}</ion-card-subtitle>
+        <ion-card-subtitle>Dirrección: {{profile.address}}</ion-card-subtitle>
+
+
+
       </ion-list>
 
       <!-- Detail review -->
-      <ion-list *ngSwitchCase="'review'">
+      <ion-list *ngIf="type === 'review'">
         <ion-label>Reseñas del perfil</ion-label>
       </ion-list>
-    </div>
   </ion-card-content>
 </ion-content>

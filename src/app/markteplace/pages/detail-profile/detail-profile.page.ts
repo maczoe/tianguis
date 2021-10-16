@@ -14,7 +14,7 @@ export class DetailProfilePage implements OnInit {
   profileId = '0';
   profile: Profile = {};
   products= [];
-  type: string;
+  type = 'vewProduct';
   constructor(
     private router: ActivatedRoute,
     private profilesService: ProfilesService,
