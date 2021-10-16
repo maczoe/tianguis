@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from '../../model/product';
+import { Profile } from '../../model/profile';
+import { ProductsService } from '../../services/products.service';
+import { ProfilesService } from '../../services/profiles.service';
+
+@Component({
+  selector: 'app-detail-profile',
+  templateUrl: './detail-profile.page.html',
+  styleUrls: ['./detail-profile.page.scss'],
+})
+export class DetailProfilePage implements OnInit {
+  profileId = '0';
+  profile: Profile = {};
+  products= [];
+  type: string;
+  constructor(
+    private router: ActivatedRoute,
+    private profilesService: ProfilesService,
+    private productsService: ProductsService
+  ) {
+    this.profileId = this.router.snapshot.paramMap.get('idProfile');
+    this.getProfile(this.profileId);
+    this.getProductsProfile(this.profileId);
+  }
+
+  ngOnInit() {
+    
+  }
+
+  getProfile(id) {
+    this.profilesService.getProfile(id).then((data) => {
+      this.profile = data;
+
+    });
+  }
+  getProductsProfile(id) {
+    this.productsService.getProductsProfile(id).then((data) => {
+      this.products.push(data);
+      console.log(this.products);
+      
+
+    });
+  }
+
+  segmentChanged($event) {
+  }
+}

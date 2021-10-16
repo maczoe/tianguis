@@ -49,8 +49,7 @@ export class ProductsService {
       if (urlApi) {
         //TODO: make local JSON file requests
         this.http.get('./shared/guards/mocks/products.json').subscribe((resp: Product[]) => {
-          console.log(idProduct);
-          
+
           const product = resp.find((p) => p.id === idProduct);
           resolve(product);
         });
@@ -60,5 +59,22 @@ export class ProductsService {
       }
 
     });
+  }
+
+  getProductsProfile(idProfile){
+    return new Promise((resolve) => {
+
+    if (urlApi) {
+      //TODO: make local JSON file requests
+      this.http.get('./shared/guards/mocks/products.json').subscribe((resp: Product[]) => {
+        const product = resp.filter((p) => p.profileId === idProfile);
+        resolve(product);
+      });
+    } else {
+      //TODO: make requests to the API server
+      resolve([]);
+    }
+    });
+
   }
 }

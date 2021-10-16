@@ -36,7 +36,6 @@ export class HomePage implements OnInit {
 
     this.profilesService.getProfiles().then((data) => {
       this.profiles.push(data);
-      console.log(this.profiles);
     });
 
 

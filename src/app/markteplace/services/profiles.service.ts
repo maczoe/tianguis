@@ -41,6 +41,6 @@ export class ProfilesService {
       resolve([]);
     }
   });
- }   
-      
+ }
+
 }

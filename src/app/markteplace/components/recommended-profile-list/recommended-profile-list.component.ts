@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Profile } from '../../model/profile';
 
 @Component({
@@ -8,8 +9,11 @@ import { Profile } from '../../model/profile';
 })
 export class RecommendedProfileListComponent implements OnInit {
   @Input() profiles: Profile[] = [];
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
+  viewProfile(id) {
+    this.router.navigateByUrl('/detail-profile/'+id);
+  }
 }

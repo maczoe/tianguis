@@ -30,7 +30,13 @@ const routes: Routes = [
   {
     path: 'product/:idProduct',
     loadChildren: () => import('./markteplace/pages/product/product.module').then( m => m.ProductPageModule)
+  },
+  {
+    path: 'detail-profile/:idProfile',
+    loadChildren: () => import('./markteplace/pages/detail-profile/detail-profile.module').then( m => m.DetailProfilePageModule)
   }
+
+
 
 ];
 @NgModule({

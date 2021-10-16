@@ -11,8 +11,6 @@ import { ProfileCardComponent } from './components/profile-card/profile-card.com
 import { RecommendedProfileListComponent } from './components/recommended-profile-list/recommended-profile-list.component';
 import { RecommendedProductListComponent } from './components/recommended-product-list/recommended-product-list.component';
 
-
-
 @NgModule({
   declarations: [
     CategoryCardComponent,
@@ -22,12 +20,13 @@ import { RecommendedProductListComponent } from './components/recommended-produc
     ProfileCardComponent,
     RecommendedProfileListComponent,
     RecommendedProductListComponent,
-    SearchComponent
+    SearchComponent,
+
   ],
   imports: [
     CommonModule,
     IonicModule,
-    SwiperModule
+    SwiperModule,
 
   ],
   exports: [

@@ -3,15 +3,15 @@
   <h4>Perfiles recomendados</h4>
 </ion-text>
 <swiper
-  [slidesPerView]="1.8"
-  [spaceBetween]="0"
+  [slidesPerView]="2.5"
+  [spaceBetween]="1"
   
   class="product-descount"
   
 >
 
   <ng-template swiperSlide *ngFor="let profile of profiles" >
-    <app-profile-card [profile]="profile"></app-profile-card>
+    <app-profile-card [profile]="profile" (click)="viewProfile(profile.id)"></app-profile-card>
     
 
   </ng-template>

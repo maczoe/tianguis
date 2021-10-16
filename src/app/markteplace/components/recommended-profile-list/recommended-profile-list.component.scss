@@ -8,6 +8,8 @@
 .swiper-slide {
   text-align: center;
   font-size: 12px;
+  width: 100%;
+  height: 100%;
  
 
   /* Center slide text vertically */
@@ -30,4 +32,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+app-profile-card{
+  width: 100%;
+  margin: 0;
 }
