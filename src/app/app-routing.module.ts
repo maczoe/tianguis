@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'detail-profile/:idProfile',
     loadChildren: () => import('./markteplace/pages/detail-profile/detail-profile.module').then( m => m.DetailProfilePageModule)
+  },  {
+    path: 'new-quote',
+    loadChildren: () => import('./modals/new-quote/new-quote.module').then( m => m.NewQuotePageModule)
   }
+
 
 
 
