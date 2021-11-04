@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { QuotePage } from './quote.page';
 
 import { QuotePageRoutingModule } from './quote-routing.module';
+import { MarkteplaceModule } from '../markteplace/markteplace.module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { QuotePageRoutingModule } from './quote-routing.module';
     CommonModule,
     FormsModule,
     CoreModule,
+    MarkteplaceModule,
     QuotePageRoutingModule
   ],
   declarations: [QuotePage]

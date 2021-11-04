@@ -10,8 +10,8 @@ enum QuoteStatus {
   refubished = 'REFUBISHED',
 }
 
-export interface Product {
-  id?: string;
+export interface Quote {
+  id: string;
   title?: string;
   description?: string;
   price?: number;
@@ -22,7 +22,6 @@ export interface Product {
   attachments?: number;
   type: QuoteTyoe;
   status: QuoteStatus;
-  paymentTerms?: string;
   author: number;
   active: boolean;
 }

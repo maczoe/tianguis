@@ -1,3 +1,47 @@
 [
-    
+    {
+        "id": "12555",
+        "title": "Teclado Gamer luced led RGB",
+        "description": "teclado economico y en buen estado",
+        "price": 200,
+        "expiration": "10/11/2021",
+        "minPrice": 200,
+        "maxPrice": 250,
+        "locationId": 4565,
+        "attachments": 456,
+        "type": "PRODUCT",
+        "status": "USED",
+        "author": 45569,
+        "active": true
+    },
+    {
+        "id": "45675",
+        "title": "Silla Gamer luced led RGB",
+        "description": "en buen estado",
+        "price": 200,
+        "expiration": "10/11/2021",
+        "minPrice": 200,
+        "maxPrice": 250,
+        "locationId": 4565,
+        "attachments": 456,
+        "type": "PRODUCT",
+        "status": "REFUBISHED",
+        "author": 45569,
+        "active": true
+    },
+    {
+        "id": "7896",
+        "title": "Celular Samsung A70",
+        "description": "teclado economico y en buen estado",
+        "price": 200,
+        "expiration": "10/11/2021",
+        "minPrice": 200,
+        "maxPrice": 250,
+        "locationId": 4565,
+        "attachments": 456,
+        "type": "PRODUCT",
+        "status": "REFUBISHED",
+        "author": 45569,
+        "active": true
+    }
 ]

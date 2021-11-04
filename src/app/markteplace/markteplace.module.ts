@@ -10,6 +10,8 @@ import { DiscountedProductListComponent } from './components/discounted-product-
 import { ProfileCardComponent } from './components/profile-card/profile-card.component';
 import { RecommendedProfileListComponent } from './components/recommended-profile-list/recommended-profile-list.component';
 import { RecommendedProductListComponent } from './components/recommended-product-list/recommended-product-list.component';
+import { QuoteComponent } from './components/quote/quote.component';
+import { QuoteListComponent } from './components/quote-list/quote-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { RecommendedProductListComponent } from './components/recommended-produc
     RecommendedProfileListComponent,
     RecommendedProductListComponent,
     SearchComponent,
+    QuoteComponent,
+    QuoteListComponent
 
   ],
   imports: [
@@ -37,7 +41,8 @@ import { RecommendedProductListComponent } from './components/recommended-produc
     ProfileCardComponent,
     RecommendedProfileListComponent,
     RecommendedProductListComponent,
-    SearchComponent
+    SearchComponent,
+    QuoteListComponent
   ]
 })
 export class MarkteplaceModule { }

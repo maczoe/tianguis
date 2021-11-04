@@ -4,27 +4,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
- 
 
-  <ion-card>
-   
-    <ion-row>
-      <ion-col size="2" class="rowofcards">
-      <img class="img" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-
-      </ion-col>
-      <ion-col size="10">
-        <ion-item lines="none">
-          <ion-label>  
-            Silla Gamer Ocetol Rosa displonible hoy  
-            <p>18/10/2021 04:30 pm</p>       
-            <ion-badge  color="success">Tienes 2 ofertas</ion-badge>
-          </ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    
-  </ion-card>
+  <app-quote-list [quotes]="quotes[0]"></app-quote-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newQuote()">
     <ion-fab-button>
