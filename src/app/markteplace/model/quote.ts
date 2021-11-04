@@ -24,4 +24,7 @@ export interface Quote {
   status: QuoteStatus;
   author: number;
   active: boolean;
+  createdAt: string;
+  responses: string[];
+
 }

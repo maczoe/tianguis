@@ -12,7 +12,9 @@
         "type": "PRODUCT",
         "status": "USED",
         "author": 45569,
-        "active": true
+        "active": true,
+        "createdAt":"18/10/2021 04:30 pm",
+        "responses":["455","4578","9855"]
     },
     {
         "id": "45675",
@@ -27,7 +29,9 @@
         "type": "PRODUCT",
         "status": "REFUBISHED",
         "author": 45569,
-        "active": true
+        "active": true,
+        "createdAt":"09/11/2021 11:30 am",
+        "responses":["455","4578"]
     },
     {
         "id": "7896",
@@ -42,6 +46,63 @@
         "type": "PRODUCT",
         "status": "REFUBISHED",
         "author": 45569,
-        "active": true
+        "active": true,
+        "createdAt":"09/11/2021 11:30 am",
+        "responses":["455"]
     }
+    ,
+    {
+        "id": "896",
+        "title": "Diseñador grafico",
+        "description": "diseños innovadores",
+        "price": 200,
+        "expiration": "10/11/2021",
+        "minPrice": 200,
+        "maxPrice": 250,
+        "locationId": 4565,
+        "attachments": 456,
+        "type": "SERVICE",
+        "status": "NEW",
+        "author": 45569,
+        "active": true,
+        "createdAt":"28/10/2021 11:30 am",
+        "responses":[]
+    }
+    ,
+    {
+        "id": "7896",
+        "title": "Celular Samsung A70",
+        "description": "teclado economico y en buen estado",
+        "price": 200,
+        "expiration": "10/11/2021",
+        "minPrice": 200,
+        "maxPrice": 250,
+        "locationId": 4565,
+        "attachments": 456,
+        "type": "PRODUCT",
+        "status": "REFUBISHED",
+        "author": 45569,
+        "active": true,
+        "createdAt":"09/11/2021 11:30 am",
+        "responses":["455"]
+    }
+    ,
+    {
+        "id": "896",
+        "title": "Diseñador grafico",
+        "description": "diseños innovadores",
+        "price": 200,
+        "expiration": "10/11/2021",
+        "minPrice": 200,
+        "maxPrice": 250,
+        "locationId": 4565,
+        "attachments": 456,
+        "type": "SERVICE",
+        "status": "NEW",
+        "author": 45569,
+        "active": true,
+        "createdAt":"28/10/2021 11:30 am",
+        "responses":[]
+    }
+
 ]

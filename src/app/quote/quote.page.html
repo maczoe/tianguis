@@ -4,8 +4,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
-
-  <app-quote-list [quotes]="quotes[0]"></app-quote-list>
+  <ion-list>
+      <app-quote-list [quotes]="quotes[0]"></app-quote-list>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newQuote()">
     <ion-fab-button>
