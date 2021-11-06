@@ -1,4 +1,3 @@
 <div *ngFor="let quote of quotes">
-  <app-quote [quote]="quote"></app-quote>
-
+  <app-quote [quote]="quote" (click)="selectQuote(quote.id)"></app-quote>
 </div>

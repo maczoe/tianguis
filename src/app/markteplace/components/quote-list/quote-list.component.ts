@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Quote } from '../../model/quote';
 
 @Component({
@@ -9,12 +10,17 @@ import { Quote } from '../../model/quote';
 export class QuoteListComponent implements OnInit {
 
   @Input() quotes: Quote[] = [];
-  constructor() {
+  constructor(private router: Router) {
    }
 
   ngOnInit() {
     console.log(this.quotes);
 
   }
+
+  selectQuote(id) {
+    this.router.navigateByUrl('/quote-response/'+id);
+  }
+
 
 }

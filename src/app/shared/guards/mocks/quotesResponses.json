@@ -1,0 +1,87 @@
+[
+    {
+        "id": "4569",
+        "comment": "Mi Oferta",
+        "price": 300,
+        "attachments": 4569,
+        "product": "456",
+        "expiration": "10/11/2021",
+        "terms": "",
+        "requests": "12555",
+        "author": "456585",
+        "status": "WON",
+        "active": true,
+        "createdAt": "05/11/2021 11:05 am"
+    },
+    {
+        "id": "4568",
+        "comment": "Mi Oferta 2",
+        "price": 75,
+        "attachments": 4569,
+        "product": "456",
+        "expiration": "10/11/2021",
+        "terms": "",
+        "requests": "45675",
+        "author": "456585",
+        "status": "WON",
+        "active": true,
+        "createdAt": "05/11/2021 11:05 am"
+    },
+    {
+        "id": "4570",
+        "comment": "Mi Oferta3",
+        "price": 250,
+        "attachments": 4569,
+        "product": "456",
+        "expiration": "10/11/2021",
+        "terms": "",
+        "requests": "7896",
+        "author": "456585",
+        "status": "WON",
+        "active": true,
+        "createdAt": "05/11/2021 11:05 am"
+    },
+    {
+        "id": "4571",
+        "comment": "Mi Oferta",
+        "price": 85,
+        "attachments": 4569,
+        "product": "456",
+        "expiration": "10/11/2021",
+        "terms": "",
+        "requests": "7896",
+        "author": "456585",
+        "status": "WON",
+        "active": true,
+        "createdAt": "05/11/2021 11:05 am"
+    },
+    {
+        "id": "4572",
+        "comment": "Mi Oferta 6",
+        "price": 150,
+        "attachments": 4569,
+        "product": "456",
+        "expiration": "10/11/2021",
+        "terms": "",
+        "requests": "12555",
+        "author": "456585",
+        "status": "WON",
+        "active": true,
+        "createdAt": "05/11/2021 11:05 am"
+    },
+    {
+        "id": "4573",
+        "comment": "Mi Oferta",
+        "price": 100,
+        "attachments": 4569,
+        "product": "456",
+        "expiration": "10/11/2021",
+        "terms": "",
+        "requests": "7896",
+        "author": "456585",
+        "status": "WON",
+        "active": true,
+        "createdAt": "05/11/2021 11:05 am"
+    }
+
+]

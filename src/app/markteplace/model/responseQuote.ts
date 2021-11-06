@@ -13,11 +13,9 @@ export interface ResponseQuote {
     product?: string;
     expiration: string;
     terms?: string;
-    requests: number;
+    requests: string;
     author: string;
-    locationId: string;
     status: ResponseStatus;
     active: boolean;
     createdAt: string;
-
   }
