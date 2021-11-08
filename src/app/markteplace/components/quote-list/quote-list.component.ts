@@ -14,7 +14,6 @@ export class QuoteListComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.quotes);
 
   }
 

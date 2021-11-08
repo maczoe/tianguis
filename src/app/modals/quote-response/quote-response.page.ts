@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ResponseQuote } from 'src/app/markteplace/model/responseQuote';
+import { ProfilesService } from 'src/app/markteplace/services/profiles.service';
 import { QuoteResponsesService } from 'src/app/markteplace/services/quote-responses.service';
 @Component({
   selector: 'app-quote-response',
@@ -9,19 +10,19 @@ import { QuoteResponsesService } from 'src/app/markteplace/services/quote-respon
 })
 export class QuoteResponsePage implements OnInit {
   id = '0';
-  responses=[];
+  responses = [];
+
   constructor(private quoteResponsesService: QuoteResponsesService,
     private router: ActivatedRoute,
+    private profilesService: ProfilesService,
   ) {
     this.id = this.router.snapshot.paramMap.get('idQuote');
    }
 
   ngOnInit() {
 
-    console.log(this.id);
     this.quoteResponsesService.getQuoteReponses(this.id).then((data: ResponseQuote[]) => {
       this.responses.push(...data);
-      console.log(this.responses);
     });
 
   }

@@ -8,27 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let resp of responses">
-  <ion-card>
+  <div *ngIf="responses.length <1">
+    <h2>No tienes ofertas.</h2>
     
-      <ion-row >
-        <ion-col size="9">
-          <ion-item lines="none">
-            <ion-avatar slot="start">
-              <img src="./avatar-han.png" />
-            </ion-avatar>
-            <ion-label>
-              <h2>{{resp.comment}}</h2>
-              <h3> Limite hasta {{resp.expiration}}</h3>
-              <p>{{resp.createdAt}}</p>
-            </ion-label>
-          </ion-item>
-        </ion-col>
-        <ion-col size="3">
-          <p>Oferta</p>
-          <h2>Q{{resp.price}}</h2>
-        </ion-col>
-      </ion-row>
-    </ion-card>
   </div>
+  <app-response-quote-list [responseQuotes]="responses"></app-response-quote-list>
 </ion-content>

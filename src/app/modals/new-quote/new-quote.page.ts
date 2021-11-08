@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./new-quote.page.scss'],
 })
 export class NewQuotePage implements OnInit {
-
+  categories: string[] =[];
   constructor() { }
 
   ngOnInit() {

@@ -26,7 +26,7 @@ export class DetailProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   getProfile(id) {
@@ -39,7 +39,6 @@ export class DetailProfilePage implements OnInit {
     this.productsService.getProductsProfile(id).then((data) => {
       this.products.push(data);
       console.log(this.products);
-      
 
     });
   }

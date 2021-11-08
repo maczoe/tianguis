@@ -18,9 +18,7 @@ export class QuoteResponsesService {
       if (urlApi) {
         //TODO: make local JSON file requests
         this.http.get('./shared/guards/mocks/quotesResponses.json').subscribe((resp: ResponseQuote[]) => {
-          
           const responses = resp.filter((r) => r.requests === id);
-          console.log(responses);
           resolve(responses);
         });
       } else {

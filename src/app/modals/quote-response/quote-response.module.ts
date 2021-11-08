@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { QuoteResponsePageRoutingModule } from './quote-response-routing.module';
 
 import { QuoteResponsePage } from './quote-response.page';
+import { MarkteplaceModule } from 'src/app/markteplace/markteplace.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    QuoteResponsePageRoutingModule
+    QuoteResponsePageRoutingModule,
+    MarkteplaceModule
   ],
   declarations: [QuoteResponsePage]
 })
