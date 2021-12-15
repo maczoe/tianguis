@@ -21,7 +21,7 @@ export class QuoteResponsePage implements OnInit {
 
   ngOnInit() {
 
-    this.quoteResponsesService.getQuoteReponses(this.id).then((data: ResponseQuote[]) => {
+    this.quoteResponsesService.getQuoteReponsesRequest(this.id).then((data: ResponseQuote[]) => {
       this.responses.push(...data);
     });
 

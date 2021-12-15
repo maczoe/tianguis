@@ -33,12 +33,27 @@
   <p>
     Categorias
   </p>
-  <div>
-    <ion-badge color="medium">88</ion-badge>
-    <ion-badge color="medium">88</ion-badge>
-  </div>
-  
+  <ion-row>
+    <ion-col>
+      <ion-badge color="medium">{{product.categories}}</ion-badge>
+    </ion-col>
+    <ion-col>
+      <ion-badge color="medium">Computadoras</ion-badge>
+    </ion-col> 
+    <ion-col>
+      <ion-badge color="medium">Componentes</ion-badge>
+    </ion-col>
+    <ion-col>
+      <ion-badge color="medium">Electronicos</ion-badge>
+    </ion-col>
+  </ion-row>
 
+  <p>
+    Descripción
+  </p>
+  <ion-label>
+  {{product.description}}
+  </ion-label>
     </ion-card-content>
 </ion-content>
 

@@ -42,7 +42,13 @@ const routes: Routes = [
   {
     path: 'quote-response/:idQuote',
     loadChildren: () => import('./modals/quote-response/quote-response.module').then( m => m.QuoteResponsePageModule)
+  },
+  {
+    path: 'detail-response-quote/:idReponse',
+    // eslint-disable-next-line max-len
+    loadChildren: () => import('./markteplace/pages/detail-response-quote/detail-response-quote.module').then( m => m.DetailResponseQuotePageModule)
   }
+
 
 
 

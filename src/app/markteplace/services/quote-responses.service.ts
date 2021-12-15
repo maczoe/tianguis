@@ -12,7 +12,7 @@ export class QuoteResponsesService {
 
   constructor(private http: HttpClient) { }
 
-  getQuoteReponses(id) {
+  getQuoteReponsesRequest(id) {
     return new Promise((resolve) => {
 
       if (urlApi) {
@@ -26,6 +26,21 @@ export class QuoteResponsesService {
         resolve([]);
       }
 
+    });
+  }
+
+  getQuoteReponseById(id) {
+    return new Promise((resolve) => {
+      if (urlApi) {
+        //TODO: make local JSON file requests
+        this.http.get('./shared/guards/mocks/quotesResponses.json').subscribe((resp: ResponseQuote[]) => {
+          const response = resp.find((r) => r.id === id);
+          resolve(response);
+        });
+      } else {
+        //TODO: make requests to the API server
+        resolve([]);
+      }
     });
   }
 }

@@ -45,7 +45,7 @@
         <ion-label>Productos</ion-label>
       </ion-segment-button>
       <ion-segment-button value="profile">
-        <ion-label>Datos</ion-label>
+        <ion-label>Perfil</ion-label>
       </ion-segment-button>
       <ion-segment-button value="review">
         <ion-label>Reseñas</ion-label>
@@ -110,7 +110,18 @@
 
       <!-- Detail review -->
       <ion-list *ngIf="type === 'review'">
-        <ion-label>Reseñas del perfil</ion-label>
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&h=661&q=70&fm=webp">
+            </ion-avatar>
+            <ion-label>
+              <h2>Finn</h2>
+              <h3>I'm a big deal</h3>
+              <p>Listen, I've had a pretty messed up day...</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
       </ion-list>
   </ion-card-content>
 </ion-content>

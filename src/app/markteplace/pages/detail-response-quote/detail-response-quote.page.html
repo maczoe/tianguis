@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Orferta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="{{product.images}}" />
+  <ion-card-content>
+    <ion-item lines="none">
+      <ion-avatar item-start>
+        <img src="{{profile.photo}}" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{profile.name}}</h2>
+        <p class="ion-text-start"><ion-icon name="star"></ion-icon> {{profile.rating}} </p>
+
+        
+      </ion-label>
+    </ion-item>
+    <ion-card-title>{{product.name}}</ion-card-title>      
+    <ion-card-subtitle ><ion-icon name="star"></ion-icon> {{product.rating}} </ion-card-subtitle> 
+    <p>Descripción Producto:</p>
+
+      <p>
+        {{product.description}}
+      </p>
+      <ion-card-title *ngIf="product.oldPrice >0" class="price-desc-title"><del>{{product.oldPrice | currency:'Q'}}</del> </ion-card-title>
+  <ion-card-title class="price-title">{{product.price | currency:'Q'}}</ion-card-title>
+    <p>Categorias del producto:</p>
+    <ion-row>
+    
+      <ion-col>
+        <ion-badge color="medium">Computadoras</ion-badge>
+      </ion-col>
+      <ion-col>
+        <ion-badge color="medium">Componentes</ion-badge>
+      </ion-col>
+      <ion-col>
+        <ion-badge color="medium">Electronicos</ion-badge>
+      </ion-col>
+    </ion-row>
+
+    <p>Detalle Oferta:</p>
+    <ion-label> {{responsesDetail.comment}} </ion-label>
+    <ion-button expand="block" >Aceptar Oferta</ion-button>
+  </ion-card-content>
+</ion-content>

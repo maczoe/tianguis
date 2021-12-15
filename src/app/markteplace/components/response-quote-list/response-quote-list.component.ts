@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResponseQuote } from '../../model/responseQuote';
 
 @Component({
@@ -8,8 +9,12 @@ import { ResponseQuote } from '../../model/responseQuote';
 })
 export class ResponseQuoteListComponent implements OnInit {
     @Input() responseQuotes: ResponseQuote[]=[];
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  viewResposeDetailQuote(id) {
+    this.router.navigateByUrl('/detail-response-quote/'+id);
+  }
 
 }
