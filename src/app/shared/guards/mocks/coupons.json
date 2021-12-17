@@ -1,0 +1,41 @@
+[
+    {
+        "id": "1",
+        "name": "Anfora 15% de descuento en pasteledes clasico",
+        "description": "",
+        "image": "https://x3jme3vmctf3dmlkql5tzx17-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/pasteles-de-natilla.png",
+        "expired": "31/12/2021",
+        "category": 1,
+        "locationIds": [
+            "15.12545,10.5665",
+            "15.12545,10.5665",
+            "15.12545,10.5665"
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Brassica - Parrillada para 2 personas por Q199",
+        "description": "Aplican resticciones",
+        "image": "https://x3jme3vmctf3dmlkql5tzx17-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/pasteles-de-natilla.png",
+        "expired": "31/12/2021",
+        "category": 1,
+        "locationIds": [
+            "15.12545,10.5665",
+            "15.12545,10.5665",
+            "15.12545,10.5665"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Planet Bowl 2x1 en hora de boliche",
+        "description": "Aplican resticciones",
+        "image": "https://curiosfera-historia.com/wp-content/uploads/Historia-de-los-bolos-1.jpg",
+        "expired": "31/12/2021",
+        "category": 2,
+        "locationIds": [
+            "15.12545,10.5665",
+            "15.12545,10.5665",
+            "15.12545,10.5665"
+        ]
+    }
+]
