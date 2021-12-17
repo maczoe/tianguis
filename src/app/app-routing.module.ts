@@ -47,7 +47,12 @@ const routes: Routes = [
     path: 'detail-response-quote/:idReponse',
     // eslint-disable-next-line max-len
     loadChildren: () => import('./markteplace/pages/detail-response-quote/detail-response-quote.module').then( m => m.DetailResponseQuotePageModule)
+  },
+  {
+    path: 'coupon-detail/:idCoupon',
+    loadChildren: () => import('./modals/coupon-detail/coupon-detail.module').then( m => m.CouponDetailPageModule)
   }
+
 
 
 

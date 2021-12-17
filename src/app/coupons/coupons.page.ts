@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coupons',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class CouponsPage {
 
-  constructor() {}
+  constructor(private router: Router) {}
 
+  viewCouponByID(id) {
+    this.router.navigateByUrl('/coupon-detail/'+id);
+  }
 }
