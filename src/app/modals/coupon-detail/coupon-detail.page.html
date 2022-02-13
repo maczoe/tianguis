@@ -8,20 +8,20 @@
 
 <ion-content>
   <img
-    src="https://x3jme3vmctf3dmlkql5tzx17-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/pasteles-de-natilla.png"
+    src="{{coupon.image}}"
   />
   <ion-card-content>
     <ion-button color="primary">Obtener Cupón</ion-button>
 
     <ion-card-title
-      >Anfora 15% de descuento en pasteledes clasico</ion-card-title
+      >{{coupon.name}}</ion-card-title
     >
 
     <p>Aplican Resticciones</p>
      
 
     <p>Válido hasta:</p>
-    <ion-label> 31/12/2021</ion-label>
+    <ion-label> {{coupon.expired}}</ion-label>
     <ion-card-subtitle
       >¿Donde Canjearlo? </ion-card-subtitle
     >

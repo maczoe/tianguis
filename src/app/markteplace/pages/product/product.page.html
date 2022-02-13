@@ -36,22 +36,18 @@
       >{{product.price | currency:'Q'}}</ion-card-title
     >
     <p>Categorias</p>
-    <ion-row>
-      <ion-col>
-        <ion-badge color="medium">{{product.categories}}</ion-badge>
-      </ion-col>
-      <ion-col>
-        <ion-badge color="medium">Computadoras</ion-badge>
-      </ion-col>
-      <ion-col>
-        <ion-badge color="medium">Componentes</ion-badge>
-      </ion-col>
-      <ion-col>
-        <ion-badge color="medium">Electronicos</ion-badge>
-      </ion-col>
+    <ion-row >
+      <div *ngFor="let category of product.categories">
+        
+        <ion-col><ion-badge color="medium">{{category.name}} </ion-badge> </ion-col>
+      </div>
     </ion-row>
+  
 
     <p>Descripción</p>
     <ion-label> {{product.description}} </ion-label>
+
+    <ion-button expand="block" >Comprar</ion-button>
+  
   </ion-card-content>
 </ion-content>

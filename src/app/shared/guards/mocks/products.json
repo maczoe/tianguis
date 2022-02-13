@@ -17,7 +17,8 @@
     "rating": 5.0,
     "categories": [
       { "id": 15645, "name": "Juegos" },
-      { "id": 456, "name": "Electronicos" }
+      { "id": 456, "name": "Gamer" },
+      { "id": 456, "name": "Controles" }
     ],
     "favorite": false
   },
@@ -40,8 +41,8 @@
     ],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Juegos" },
-      { "id": 456, "name": "Electronicos" }
+      { "id": 15645, "name": "Carros" },
+      { "id": 456, "name": "Automáico" }
     ],
     "favorite": false
   },
@@ -64,8 +65,9 @@
     ],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Juegos" },
-      { "id": 456, "name": "Electronicos" }
+      { "id": 15645, "name": "Gamer" },
+      { "id": 456, "name": "Sillas" },
+      { "id": 456, "name": "GRIL" }
     ],
     "favorite": false
   },
@@ -113,8 +115,9 @@
     ],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Juegos" },
-      { "id": 456, "name": "Electronicos" }
+      { "id": 15645, "name": "Reparación" },
+      { "id": 456, "name": "Electronicos" },
+      { "id": 15645, "name": "Celulares" }
     ],
     "favorite": false
   }

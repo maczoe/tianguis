@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CouponsPage } from './coupons.page';
 
 import { CouponsPageRoutingModule } from './coupons-routing.module';
+import { MarkteplaceModule } from '../markteplace/markteplace.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { CouponsPageRoutingModule } from './coupons-routing.module';
     CommonModule,
     FormsModule,
     CouponsPageRoutingModule,
-    CoreModule
+    CoreModule,
+    MarkteplaceModule
   ],
   declarations: [CouponsPage]
 })

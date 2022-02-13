@@ -17,15 +17,15 @@
     <ion-item-divider>
       <ion-label> Marketplace </ion-label>
     </ion-item-divider>
-    <ion-item>
+    <ion-item (click)="viewRedirect('/app/tabs/home')">
       <ion-icon name="pricetag" slot="start"></ion-icon>
       <ion-label>Compra</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="viewRedirect('/app/tabs/sell')" >
       <ion-icon name="cash" slot="start"></ion-icon>
       <ion-label>Vende</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="viewRedirect('/app/tabs/quote')">
       <ion-icon name="documents" slot="start"></ion-icon>
       <ion-label>Cotiza</ion-label>
     </ion-item>
@@ -37,7 +37,7 @@
       <ion-icon name="briefcase" slot="start"></ion-icon>
       <ion-label>Empleos</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="viewRedirect('/app/tabs/coupons')">
       <ion-icon name="pricetags" slot="start"></ion-icon>
       <ion-label>Cupones</ion-label>
     </ion-item>

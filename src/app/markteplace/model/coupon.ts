@@ -1,6 +1,6 @@
 import { CouponsCategory } from './couponsCategory';
 
-export interface Profile {
+export interface Coupon {
     id?: string;
     name?: string;
     description?: string;

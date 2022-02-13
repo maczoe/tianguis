@@ -1,0 +1,11 @@
+<ion-card >
+  <div class="center-img">
+
+    <img src="{{coupon.image}}" alt=""/>
+  </div>
+  <ion-card-header>
+    <ion-card-title>{{coupon.name}}</ion-card-title>
+    <ion-card-subtitle>Válido hasta: 31/12/2021</ion-card-subtitle>
+    <ion-button color="primary" expand="full" (click)="viewCouponByID(coupon.id)">Ver más</ion-button>
+  </ion-card-header>      
+</ion-card>

@@ -16,7 +16,7 @@
         "id": "2",
         "name": "Brassica - Parrillada para 2 personas por Q199",
         "description": "Aplican resticciones",
-        "image": "https://x3jme3vmctf3dmlkql5tzx17-wpengine.netdna-ssl.com/wp-content/uploads/2020/11/pasteles-de-natilla.png",
+        "image": "https://prowebimages.blob.core.windows.net/guatemala/0000755_parrillada-para-2-por-q199-en-facundo_635.jpeg",
         "expired": "31/12/2021",
         "category": 1,
         "locationIds": [
@@ -32,6 +32,19 @@
         "image": "https://curiosfera-historia.com/wp-content/uploads/Historia-de-los-bolos-1.jpg",
         "expired": "31/12/2021",
         "category": 2,
+        "locationIds": [
+            "15.12545,10.5665",
+            "15.12545,10.5665",
+            "15.12545,10.5665"
+        ]
+    },
+    {
+        "id": "4",
+        "name": "Brassica - Parrillada para 2 personas por Q199",
+        "description": "Aplican resticciones",
+        "image": "https://prowebimages.blob.core.windows.net/guatemala/0000755_parrillada-para-2-por-q199-en-facundo_635.jpeg",
+        "expired": "31/12/2021",
+        "category": 1,
         "locationIds": [
             "15.12545,10.5665",
             "15.12545,10.5665",
