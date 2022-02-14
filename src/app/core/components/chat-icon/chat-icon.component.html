@@ -1,4 +1,4 @@
-<ion-button>
+<ion-button (click)="viewChats()">
   <ion-icon slot="icon-only" name="chatbox-outline"></ion-icon>
   <ion-badge color="danger" *ngIf="newNotifications">{{newNotifications}}</ion-badge>
 </ion-button>

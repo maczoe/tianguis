@@ -51,7 +51,15 @@ const routes: Routes = [
   {
     path: 'coupon-detail/:idCoupon',
     loadChildren: () => import('./modals/coupon-detail/coupon-detail.module').then( m => m.CouponDetailPageModule)
+  },  {
+    path: 'chat-list',
+    loadChildren: () => import('./markteplace/pages/chat-list/chat-list.module').then( m => m.ChatListPageModule)
+  },
+  {
+    path: 'chats',
+    loadChildren: () => import('./markteplace/pages/chats/chats.module').then( m => m.ChatsPageModule)
   }
+
 
 
 

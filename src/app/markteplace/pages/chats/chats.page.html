@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mensajes</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+
+  <ion-list>
+
+    <ion-card>      
+      <ion-item lines="none" (click)="viewRedirect('/chat-list')">
+        <ion-avatar slot="start">
+          <img
+          src="https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg"
+          />
+        </ion-avatar>
+        <ion-label>
+          <b>
+            Roberto Carrillo
+          </b> <br>
+          <p>Me gusta mucho hacer negocios contigo.</p>
+          <div class="time">13/02/2022</div>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card>      
+      <ion-item lines="none" (click)="viewRedirect('/chat-list')">
+        <ion-avatar slot="start">
+          <img
+          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+          />
+        </ion-avatar>
+        <ion-label>
+          <b>
+            Mario Perez
+          </b> <br>
+          <p> Gracias por tu mensaje.</p>
+          <div class="time">13/02/2022</div>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>      
+      <ion-item lines="none" (click)="viewRedirect('/chat-list')">
+        <ion-avatar slot="start">
+          <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg"
+          />
+        </ion-avatar>
+        <ion-label>
+          <b>
+            Isabela Méndez
+          </b> <br>
+          <p> Estoy interesada.</p>
+          <div class="time">13/02/2022</div>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+</ion-list>
+
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+  <ion-fab-button>
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>

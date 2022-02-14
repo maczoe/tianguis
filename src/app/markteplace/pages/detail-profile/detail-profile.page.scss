@@ -5,8 +5,8 @@
   }
   
   ion-avatar { 
-    width: 200px;  
-    height: 200px;  
+    width: 5rem;  
+    height: 5rem;  
 }
   .favorite {
     font-size: 1.7rem;
@@ -19,7 +19,13 @@ ion-card img{
   height: 100px;
 }
 
+
+
 .img-center{
   width:100%;
 }
   
+.card{
+  margin: 0;
+    padding: 0;
+}
