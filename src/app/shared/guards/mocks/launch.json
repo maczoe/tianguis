@@ -1,0 +1,29 @@
+[
+    {
+        "id":"123",
+        "title":"¿Comó Regisrtar una Marca en Guatemala?",
+        "description":"Descubra cómo registrar su marca comercial en Guatemala y proteger los signos distintivos únicos de su negocio. Además, comprenda la importancia de realizar una búsqueda exhaustiva de marcas en Guatemala para garantizar que sus signos distintivos sean únicos.",
+        "images":[
+            "https://storage.googleapis.com/stateless-main-bizlatinhub/2020/06/registro-marca-guatemala.jpg"
+        ],
+        "link":"#"
+    },
+    {
+        "id":"124",
+        "title":"¿Cómo inscribir una empresa mercantil e individual?",
+        "description":"La inscripción de una empresa mercantil e individual es muy importante para llevar a cabo ciertos trámites legales como la inscripción de trabajadores al IGSS, presentar a tiempo los impuestos a la SAT y estar dentro del registro del Ministerio de Trabajo. Conoce los pasos para una inscripción en línea.",
+        "images":[
+            "https://aprende.guatemala.com/wp-content/uploads/2020/09/foto-%40benchaccounting.jpg"
+        ],
+        "link":"#"
+    },
+    {
+        "id":"125",
+        "title":"Inscripción Sociedades SAT",
+        "description":"Documento Personal de Identificación (DPI) del representante legal, debe enviarse escaneado de ambos lados, vigente. Pasaporte vigente del representante legal, en caso de ser extranjero. Testimonio de la escritura de constitución original. Nombramiento del representante legal original, vigente.",
+        "images":[
+            "https://iofacturo.mx/wp-content/uploads/2015/09/Registra-tu-empresa-correctamente-ante-el-SAT.jpg"
+        ],
+        "link":"#"
+    }
+]

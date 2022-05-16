@@ -39,7 +39,7 @@ export class ChatListPage implements OnInit {
 
     this.newMessage='';
   }
-  constructor() { }
+
 
   ngOnInit() {
   }

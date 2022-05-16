@@ -1,0 +1,17 @@
+.title-card{
+    font-size: 1rem;
+    font-weight: bold;
+    list-style: 1rem;
+}
+.description-card{
+   
+overflow:hidden; 
+text-overflow:ellipsis;
+display:-webkit-box; 
+-webkit-box-orient:vertical;
+-webkit-line-clamp:3;
+}
+
+ion-card{
+    margin-top: 1rem;
+}

@@ -16,6 +16,8 @@ import { ResponseQuoteComponent } from './components/response-quote/response-quo
 import { ResponseQuoteListComponent } from './components/response-quote-list/response-quote-list.component';
 import { CouponsListComponent } from './components/coupons-list/coupons-list.component';
 import { CouponCardComponent } from './components/coupon-card/coupon-card.component';
+import { LaunchComponent } from './components/launch/launch.component';
+import { LaunchListComponent } from './components/launch-list/launch-list.component';
 
 
 @NgModule({
@@ -33,8 +35,9 @@ import { CouponCardComponent } from './components/coupon-card/coupon-card.compon
     ResponseQuoteComponent,
     ResponseQuoteListComponent,
     CouponCardComponent,
-    CouponsListComponent
-
+    CouponsListComponent,
+    LaunchComponent,
+    LaunchListComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +58,10 @@ import { CouponCardComponent } from './components/coupon-card/coupon-card.compon
     ResponseQuoteComponent,
     ResponseQuoteListComponent,
     CouponCardComponent,
-    CouponsListComponent
+    CouponsListComponent,
+    LaunchComponent,
+    LaunchListComponent,
+
   ]
 })
 export class MarkteplaceModule { }

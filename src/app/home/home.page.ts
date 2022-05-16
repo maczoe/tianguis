@@ -23,7 +23,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.categoriesService.getCategories().then((data) => {
       this.categories.push(data);
-
     });
 
     this.productsService.getProducts().then((data) => {

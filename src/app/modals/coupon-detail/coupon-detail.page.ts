@@ -15,7 +15,6 @@ export class CouponDetailPage implements OnInit {
   constructor(
     private router: ActivatedRoute,
     private couponsService: CouponsService
-
   ) {
     this.id = this.router.snapshot.paramMap.get('idCoupon');
   }

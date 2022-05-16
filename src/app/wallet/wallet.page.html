@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Billetera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="title-balance">Q200.00</ion-card-title>
+          <ion-card-subtitle class="ion-text-center"
+            >Saldo en billetera</ion-card-subtitle
+          >
+        </ion-card-header>
+
+        <ion-card-content>
+          <div class="containet">
+            <ion-button color="success" expand="block"
+              >Obterner Saldo</ion-button
+            >
+            <ion-button color="primary" expand="block"
+              >Transferir Saldo</ion-button
+            >
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-item-divider>
+    <ion-label> Transacciones Recientes</ion-label>
+  </ion-item-divider>
+  <ion-row>
+    <ion-col size="12">
+      <ion-card>
+        <ion-item>
+          <ion-icon name="cash-outline" slot="start"></ion-icon>
+          <ion-label>Trans. #14562</ion-label>
+          <div slot="end">
+            <h3 class="amount-desc"> (-) 45.00</h3>
+          </div>
+        </ion-item>
+        <ion-card-content>
+          Compra de Producto
+        </ion-card-content>
+      
+      </ion-card>
+    </ion-col>
+    <ion-col size="12">
+      <ion-card>
+        <ion-item>
+          <ion-icon name="cash-outline" slot="start"></ion-icon>
+          <ion-label>Trans. #14562</ion-label>
+          <div slot="end">
+            <h3 class="amount-desc"> (-) 45.00</h3>
+          </div>
+        </ion-item>
+        <ion-card-content>
+          Compra de Producto
+        </ion-card-content>
+      
+      </ion-card>
+    </ion-col>
+    <ion-col size="12">
+      <ion-card>
+        <ion-item>
+          <ion-icon name="cash-outline" slot="start"></ion-icon>
+          <ion-label>Trans. #14562</ion-label>
+          <div slot="end">
+            <h3 class="amount-add"> (+) 50.00</h3>
+          </div>
+        </ion-item>
+        <ion-card-content>
+          Transferencia de Saldo
+        </ion-card-content>
+      
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
