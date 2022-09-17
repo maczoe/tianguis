@@ -2,7 +2,9 @@
 @import "~swiper/css/pagination";
 .swiper {
   width: 100%;
-  height: auto;
+  height: 20vh;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 .swiper-slide {
@@ -34,4 +36,10 @@
 
 .container {
   display: flex; /* or inline-flex */
+}
+
+.title-section{
+  font-weight: 700;
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
 }

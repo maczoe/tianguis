@@ -1,14 +1,13 @@
 <ion-text color="dark">
-  <h4>Categorias</h4>
+  <h4 class="title-section">Categorias</h4>
 </ion-text>
 <swiper
-  [slidesPerView]="2"
-  [spaceBetween]="1"
+  [slidesPerView]="3"
+  [spaceBetween]="2"
   
   class="mySwiper"
   
 >
-
   <ng-template swiperSlide *ngFor="let category of categories" class="ion-align-items-stretch">
     <app-category-card  [category]="category"></app-category-card>
   </ng-template>

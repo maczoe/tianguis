@@ -1,10 +1,9 @@
 <ion-text color="dark">
-  <h4>Productos recomendados</h4>
+  <h4 class="title-section">Productos recomendados</h4>
 </ion-text>
 <swiper
   [slidesPerView]="1.8"
   [spaceBetween]="1"  
-  class="product-descount"  
 >
   <ng-template swiperSlide *ngFor="let product of products" >
     <app-product-card  [product]="product" (click)="selectProduc(product.id)"></app-product-card>   
