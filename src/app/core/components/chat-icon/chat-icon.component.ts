@@ -7,17 +7,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat-icon.component.scss'],
 })
 export class ChatIconComponent implements OnInit {
-
   @Input()
   newNotifications: number;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
-  viewChats() { 
+  viewChats() {
     this.router.navigateByUrl('/chats');
   }
-
-
 }

@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
 })
-export class IntroPage {
+export class IntroPage implements OnInit {
 
   slideOpts = {
     initialSlide: 0,
@@ -14,13 +14,16 @@ export class IntroPage {
   };
 
   constructor(private router: Router) { }
+  ngOnInit() {
 
-  close() {
+  }
+
+  login() {
     //this.storage.set('isIntroShowed', true);
     this.router.navigateByUrl('/login');
   }
 
-  start() {
-    this.router.navigateByUrl('/app');
+  register() {
+    this.router.navigateByUrl('/register');
   }
 }

@@ -11,20 +11,47 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <div class="img-profile">
+  <div class="profile">
+    <div class="profile__header">
+      <img class="profile__header--image" src="{{profile.photo}}" alt="" />
+      <div class="profile__header--title">{{profile.name}}</div>
+      <div class="profile__header--rating">
+        <ion-icon name="star"></ion-icon> {{profile.rating}}
+      </div>
+    </div>
+
+    <div class="profile__info">
+      <div class="profile__info--box">
+        <p>{{profile.sales}}</p>
+        <p><ion-icon name="pricetags"></ion-icon> Ventas</p>
+      </div>
+      <div class="profile__info--box">
+        <p>{{profile.products}}</p>
+        <p><ion-icon name="albums"></ion-icon> Productos</p>
+      </div>
+      <div class="profile__info--box">
+        <ion-icon
+          name="heart-outline"
+          class="profile__info--box-favorite"
+        ></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="img-profile">
     <ion-avatar>
       <img class="profile-photo" src="{{profile.photo}}" />
     </ion-avatar>
   </div>
-
-  <ion-card-header>
+ -->
+  <!-- <ion-card-header>
     <ion-card-title class="ion-text-center">{{profile.name}}</ion-card-title>
     <ion-card-subtitle class="ion-text-center"
       ><ion-icon name="star"></ion-icon> {{profile.rating}}
     </ion-card-subtitle>
-  </ion-card-header>
+  </ion-card-header> -->
   <ion-card-content>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col size="8" class="ion-text-start">
         <p><ion-icon name="pricetags"></ion-icon> Ventas: {{profile.sales}}</p>
         <p><ion-icon name="albums"></ion-icon> Productos: {{profile.products}}</p>
@@ -32,7 +59,7 @@
       <ion-col size="4" class="ion-text-end">
         <ion-icon name="heart" class="favorite"></ion-icon>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
     <!-- Nav -->
     <ion-segment
@@ -52,76 +79,79 @@
       </ion-segment-button>
     </ion-segment>
 
-      <!-- Detail products -->
-      <ion-list *ngIf="type === 'vewProduct'">
-        <ion-label>Productos</ion-label>
-        <ion-row>
-          <ion-col
-            size="6"
-            size-lg="3"
-            size-sm="6"
-            size-xs="6"
-            *ngFor="let product of products[0]"
-          >
-            <ion-card class="card">
-              <div class="ion-text-center">
-                <img src="{{product.images[0]}}" />
-              </div>
-              <ion-card-header>
-                <ion-row>
-                  <ion-col class="ion-text-start p-0" center>
-                    <ion-card-subtitle
-                      ><ion-icon name="star"></ion-icon> {{product.rating}}
-                    </ion-card-subtitle>
-                  </ion-col>
-                  <ion-col class="ion-text-end p-0">
-                    <ion-icon name="heart" class="favorite"></ion-icon>
-                  </ion-col>
-                </ion-row>
-                <ion-card-title class="text-title"
-                  >{{product.name}}</ion-card-title
-                >
-              </ion-card-header>
-              <ion-card-content>
-                <ion-card-title
-                  *ngIf="product.oldPrice >0"
-                  class="price-desc-title"
-                  ><del>{{product.oldPrice | currency:'Q'}}</del>
-                </ion-card-title>
-                <ion-card-title class="price-title"
-                  >{{product.price | currency:'Q'}}</ion-card-title
-                >
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+    <!-- Detail products -->
+    <ion-list *ngIf="type === 'vewProduct'">
+      <ion-label>
+        Lista de Productos</ion-label>
+      <ion-row>
+        <ion-col
+          size="6"
+          size-lg="3"
+          size-sm="6"
+          size-xs="6"
+          *ngFor="let product of products[0]"
+        >
+          <!-- <ion-card class="card">
+            <div class="ion-text-center">
+              <img src="{{product.images[0]}}" />
+            </div>
+            <ion-card-header>
+              <ion-row>
+                <ion-col class="ion-text-start p-0" center>
+                  <ion-card-subtitle
+                    ><ion-icon name="star"></ion-icon> {{product.rating}}
+                  </ion-card-subtitle>
+                </ion-col>
+                <ion-col class="ion-text-end p-0">
+                  <ion-icon name="heart" class="favorite"></ion-icon>
+                </ion-col>
+              </ion-row>
+              <ion-card-title class="text-title"
+                >{{product.name}}</ion-card-title
+              >
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-title
+                *ngIf="product.oldPrice >0"
+                class="price-desc-title"
+                ><del>{{product.oldPrice | currency:'Q'}}</del>
+              </ion-card-title>
+              <ion-card-title class="price-title"
+                >{{product.price | currency:'Q'}}</ion-card-title
+              >
+            </ion-card-content>
+          </ion-card> -->
+          <app-product-card [product]="product"></app-product-card>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+
+    <!-- Detail profile -->
+    <ion-list *ngIf="type === 'profile'">
+      <ion-card-subtitle
+        >Descripción: {{profile.description}}</ion-card-subtitle
+      >
+      <ion-card-subtitle>Teléfono: {{profile.phone}}</ion-card-subtitle>
+      <ion-card-subtitle>Correo: {{profile.publicEmail}}</ion-card-subtitle>
+      <ion-card-subtitle>Dirrección: {{profile.address}}</ion-card-subtitle>
+    </ion-list>
+
+    <!-- Detail review -->
+    <ion-list *ngIf="type === 'review'">
+      <ion-list>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img
+              src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&h=661&q=70&fm=webp"
+            />
+          </ion-avatar>
+          <ion-label>
+            <h2>Finn</h2>
+            <h3>I'm a big deal</h3>
+            <p>Listen, I've had a pretty messed up day...</p>
+          </ion-label>
+        </ion-item>
       </ion-list>
-
-      <!-- Detail profile -->
-      <ion-list *ngIf="type === 'profile'">
-        <ion-card-subtitle  >Descripción: {{profile.description}}</ion-card-subtitle>
-        <ion-card-subtitle  >Teléfono: {{profile.phone}}</ion-card-subtitle>
-        <ion-card-subtitle  >Correo: {{profile.publicEmail}}</ion-card-subtitle>
-        <ion-card-subtitle  >Dirrección: {{profile.address}}</ion-card-subtitle>
-
-
-
-      </ion-list>
-
-      <!-- Detail review -->
-      <ion-list *ngIf="type === 'review'">
-        <ion-list>
-          <ion-item>
-            <ion-avatar slot="start">
-              <img src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&h=661&q=70&fm=webp">
-            </ion-avatar>
-            <ion-label>
-              <h2>Finn</h2>
-              <h3>I'm a big deal</h3>
-              <p>Listen, I've had a pretty messed up day...</p>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-list>
+    </ion-list>
   </ion-card-content>
 </ion-content>

@@ -1,4 +1,53 @@
 /* Without setting height the slides will take up the height of the slide's content */
-ion-slides {
-  height: 100%;
+@import '~swiper/scss';
+@import '~swiper/scss/autoplay';
+.intro {
+  
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  &__img{
+    width: 80%;
+    margin: auto;
+    padding: auto;
+  }
+  &__content {
+    .swiper {
+      width: 100%;
+      height: 30vh;
+    }
+    
+    .swiper-slide {
+      text-align: center;
+      font-size: 12px;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+    
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .title-section{
+      font-weight: 700;
+      padding-left: 0.5em ;
+      padding-right: 0.5em ;
+    }
+  }
 }

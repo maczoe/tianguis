@@ -1,5 +1,4 @@
 import { SearchComponent } from './components/search/search.component';
-import { IonicModule } from '@ionic/angular';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,6 +17,7 @@ import { CouponsListComponent } from './components/coupons-list/coupons-list.com
 import { CouponCardComponent } from './components/coupon-card/coupon-card.component';
 import { LaunchComponent } from './components/launch/launch.component';
 import { LaunchListComponent } from './components/launch-list/launch-list.component';
+import { IonicModule } from '@ionic/angular';
 
 
 @NgModule({
@@ -61,7 +61,6 @@ import { LaunchListComponent } from './components/launch-list/launch-list.compon
     CouponsListComponent,
     LaunchComponent,
     LaunchListComponent,
-
   ]
 })
 export class MarkteplaceModule { }

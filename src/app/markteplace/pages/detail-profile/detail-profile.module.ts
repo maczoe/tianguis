@@ -8,7 +8,7 @@ import { DetailProfilePageRoutingModule } from './detail-profile-routing.module'
 
 import { DetailProfilePage } from './detail-profile.page';
 import { CoreModule } from 'src/app/core/core.module';
-import { ProductCardComponent } from '../../components/product-card/product-card.component';
+import { MarkteplaceModule } from '../../markteplace.module';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { ProductCardComponent } from '../../components/product-card/product-card
     IonicModule,
     CoreModule,
     DetailProfilePageRoutingModule,
+    MarkteplaceModule
   ],
-  declarations: [DetailProfilePage]
+  declarations: [DetailProfilePage ]
 })
 export class DetailProfilePageModule {}

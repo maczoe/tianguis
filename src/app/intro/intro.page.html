@@ -1,12 +1,12 @@
 <ion-toolbar>
   <ion-buttons slot="end">
-    <ion-button (click)="close()">
+    <!--  <ion-button (click)="close()">
       <ion-icon slot="icon-only" name="close"></ion-icon>
-    </ion-button>
+    </ion-button> -->
   </ion-buttons>
 </ion-toolbar>
 <ion-content class="ion-padding" scroll-y="false">
-  <ion-slides pager="true" [options]="slideOpts">
+  <!-- <ion-slides pager="true" [options]="slideOpts">
     <ion-slide>
       <div class="slide">
         <h1>Compra</h1>
@@ -48,5 +48,30 @@
         <ion-button expand="block" (click)="start()">Empezar</ion-button>
       </div>
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
+
+  <div class="intro">
+    <img class="intro__img" alt="Tianguis" src="../../assets/images/tianguis.png" />
+    <div class="intro__content">
+      <swiper class="mySwiper"
+        [autoplay]="{
+        delay: 2500,
+        disableOnInteraction: false
+      } "
+      >
+        <ng-template swiperSlide *ngFor=" let a of [1]">
+          <div>
+            <h3>Compra</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores laudantium unde earum tenetur doloremque praesentium quia sequi velit quasi neque, eligendi minus, beatae fuga atque, mollitia repudiandae? Fuga, molestiae necessitatibus!</p>
+          </div>
+        </ng-template>
+      </swiper>
+    </div>
+    <div class="intro__btns">
+      <ion-button expand="block" shape="round" (click)="register()">Crear Nueva Cuenta</ion-button>
+      <ion-button expand="block" fill="outline" shape="round" (click)="login()"
+        >Iniciar Sesión</ion-button
+      >
+    </div>
+  </div>
 </ion-content>

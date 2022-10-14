@@ -59,7 +59,8 @@ const routes: Routes = [
   {
     path: 'chats',
     loadChildren: () => import('./markteplace/pages/chats/chats.module').then( m => m.ChatsPageModule)
-  },  {
+  },
+  {
     path: 'launch',
     loadChildren: () => import('./launch/launch.module').then( m => m.LaunchPageModule)
   },
@@ -70,6 +71,10 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./markteplace/pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
   }
 
 

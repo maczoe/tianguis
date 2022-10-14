@@ -1,4 +1,4 @@
-<ion-button>
+<ion-button (click)="viewNotifications()">
   <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
   <ion-badge color="danger" *ngIf="newNotifications" >{{newNotifications}}</ion-badge>
 </ion-button>
