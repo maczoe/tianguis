@@ -1,0 +1,21 @@
+<div class="card-hrz">
+  <div class="card-hrz__col">
+    <img class="card-hrz__col--image" src="{{ product.images }}" alt="" />
+  </div>
+  <div class="card-hrz__col--data">
+    <p class="card-hrz__col--data--name">{{ product.name }}</p>
+    <p class="card-hrz__col--data--rating"><ion-icon name="star"></ion-icon> {{product.rating}} </p>
+    <div class="card-hrz__col--data--details">
+      <div class="card-hrz__col--data--details--price">
+        {{product.price | currency:'Q'}}
+        <div *ngIf="product.oldPrice >0" class="card-hrz__col--data--details--old">
+          <del>{{product.oldPrice | currency:'Q'}}</del> 
+        </div>
+      </div>
+      <div class="card-hrz__col--data--details--heart">
+        <ion-icon class="" name="heart-outline"></ion-icon>
+      </div>
+    </div>
+    
+  </div>
+</div>

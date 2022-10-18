@@ -18,6 +18,7 @@ import { CouponCardComponent } from './components/coupon-card/coupon-card.compon
 import { LaunchComponent } from './components/launch/launch.component';
 import { LaunchListComponent } from './components/launch-list/launch-list.component';
 import { IonicModule } from '@ionic/angular';
+import { ProductCardHrzComponent } from './components/product-card-hrz/product-card-hrz.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { IonicModule } from '@ionic/angular';
     CouponsListComponent,
     LaunchComponent,
     LaunchListComponent,
+    ProductCardHrzComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +63,7 @@ import { IonicModule } from '@ionic/angular';
     CouponsListComponent,
     LaunchComponent,
     LaunchListComponent,
+    ProductCardHrzComponent
   ]
 })
 export class MarkteplaceModule { }

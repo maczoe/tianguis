@@ -85,43 +85,12 @@
         Lista de Productos</ion-label>
       <ion-row>
         <ion-col
-          size="6"
-          size-lg="3"
-          size-sm="6"
-          size-xs="6"
+          size="12"
+          
           *ngFor="let product of products[0]"
         >
-          <!-- <ion-card class="card">
-            <div class="ion-text-center">
-              <img src="{{product.images[0]}}" />
-            </div>
-            <ion-card-header>
-              <ion-row>
-                <ion-col class="ion-text-start p-0" center>
-                  <ion-card-subtitle
-                    ><ion-icon name="star"></ion-icon> {{product.rating}}
-                  </ion-card-subtitle>
-                </ion-col>
-                <ion-col class="ion-text-end p-0">
-                  <ion-icon name="heart" class="favorite"></ion-icon>
-                </ion-col>
-              </ion-row>
-              <ion-card-title class="text-title"
-                >{{product.name}}</ion-card-title
-              >
-            </ion-card-header>
-            <ion-card-content>
-              <ion-card-title
-                *ngIf="product.oldPrice >0"
-                class="price-desc-title"
-                ><del>{{product.oldPrice | currency:'Q'}}</del>
-              </ion-card-title>
-              <ion-card-title class="price-title"
-                >{{product.price | currency:'Q'}}</ion-card-title
-              >
-            </ion-card-content>
-          </ion-card> -->
-          <app-product-card [product]="product"></app-product-card>
+        <app-product-card-hrz [product]="product"></app-product-card-hrz>
+          <!-- <app-product-card [product]="product"></app-product-card> -->
         </ion-col>
       </ion-row>
     </ion-list>

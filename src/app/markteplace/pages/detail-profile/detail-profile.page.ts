@@ -37,7 +37,7 @@ export class DetailProfilePage implements OnInit {
   getProductsProfile(id) {
     this.productsService.getProductsProfile(id).then((data) => {
       this.products.push(data);
-      console.log(this.products);
+      console.log(this.products[0]);
 
     });
   }
