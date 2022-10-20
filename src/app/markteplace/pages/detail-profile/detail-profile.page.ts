@@ -44,4 +44,7 @@ export class DetailProfilePage implements OnInit {
 
   segmentChanged($event) {
   }
+  eventFavorite(favorite) {
+    this.profile.favorite=favorite;
+  }
 }

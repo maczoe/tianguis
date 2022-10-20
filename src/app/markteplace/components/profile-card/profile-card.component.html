@@ -1,6 +1,6 @@
 <div class="profile">
-  <img class="profile__image-avatar" src="{{ profile.photo }}" />
-  <div class="profile__title">
+  <img (click)="viewProfile(profile.id)" class="profile__image-avatar" src="{{ profile.photo }}" />
+  <div (click)="viewProfile(profile.id)" class="profile__title">
     {{ profile.name }}
   </div>
 
@@ -20,7 +20,8 @@
       <div>Ventas</div>
     </div>
     <div class="profile__footer--heart">
-      <ion-icon name="heart-outline" class=""></ion-icon>
+      <ion-icon (click)="eventFavorite(false)" *ngIf="profile.favorite" slot="start" name="heart"></ion-icon>
+      <ion-icon (click)="eventFavorite(true)" *ngIf="!profile.favorite" slot="start" name="heart-outline"></ion-icon>
     </div>
   </div>
 </div>

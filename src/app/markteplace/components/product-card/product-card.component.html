@@ -1,22 +1,23 @@
-<div class="offer">
-  <img class="offer__image" src="{{ product.images[0] }}" />
-  <div class="offer__header">
-    <div class="offer__header--price">
+<div class="product">
+  <img (click)="selectProduc(product.id)" class="product__image" src="{{ product.images[0] }}" />
+  <div class="product__header">
+    <div class="product__header--price">
       {{ product.price | currency: "Q" }}
-      <div *ngIf="product.oldPrice > 0" class="offer__header--price--old">
+      <div *ngIf="product.oldPrice > 0" class="product__header--price--old">
         <del>{{ product.oldPrice | currency: "Q" }}</del>
       </div>
     </div>
 
-    <div class="offer__header--heart">
-      <ion-icon class="" name="heart-outline"></ion-icon>
+    <div class="product__header--heart">
+      <ion-icon (click)="eventFavorite(false)" *ngIf="product.favorite" slot="start" name="heart"></ion-icon>
+      <ion-icon (click)="eventFavorite(true)" *ngIf="!product.favorite" slot="start" name="heart-outline"></ion-icon>
     </div>
   </div>
-  <div class="offer__title">
-    <div class="offer__title--name">
+  <div class="product__title">
+    <div class="product__title--name" (click)="selectProduc(product.id)">
       {{ product.name }}
     </div>
-    <div class="offer__title--rating">
+    <div class="product__title--rating">
       <ion-icon name="star"></ion-icon> {{ product.rating }}
     </div>
   </div>

@@ -34,11 +34,11 @@ ion-card img {
   &__header {
     margin: 0.3em;
     margin: 0.3em;
-    height: 20vh;
+    height: 15vh;
     width: 100%;
     border-radius: 0.5em;
     display: grid;
-    grid-template-rows: 2fr 0.5fr 0.5fr;
+    grid-template-rows: 2fr 1fr ;
     justify-content: center;
     align-items: center;
 
@@ -66,23 +66,34 @@ ion-card img {
   &__info {
     display: grid;
     grid-template-columns: 33.33% 33.33% 33.33%;
+    justify-content: center;
+    align-items: center;
 
     &--box {
-      background-color: hsl(204, 8%, 98%);
-      box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-        rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-      margin: 0.5rem;
+      background-color: hsla(0, 0%, 96%, 0.567);      
+      margin: 0.7rem;
       font-size: 0.8em;
       text-align: center;
       position: relative;
-      border-radius: 0.3rem;
-      &-favorite {
-        font-size: 2rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+      border-radius: 20%;
+      
+    }
+  }
+
+  &__btns{
+    margin: 0 1rem;
+    display: grid;
+    grid-template-columns: 70% 30% ;
+    justify-content: center;
+    align-items: center;
+
+    &--chat{
+      text-align: center;
+    }
+    &--favorite{
+      font-size: 2rem;
+      text-align: center; 
+      color: var(--ion-color-favorite);
     }
   }
 }

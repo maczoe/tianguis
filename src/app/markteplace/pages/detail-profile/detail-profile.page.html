@@ -15,26 +15,31 @@
     <div class="profile__header">
       <img class="profile__header--image" src="{{profile.photo}}" alt="" />
       <div class="profile__header--title">{{profile.name}}</div>
-      <div class="profile__header--rating">
-        <ion-icon name="star"></ion-icon> {{profile.rating}}
+    </div>
+    <div class="profile__info">
+      <div class="profile__info--box">
+        <p><ion-icon name="star"></ion-icon> {{profile.rating}}</p>
+      </div>
+      <div class="profile__info--box">
+        <p><ion-icon name="pricetags"></ion-icon> {{profile.sales}}</p>
+      </div>
+      <div class="profile__info--box">
+        <p><ion-icon name="albums"></ion-icon> {{profile.products}}</p>
       </div>
     </div>
 
-    <div class="profile__info">
-      <div class="profile__info--box">
-        <p>{{profile.sales}}</p>
-        <p><ion-icon name="pricetags"></ion-icon> Ventas</p>
+    <div class="profile__btns">
+      <div class="profile__btns--chat">
+        <ion-button color="success" shape="round">
+          <ion-icon name="chatbox-outline"></ion-icon>
+          Enviar Mensaje
+        </ion-button>
       </div>
-      <div class="profile__info--box">
-        <p>{{profile.products}}</p>
-        <p><ion-icon name="albums"></ion-icon> Productos</p>
+      <div class="profile__btns--favorite">
+        <ion-icon (click)="eventFavorite(false)" *ngIf="profile.favorite" slot="start" name="heart"></ion-icon>
+        <ion-icon (click)="eventFavorite(true)" *ngIf="!profile.favorite" slot="start" name="heart-outline"></ion-icon>
       </div>
-      <div class="profile__info--box">
-        <ion-icon
-          name="heart-outline"
-          class="profile__info--box-favorite"
-        ></ion-icon>
-      </div>
+
     </div>
   </div>
 

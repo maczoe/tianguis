@@ -9,11 +9,7 @@ import { Profile } from '../../model/profile';
 })
 export class RecommendedProfileListComponent implements OnInit {
   @Input() profiles: Profile[] = [];
-  constructor(private router: Router) { }
+  constructor() {}
 
   ngOnInit() {}
-
-  viewProfile(id) {
-    this.router.navigateByUrl('/detail-profile/'+id);
-  }
 }

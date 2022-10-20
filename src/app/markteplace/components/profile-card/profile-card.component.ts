@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Profile } from '../../model/profile';
 
 @Component({
@@ -9,8 +10,14 @@ import { Profile } from '../../model/profile';
 export class ProfileCardComponent implements OnInit {
   @Input() profile: Profile={};
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+  eventFavorite(favorite) {
+    this.profile.favorite=favorite;
+  }
 
+  viewProfile(id) {
+    this.router.navigateByUrl('/detail-profile/'+id);
+  }
 }

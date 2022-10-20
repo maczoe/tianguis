@@ -9,12 +9,7 @@ import { Product } from '../../model/product';
 })
 export class DiscountedProductListComponent implements OnInit {
   @Input() products: Product[] = [];
-  constructor( private router: Router) { }
+  constructor(private router: Router) {}
 
-  ngOnInit() { }
-
-  selectProduc(productId) {
-    this.router.navigateByUrl('/product/'+productId);
-  }
-
+  ngOnInit() {}
 }
