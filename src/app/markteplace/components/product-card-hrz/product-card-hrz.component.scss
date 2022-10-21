@@ -28,7 +28,7 @@
     &--data {
       padding: 0 0.5rem;
 
-      &--name{
+      &--name {
         font-weight: bold;
         font-size: 0.9rem;
       }
@@ -37,22 +37,21 @@
         color: var(--ion-color-medium);
       }
 
-      &--details{
+      &--details {
         display: flex;
         justify-content: space-between;
-        
-        &--heart{
-            font-size: 2rem;
-            color: var(--ion-color-favorite);
+
+        &--heart {
+          font-size: 2rem;
+          color: var(--ion-color-favorite);
         }
 
-        &--price{
-            font-size: 1rem;
+        &--price {
+          font-size: 1rem;
         }
-        &--old{
-            font-size: 0.8rem;
-            color: var(--ion-color-medium);
-
+        &--old {
+          font-size: 0.8rem;
+          color: var(--ion-color-medium);
         }
       }
     }

@@ -75,7 +75,12 @@ const routes: Routes = [
   {
     path: 'notifications',
     loadChildren: () => import('./markteplace/pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'products-category/:idCategory',
+    loadChildren: () => import('./markteplace/pages/products-category/products-category.module').then( m => m.ProductsCategoryPageModule)
   }
+
 
 
 

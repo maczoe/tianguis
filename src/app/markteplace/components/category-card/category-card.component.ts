@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from '../../model/category';
 
 @Component({
@@ -8,8 +9,12 @@ import { Category } from '../../model/category';
 })
 export class CategoryCardComponent implements OnInit {
   @Input() category: Category={};
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {}
+
+  selectCategoryc(categoryId) {
+    this.router.navigateByUrl('/products-category/'+categoryId);
+  }
 
 }

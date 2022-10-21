@@ -1,24 +1,8 @@
-
 <ion-text color="dark">
   <h4 class="title-section">Perfiles recomendados</h4>
 </ion-text>
-<swiper
-  [slidesPerView]="2.3"
-  [spaceBetween]="10"
-  
-  class="product-descount"
-  
->
-
-  <ng-template swiperSlide *ngFor="let profile of profiles" >
-    <app-profile-card  [profile]="profile" ></app-profile-card>
+<swiper [slidesPerView]="2.3" [spaceBetween]="10" class="product-descount">
+  <ng-template swiperSlide *ngFor="let profile of profiles">
+    <app-profile-card [profile]="profile"></app-profile-card>
   </ng-template>
-
-   
-
-
-   
-
-
-   
 </swiper>

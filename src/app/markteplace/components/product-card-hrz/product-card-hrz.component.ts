@@ -9,16 +9,16 @@ import { Product } from '../../model/product';
 })
 export class ProductCardHrzComponent implements OnInit {
   @Input() product: Product = {};
-  constructor( private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     console.log(this.product);
   }
   selectProduc(productId) {
-    this.router.navigateByUrl('/product/'+productId);
+    this.router.navigateByUrl('/product/' + productId);
   }
 
   eventFavorite(favorite) {
-    this.product.favorite=favorite;
+    this.product.favorite = favorite;
   }
 }
