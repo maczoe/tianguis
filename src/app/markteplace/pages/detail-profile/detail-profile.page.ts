@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../model/profile';
 import { ProductsService } from '../../services/products.service';
 import { ProfilesService } from '../../services/profiles.service';
@@ -16,6 +16,7 @@ export class DetailProfilePage implements OnInit {
   type = 'vewProduct';
   constructor(
     private router: ActivatedRoute,
+    private routerPath: Router,
     private profilesService: ProfilesService,
     private productsService: ProductsService
   ) {
@@ -46,5 +47,9 @@ export class DetailProfilePage implements OnInit {
   }
   eventFavorite(favorite) {
     this.profile.favorite=favorite;
+  }
+
+  sendMessage(profileId) {
+    this.routerPath.navigateByUrl('/chat-list/'+profileId);
   }
 }

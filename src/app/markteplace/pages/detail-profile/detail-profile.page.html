@@ -30,7 +30,7 @@
 
     <div class="profile__btns">
       <div class="profile__btns--chat">
-        <ion-button color="success" shape="round">
+        <ion-button color="success" shape="round" (click)="sendMessage(profile.id)" >
           <ion-icon name="chatbox-outline"></ion-icon>
           Enviar Mensaje
         </ion-button>
