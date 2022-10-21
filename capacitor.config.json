@@ -1,6 +1,16 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "tianguis",
-	"webDir": "www",
-	"bundledWebRuntime": false
+  "appId": "com.tianguis.app",
+  "appName": "tinguis",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  },
+  "cordova": {}
 }
