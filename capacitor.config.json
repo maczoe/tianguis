@@ -1,6 +1,6 @@
 {
   "appId": "com.tianguis.app",
-  "appName": "tinguis",
+  "appName": "Tinguis",
   "webDir": "www",
   "bundledWebRuntime": false,
   "npmClient": "npm",
