@@ -16,9 +16,9 @@
     "images": ["https://m.media-amazon.com/images/I/41ILmfSKujL._AC_.jpg"],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Juegos" },
-      { "id": 456, "name": "Gamer" },
-      { "id": 456, "name": "Controles" }
+      { "id": "13", "name": "Computadoras" },
+      { "id": "456", "name": "Gamer" },
+      { "id": "456", "name": "Controles" }
     ],
     "favorite": false
   },
@@ -41,8 +41,8 @@
     ],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Carros" },
-      { "id": 456, "name": "Automáico" }
+      { "id": "13", "name": "Computadoras" },
+      { "id": "456", "name": "Automáico" }
     ],
     "favorite": false
   },
@@ -65,9 +65,9 @@
     ],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Gamer" },
-      { "id": 456, "name": "Sillas" },
-      { "id": 456, "name": "GRIL" }
+      { "id": "15", "name": "Gamer" },
+      { "id": "13", "name": "Sillas" },
+      { "id": "12", "name": "GRIL" }
     ],
     "favorite": false
   },
@@ -90,12 +90,11 @@
     ],
     "rating": 5.0,
     "categories": [
-      { "id": 15645, "name": "Juegos" },
-      { "id": 456, "name": "Electronicos" }
+      { "id": "13", "name": "Sillas" },
+      { "id": "12", "name": "GRIL" }
     ],
     "favorite": false
-  }
-  ,
+  },
   {
     "id": "789",
     "name": "Reparacion de celulares",
@@ -114,11 +113,7 @@
       "https://toplearning.org/wp-content/uploads/2021/04/technician-in-antistatic-gloves-using-screwdriver-to-disassemble-borken-mobile-phone-going-to-repair-motherboard-sitting-at-his-workplace-in-laboratory-with-needed-equipment-scaled.jpg"
     ],
     "rating": 5.0,
-    "categories": [
-      { "id": 15645, "name": "Reparación" },
-      { "id": 456, "name": "Electronicos" },
-      { "id": 15645, "name": "Celulares" }
-    ],
+    "categories": [{ "id": "15", "name": "Gamer" }],
     "favorite": false
   }
 ]

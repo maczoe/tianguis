@@ -1,27 +1,27 @@
 [
    {
-       "id": 12,
+       "id": "12",
        "name": "Muebles para el hogar",
        "image": "https://media.admagazine.com/photos/618a668ab94700461d6213eb/master/w_1600%2Cc_limit/68287.jpg"
     },
     {
-       "id": 13,
+       "id": "13",
        "name": "Computadoras",
        "image": "https://www.altonivel.com.mx/wp-content/uploads/2018/06/mejores-laptops.jpg"
     },
     
     {
-       "id": 14,
+       "id": "14",
        "name": "Electrónicos",
        "image": "https://0201.nccdn.net/1_2/000/000/180/582/img_411693535-720x480.jpg"
     },
     {
-       "id": 15,
+       "id": "15",
        "name": "Servicios",
        "image": "https://www.oplk.com/wp-content/uploads/2020/05/servicios-profesionales.jpg"
     },
     {
-       "id": 16,
+       "id": "16",
        "name": "Diseño",
        "image": "https://storage.googleapis.com/www-paredro-com/uploads/2019/04/Los-8-servicios-de-disen%CC%83o-gra%CC%81fico-ma%CC%81s-solicitados-en-el-mercado.jpg"
     }

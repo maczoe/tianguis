@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Category } from '../../model/category';
+import { Product } from '../../model/product';
+import { CategoriesService } from '../../services/categories.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-products-category',
@@ -6,10 +11,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products-category.page.scss'],
 })
 export class ProductsCategoryPage implements OnInit {
+  categoryId = '0';
+  products: Product[] = [];
+  category: Category = {};
+  constructor(
+    private router: ActivatedRoute,
+    private categoriesService: CategoriesService,
+    private productsService: ProductsService
+  ) {
+    this.categoryId = this.router.snapshot.paramMap.get('idCategory');
 
-  constructor() { }
-
-  ngOnInit() {
+    this.getCategory(this.categoryId);
+    this.getProductsCategory(this.categoryId);
   }
 
+  ngOnInit() {}
+
+  getCategory(categoryId: string) {
+    this.categoriesService.getCategoryId(categoryId).then((data) => {
+      this.category = data;
+    });
+  }
+
+  getProductsCategory(categoryId: string) {
+    this.productsService
+      .getProductCategory(categoryId)
+      .then((resp: Product[]) => {
+        this.products = resp;
+      });
+  }
 }

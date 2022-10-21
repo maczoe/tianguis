@@ -7,4 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <ion-row *ngIf="products.length>0">
+    <ion-col size="12" *ngFor="let product of products">
+      <app-product-card-hrz [product]="product"></app-product-card-hrz>
+    </ion-col>
+  </ion-row>  
+  <ion-row *ngIf="products.length===0">
+    <ion-col size="12" >
+      <ion-chip [disabled]="true" expand="block">No hay productos en esta categoría</ion-chip>
+    </ion-col>
+  </ion-row>
+</ion-content>

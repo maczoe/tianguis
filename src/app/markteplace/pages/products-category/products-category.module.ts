@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ProductsCategoryPageRoutingModule } from './products-category-routing.module';
 
 import { ProductsCategoryPage } from './products-category.page';
+import { MarkteplaceModule } from '../../markteplace.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductsCategoryPageRoutingModule
+    ProductsCategoryPageRoutingModule,
+    MarkteplaceModule
   ],
   declarations: [ProductsCategoryPage]
 })
