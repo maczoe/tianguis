@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Launch } from '../../model/launch';
 
 @Component({
@@ -8,8 +9,12 @@ import { Launch } from '../../model/launch';
 })
 export class LaunchComponent implements OnInit {
   @Input() launch: Launch;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  viewDetail(id) {
+    this.router.navigateByUrl('/detail-undertake/'+id);
+  }
 
 }

@@ -28,4 +28,21 @@ export class LaunchService {
 
     });
   }
+
+  getLaunchId(id: string) {
+    return new Promise((resolve) => {
+      if (urlApi) {
+        //TODO: make local JSON file requests
+        this.http.get(URL).subscribe((resp: Launch[]) => {
+
+          const launch = resp.find((l) => l.id === id);
+          resolve(launch);
+        });
+      } else {
+        //TODO: make requests to the API server
+        resolve([]);
+      }
+
+    });
+  }
 }

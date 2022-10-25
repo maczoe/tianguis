@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Emprende </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <h4 class="title-card">{{launch.title}}</h4>
+    </ion-item>
+    <img src="{{launch.images['0']}}" />
+    <ion-card-content>
+      <p class="description-card">{{launch.description}}</p>
+      <img *ngIf="launch.images.length>1" src="{{launch.images['1']}}" />
+      <p *ngIf="launch.paragraph!==''" class="description-card">
+        {{launch.paragraph}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

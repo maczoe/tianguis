@@ -83,7 +83,12 @@ const routes: Routes = [
   {
     path: 'products-category/:idCategory',
     loadChildren: () => import('./markteplace/pages/products-category/products-category.module').then( m => m.ProductsCategoryPageModule)
+  },
+  {
+    path: 'detail-undertake/:id',
+    loadChildren: () => import('./markteplace/pages/detail-undertake/detail-undertake.module').then( m => m.DetailUndertakePageModule)
   }
+
 
 
 

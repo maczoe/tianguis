@@ -1,16 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons>
+   <!--  <ion-buttons>
       <ion-back-button></ion-back-button>
-    </ion-buttons>
+    </ion-buttons> 
     <ion-buttons slot="end">
       <app-notification-icon [newNotifications]="10"></app-notification-icon>
       <app-chat-icon [newNotifications]="10"></app-chat-icon>
-    </ion-buttons>
+    </ion-buttons>-->
+    <app-header-bar></app-header-bar>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <app-launch-list [launchs]="launchs[0]"></app-launch-list>
- 
+  <app-launch-list [launchs]="launchs[0]"></app-launch-list> 
 </ion-content>
