@@ -16,5 +16,12 @@ export class LoginPage implements OnInit {
   login() {
     this.router.navigateByUrl('/app');
   }
+  googleAuth() {
+    this.router.navigateByUrl('/google-sesion');
+  }
+
+  facebookAuth() {
+    this.router.navigateByUrl('/facebook-sesion');
+  }
 
 }

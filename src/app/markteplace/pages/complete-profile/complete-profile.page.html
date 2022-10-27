@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Completa tu perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="profile">
+    <div class="profile__header">
+      <img class="profile__header--image" src="../../..//../assets/images/noimage.jpg" alt="" />
+      <div class="profile__header--title">Subir Imagen</div>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label position="stacked">Categorias de perfil</ion-label>
+          <ion-select multiple="true" [value]="categories" placeholder="Seleccione una categoria">
+            <ion-select-option value="electrónicos">Servicios</ion-select-option>
+            <ion-select-option value="servicios">Negocios</ion-select-option>
+            <ion-select-option value="celulares">Productos</ion-select-option>
+            <ion-select-option value="repuestos">Garantia</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Descripción de perfil: </ion-label>
+          <ion-input type="text" > </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Dirección: </ion-label>
+          <ion-input type="text" > </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Teléfono: </ion-label>
+          <ion-input type="number" > </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Correo: </ion-label>
+          <ion-input disabled="true"> example@company.com</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Descripción: </ion-label>
+          <ion-input disabled="true"> Carretera al Salvador Guatemala</ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-button expand="block" shape="round" >Continuar</ion-button>
+</ion-footer>

@@ -1,43 +1,50 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicSlides } from '@ionic/angular';
-import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+import SwiperCore, {
+  Autoplay,
+  Keyboard,
+  Pagination,
+  Scrollbar,
+  Zoom,
+} from 'swiper';
 SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, IonicSlides]);
 @Component({
   selector: 'app-intro',
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class IntroPage implements OnInit {
-  slides=[
+  slides = [
     {
-      title: "Compra",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores laudantium unde earum tenetur doloremque praesentium quia sequi velit quasi neque, eligendi minus, beatae fuga atque, mollitia repudiandae? Fuga, molestiae necessitatibus!"
+      title: 'Compra',
+      description:
+        'Compra todo lo que necesitas de forma rápida y segura',
     },
     {
-      title: "Vende",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores laudantium unde earum tenetur doloremque praesentium quia sequi velit quasi neque, eligendi minus, beatae fuga atque, mollitia repudiandae? Fuga, molestiae necessitatibus!"
+      title: 'Vende',
+      description:
+        'Con un catálogo de productos más amplio, siempre puede comprar, comparar y mezclar y combinar fácilmente.',
     },
     {
-      title: "Cotiza",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores laudantium unde earum tenetur doloremque praesentium quia sequi velit quasi neque, eligendi minus, beatae fuga atque, mollitia repudiandae? Fuga, molestiae necessitatibus!"
+      title: 'Cotiza',
+      description:
+        'Necesita una solución, producto o servicio. No te compliques, estamos más cerca de lo que crees',
     },
     {
-      title: "Emprende",
-      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores laudantium unde earum tenetur doloremque praesentium quia sequi velit quasi neque, eligendi minus, beatae fuga atque, mollitia repudiandae? Fuga, molestiae necessitatibus!"
-    }
-    
-  ]
+      title: 'Emprende',
+      description:
+        'La clave del éxito es empezar antes de estar listo.',
+    },
+  ];
   slideOpts = {
     initialSlide: 0,
-    speed: 400
+    speed: 400,
   };
 
-  constructor(private router: Router) { }
-  ngOnInit() {
-
-  }
+  constructor(private router: Router) {}
+  ngOnInit() {}
 
   login() {
     //this.storage.set('isIntroShowed', true);

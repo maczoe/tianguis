@@ -1,0 +1,70 @@
+.profile {
+    padding: 0.5rem;
+  
+    &__header {
+      margin: 0.3em;
+      margin: 0.3em;
+      height: 15vh;
+      width: 100%;
+      border-radius: 0.5em;
+      display: grid;
+      grid-template-rows: 2fr 1fr ;
+      justify-content: center;
+      align-items: center;
+  
+      &--image {
+        border-radius: 50%;
+        height: 6rem;
+        width: 6rem;
+        margin: auto;
+        object-fit: cover;
+        object-position: center center;
+        padding: auto;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+  
+      &--title {
+        font-weight: 700;
+      }
+  
+      &--rating {
+        color: rgb(156, 161, 161);
+        text-align: center;
+      }
+    }
+  
+    &__info {
+      display: grid;
+      grid-template-columns: 33.33% 33.33% 33.33%;
+      justify-content: center;
+      align-items: center;
+  
+      &--box {
+        background-color: hsla(0, 0%, 96%, 0.567);      
+        margin: 0.7rem;
+        font-size: 0.8em;
+        text-align: center;
+        position: relative;
+        border-radius: 20%;
+        
+      }
+    }
+  
+    &__btns{
+      margin: 0 1rem;
+      display: grid;
+      grid-template-columns: 70% 30% ;
+      justify-content: center;
+      align-items: center;
+  
+      &--chat{
+        text-align: center;
+      }
+      &--favorite{
+        font-size: 2rem;
+        text-align: center; 
+        color: var(--ion-color-favorite);
+      }
+    }
+  }
+  

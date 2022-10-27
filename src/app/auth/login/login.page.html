@@ -65,7 +65,7 @@
       <ion-row justify-content-center>
         <ion-col size-md="3" size-lg="2" size-xs="6">
           <div padding>
-            <ion-button color="secondary" expand="block">
+            <ion-button color="secondary" expand="block" (click)="googleAuth()">
               <ion-icon name="logo-google"></ion-icon>
               <ion-text>&nbsp;Google</ion-text>
             </ion-button>
@@ -73,7 +73,7 @@
         </ion-col>
         <ion-col size-md="3" size-lg="2" size-xs="6">
           <div padding>
-            <ion-button color="secondary" expand="block">
+            <ion-button color="secondary" expand="block" (click)="facebookAuth()">
               <ion-icon name="logo-facebook"></ion-icon>
               <ion-text>&nbsp;Facebook</ion-text>
             </ion-button>

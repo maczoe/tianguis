@@ -54,15 +54,15 @@ ion-card-header {
     justify-content: space-between;
     padding: 0 0.5em;
     font-weight: 700;
-    font-size: 1.1em;
-    line-height: 1.5em;
+    font-size: 1rem;
+    line-height: 1.3rem;
 
     &--price {
       text-align: left;
 
       &--old {
-        font-size: 0.8em;
-        line-height: 1em;
+        font-size: 0.8rem;
+        line-height: 1rem;
         color: rgb(156, 161, 161);
       }
     }
@@ -79,13 +79,13 @@ ion-card-header {
     display: grid;
     grid-template-columns: 85% 15%;
     justify-content: space-between;
-    padding: 0 0.5em;
+    padding: 0 0.5rem;
     text-align: left;
 
     &--name {
-      padding-right: 1em;
+      padding-right: 1rem;
       font-weight: 700;
-      font-size: 1.1em;
+      font-size: 1.1rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
