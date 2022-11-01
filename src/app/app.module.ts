@@ -8,18 +8,26 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
+import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
-    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     CoreModule,
+    HttpClientModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SplashScreen,
+    StatusBar,
+    HTTP,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
