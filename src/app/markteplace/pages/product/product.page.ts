@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../model/product';
 import { Profile } from '../../model/profile';
 import { ProductsService } from '../../services/products.service';
@@ -18,7 +18,8 @@ export class ProductPage implements OnInit {
   constructor(
     private router: ActivatedRoute,
     private productsService: ProductsService,
-    private profilesService: ProfilesService
+    private profilesService: ProfilesService,
+    private routerPath: Router
   ) {
     this.productId = this.router.snapshot.paramMap.get('idProduct');
     this.getProduct(this.productId);
@@ -41,6 +42,10 @@ export class ProductPage implements OnInit {
     this.profilesService.getProfile(id).then((data) => {
       this.profile = data;
     });
+  }
+
+  sendMessage(profileId) {
+    this.routerPath.navigateByUrl('/chat-list/'+profileId);
   }
 
 }

@@ -1,5 +1,11 @@
 <div class="product">
-  <img (click)="selectProduc(product.id)" class="product__image" src="{{ product.images[0] }}" />
+  <div class="product__image">
+    <img
+      (click)="selectProduc(product.id)"
+      class="product__image--image"
+      src="{{ product.images[0] }}"
+    />
+  </div>
   <div class="product__header">
     <div class="product__header--price">
       {{ product.price | currency: "Q" }}
@@ -9,8 +15,18 @@
     </div>
 
     <div class="product__header--heart">
-      <ion-icon (click)="eventFavorite(false)" *ngIf="product.favorite" slot="start" name="heart"></ion-icon>
-      <ion-icon (click)="eventFavorite(true)" *ngIf="!product.favorite" slot="start" name="heart-outline"></ion-icon>
+      <ion-icon
+        (click)="eventFavorite(false)"
+        *ngIf="product.favorite"
+        slot="start"
+        name="heart"
+      ></ion-icon>
+      <ion-icon
+        (click)="eventFavorite(true)"
+        *ngIf="!product.favorite"
+        slot="start"
+        name="heart-outline"
+      ></ion-icon>
     </div>
   </div>
   <div class="product__title">

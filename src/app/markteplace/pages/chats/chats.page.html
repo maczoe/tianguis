@@ -5,31 +5,28 @@
     </ion-buttons>
     <ion-title>Mensajes</ion-title>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
 
   <ion-list>
-
-    <ion-card>      
-      <ion-item lines="none" (click)="viewRedirect('/chat-list')">
+    <ion-card *ngFor="let chat of chats">
+      <ion-item lines="none" (click)="viewRedirect('/chat-list/'+chat.chatId)">
         <ion-avatar slot="start">
           <img
-          src="https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg"
+            src="{{chat.userImage}}"
           />
         </ion-avatar>
         <ion-label>
-          <b>
-            Roberto Carrillo
-          </b> <br>
-          <p>Me gusta mucho hacer negocios contigo.</p>
-          <div class="time">13/02/2022</div>
+          <b> {{chat.userName}}</b> <br />
+          <p>{{chat.lastMessage}}</p>
+          <div class="time">{{chat.time|date:'short'}}</div>
         </ion-label>
       </ion-item>
     </ion-card>
-    <ion-card>      
+
+    <!-- <ion-card>      
       <ion-item lines="none" (click)="viewRedirect('/chat-list')">
         <ion-avatar slot="start">
           <img
@@ -61,13 +58,12 @@
           <div class="time">13/02/2022</div>
         </ion-label>
       </ion-item>
-    </ion-card>
-</ion-list>
+    </ion-card> -->
+  </ion-list>
 
-
-<ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-  <ion-fab-button>
-    <ion-icon name="add-outline"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "chatId": "1",
+    "userOrigin": "4565857",
+    "userTarget": "",
+    "message": "Hola, Buen día",
+    "time": "1652358557000"
+  },
+  {
+    "id": "2",
+    "chatId": "1",
+    "userOrigin": "",
+    "userTarget": "4565858",
+    "message": "Como se encuenta Amigo",
+    "time": "1652358557000"
+  },
+  {
+    "id": "3",
+    "chatId": "2",
+    "userOrigin": "4565857",
+    "userTarget": "",
+    "message": "Me interesa ver unos productos",
+    "time": "1652358557000"
+  }
+]
