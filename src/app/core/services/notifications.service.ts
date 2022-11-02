@@ -59,7 +59,7 @@ export class NotificationsService {
         const data = notification.notification.data;
         console.log('Push action performed: ' + JSON.stringify(notification));
         if (data.detailsId) {
-          this.router.navigateByUrl(`/home/${data.detailsId}`);
+          this.router.navigateByUrl(`/app/tabs/home`);
         }
       }
     );
