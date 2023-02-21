@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
 import { Product } from '../model/product';
 const urlApi = environment.mockapi;
@@ -8,22 +9,21 @@ const urlApi = environment.mockapi;
   providedIn: 'root',
 })
 export class ProductsService {
+  private api = environment.urlapi + 'products';
   constructor(private http: HttpClient) {}
 
-  getProducts() {
-    return new Promise((resolve) => {
-      if (urlApi) {
-        //TODO: make local JSON file requests
-        this.http
-          .get('./shared/guards/mocks/products.json')
-          .subscribe((resp: Product[]) => {
-            resolve(resp.filter((product) => product.oldPrice > 0));
-          });
-      } else {
-        //TODO: make requests to the API server
-        resolve([]);
-      }
-    });
+  getProducts(): Observable<Product[]> {
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+      /* this.http
+        .get('./shared/guards/mocks/products.json')
+        .subscribe((resp: Product[]) => {
+          resolve(resp.filter((product) => product.oldPrice > 0));
+        }); */
+    } else {
+      //TODO: make requests to the API server
+      return this.http.get<Product[]>(this.api);
+    }
   }
 
   getProductsRecomended() {

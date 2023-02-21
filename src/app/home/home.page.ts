@@ -29,11 +29,11 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.categoriesService.getCategories().then((data) => {
+    this.categoriesService.getCategories().subscribe((data) => {
       this.categories.push(data);
     });
 
-    this.productsService.getProducts().then((data) => {
+    this.productsService.getProducts().subscribe((data) => {
       this.products.push(data);
     });
 
@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
       this.productsRecomended.push(data);
     });
 
-    this.profilesService.getProfiles().then((data) => {
+    this.profilesService.getProfiles().subscribe((data) => {
       this.profiles.push(data);
     });
     this.initializeApp();

@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
 import { Category } from '../model/category';
 const urlApi = environment.mockapi;
+
 @Injectable({
   providedIn: 'root',
 })
 export class CategoriesService {
+  private api = environment.urlapi + 'categories';
   constructor(private http: HttpClient) {}
-
-  getCategories() {
+  /* getCategories() {
     return new Promise((resolve) => {
       if (urlApi) {
         //TODO: make local JSON file requests
@@ -23,6 +25,10 @@ export class CategoriesService {
         resolve([]);
       }
     });
+  } */
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.api);
   }
 
   getCategoryId(categoryId) {

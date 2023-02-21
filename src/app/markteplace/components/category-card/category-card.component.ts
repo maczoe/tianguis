@@ -8,7 +8,10 @@ import { Category } from '../../model/category';
   styleUrls: ['./category-card.component.scss'],
 })
 export class CategoryCardComponent implements OnInit {
-  @Input() category: Category={};
+  @Input() category: Category={
+    id: 0,
+    name: ''
+  };
   constructor( private router: Router) { }
 
   ngOnInit() {}

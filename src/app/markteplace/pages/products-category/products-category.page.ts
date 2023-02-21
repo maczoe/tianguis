@@ -13,7 +13,10 @@ import { ProductsService } from '../../services/products.service';
 export class ProductsCategoryPage implements OnInit {
   categoryId = '0';
   products: Product[] = [];
-  category: Category = {};
+  category: Category = {
+    id: 0,
+    name: ''
+  };
   constructor(
     private router: ActivatedRoute,
     private categoriesService: CategoriesService,
@@ -28,7 +31,7 @@ export class ProductsCategoryPage implements OnInit {
   ngOnInit() {}
 
   getCategory(categoryId: string) {
-    this.categoriesService.getCategoryId(categoryId).then((data) => {
+    this.categoriesService.getCategoryId(categoryId).then((data: Category) => {
       this.category = data;
     });
   }

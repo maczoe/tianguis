@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-card>      
-      <ion-item lines="none" >
+      <ion-item lines="none" (click)="viewNotification('/app/tabs/home')">
         <ion-avatar slot="start">
           <ion-icon name="notifications-circle-outline"></ion-icon>
         </ion-avatar>
@@ -24,7 +24,7 @@
       </ion-item>
     </ion-card>
     <ion-card>      
-      <ion-item lines="none" >
+      <ion-item lines="none" (click)="viewNotification('/products-category/13')">
         <ion-avatar slot="start">
           <ion-icon name="notifications-circle-outline"></ion-icon>
         </ion-avatar>
@@ -38,7 +38,7 @@
       </ion-item>
     </ion-card>
     <ion-card>      
-      <ion-item lines="none" >
+      <ion-item lines="none" (click)="viewNotification('/app/tabs/quote')">
         <ion-avatar slot="start">
           <ion-icon name="notifications-circle-outline"></ion-icon>
         </ion-avatar>
