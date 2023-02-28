@@ -25,20 +25,12 @@ export class ProfilesService {
     }
   }
 
-  getProfile(id) {
-    return new Promise((resolve) => {
-      if (urlApi) {
-        //TODO: make local JSON file requests
-        this.http
-          .get('./shared/guards/mocks/profiles.json')
-          .subscribe((resp: Profile[]) => {
-            const profile = resp.find((p) => p.id === id);
-            resolve(profile);
-          });
-      } else {
-        //TODO: make requests to the API server
-        resolve([]);
-      }
-    });
+  getProfile(id): Observable<Profile> {
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+    } else {
+      //TODO: make requests to the API server
+      return this.http.get<Profile>(this.api + '/' + id);
+    }
   }
 }

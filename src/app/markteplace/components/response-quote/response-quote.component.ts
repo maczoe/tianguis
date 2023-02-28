@@ -16,7 +16,7 @@ export class ResponseQuoteComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.profilesService.getProfile(this.resp.author).then((data) => {
+    this.profilesService.getProfile(this.resp.author).subscribe((data) => {
       this.profile = data;
 
     });

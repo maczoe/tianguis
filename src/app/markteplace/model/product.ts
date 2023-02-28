@@ -1,14 +1,15 @@
 import { Category } from './category';
+import { Profile } from './profile';
 
 enum ProductStatus {
   new = 'NEW',
   used = 'USED',
-  openBox = 'OPEN BOX'
+  openBox = 'OPEN BOX',
 }
 
 enum ProductType {
   product = 'PRODUCT',
-  service = 'SERVICE'
+  service = 'SERVICE',
 }
 
 export interface Product {
@@ -29,4 +30,5 @@ export interface Product {
   rating?: number;
   categories?: Category[];
   favorite?: boolean;
+  profile?: Profile;
 }

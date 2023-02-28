@@ -12,7 +12,7 @@ import { ProfilesService } from '../../services/profiles.service';
 export class DetailProfilePage implements OnInit {
   profileId = '0';
   profile: Profile = {};
-  products= [];
+  products = [];
   type = 'vewProduct';
   constructor(
     private router: ActivatedRoute,
@@ -22,34 +22,23 @@ export class DetailProfilePage implements OnInit {
   ) {
     this.profileId = this.router.snapshot.paramMap.get('idProfile');
     this.getProfile(this.profileId);
-    this.getProductsProfile(this.profileId);
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   getProfile(id) {
-    this.profilesService.getProfile(id).then((data) => {
+    this.profilesService.getProfile(id).subscribe((data) => {
       this.profile = data;
-
-    });
-  }
-  getProductsProfile(id) {
-    this.productsService.getProductsProfile(id).then((data) => {
-      this.products.push(data);
-      console.log(this.products[0]);
-
+      this.products.push(this.profile.products);
     });
   }
 
-  segmentChanged($event) {
-  }
+  segmentChanged($event) {}
   eventFavorite(favorite) {
-    this.profile.favorite=favorite;
+    this.profile.favorite = favorite;
   }
 
   sendMessage(profileId) {
-    this.routerPath.navigateByUrl('/chat-list/'+profileId);
+    this.routerPath.navigateByUrl('/chat-list/' + profileId);
   }
 }

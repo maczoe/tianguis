@@ -11,7 +11,15 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <img src="{{product.images}}" />
+  <swiper [slidesPerView]="1" [spaceBetween]="2" class="mySwiper">
+    <ng-template
+      swiperSlide
+      *ngFor="let img of product.images"
+      class="ion-align-items-stretch"
+    >
+      <img src="{{img}}" />
+    </ng-template>
+  </swiper>
   <ion-card-content>
     <ion-item>
       <ion-avatar item-start>
@@ -36,18 +44,23 @@
       >{{product.price | currency:'Q'}}</ion-card-title
     >
     <p>Categorias</p>
-    <ion-row >
+    <ion-row>
       <div *ngFor="let category of product.categories">
-        
-        <ion-col><ion-badge color="medium">{{category.name}} </ion-badge> </ion-col>
+        <ion-col
+          ><ion-badge color="medium">{{category.name}} </ion-badge>
+        </ion-col>
       </div>
-    </ion-row>  
+    </ion-row>
 
     <p>Descripción</p>
-    <ion-label> {{product.description}} </ion-label>    
+    <ion-label> {{product.description}} </ion-label>
   </ion-card-content>
-  
 </ion-content>
 <ion-footer>
-  <ion-button expand="block" shape="round" (click)="sendMessage(product.profileId)" >Comprar</ion-button>
+  <ion-button
+    expand="block"
+    shape="round"
+    (click)="sendMessage(product.profileId)"
+    >Comprar</ion-button
+  >
 </ion-footer>

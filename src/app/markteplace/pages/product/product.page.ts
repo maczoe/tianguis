@@ -23,29 +23,18 @@ export class ProductPage implements OnInit {
   ) {
     this.productId = this.router.snapshot.paramMap.get('idProduct');
     this.getProduct(this.productId);
-   }
-
-  ngOnInit() {
-
   }
 
-  getProduct(idProduct: string ) {
+  ngOnInit() {}
 
-    this.productsService.getProductId(idProduct).then((data) => {
+  getProduct(idProduct: string) {
+    this.productsService.getProductId(idProduct).subscribe((data) => {
       this.product = data;
-      this.getProfile(this.product.profileId);
-
-    });
-  }
-
-  getProfile(id) {
-    this.profilesService.getProfile(id).then((data) => {
-      this.profile = data;
+      this.profile = data.profile;
     });
   }
 
   sendMessage(profileId) {
-    this.routerPath.navigateByUrl('/chat-list/'+profileId);
+    this.routerPath.navigateByUrl('/chat-list/' + profileId);
   }
-
 }

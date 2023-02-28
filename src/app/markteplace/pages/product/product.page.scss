@@ -13,7 +13,7 @@
 
 ion-card img { 
     width: 100%; 
-    height: 20vh; 
+    height: 100%; 
 }
 
 .favorite{
@@ -30,3 +30,40 @@ ion-card-header{
 .p-0{
     padding:0;
 }
+
+
+
+.swiper {
+    width: 100%;
+    height: 35vh;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 12px;
+   
+  
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: stretch;
+    padding:  0.5rem 0;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }

@@ -38,7 +38,7 @@ export class DetailResponseQuotePage implements OnInit {
 
 
   getProfile(id) {
-    this.profilesService.getProfile(id).then((data) => {
+    this.profilesService.getProfile(id).subscribe((data) => {
       this.profile = data;
       console.log(this.profile);
     });
@@ -46,7 +46,7 @@ export class DetailResponseQuotePage implements OnInit {
 
   getProduct(idProduct ) {
 
-    this.productsService.getProductId(idProduct).then((data) => {
+    this.productsService.getProductId(idProduct).subscribe((data) => {
       this.product = data;
       console.log(this.product);
     });

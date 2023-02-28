@@ -1,29 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
 
 import { Quote } from '../model/quote';
-const urlApi =environment.mockapi;
+const urlApi = environment.mockapi;
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuotesService {
+  private api = environment.urlapi + 'quotes';
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getQuotes() {
-    return new Promise((resolve) => {
-
-      if (urlApi) {
-        //TODO: make local JSON file requests
-        this.http.get('./shared/guards/mocks/quotes.json').subscribe((resp: Quote[]) => {
-          resolve(resp);
-        });
-      } else {
-        //TODO: make requests to the API server
-        resolve([]);
-      }
-
-    });
+  getQuotes(): Observable<Quote[]> {
+    if (!urlApi) {
+      //TODO: make local JSON file requests/*  */
+    } else {
+      //TODO: make requests to the API server
+      return this.http.get<Quote[]>(this.api);
+    }
   }
 }

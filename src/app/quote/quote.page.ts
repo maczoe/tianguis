@@ -16,7 +16,7 @@ export class QuotePage implements OnInit  {
   ) { }
 
   ngOnInit() {
-    this.quotesService.getQuotes().then((data) => {
+    this.quotesService.getQuotes().subscribe((data) => {
       this.quotes.push(data);
     });
    }

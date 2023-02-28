@@ -1,6 +1,15 @@
 <div class="card-hrz">
-  <div class="card-hrz__col" (click)="selectProduc(product.id)">
-    <img class="card-hrz__col--image" src="{{ product.images }}" alt="" />
+  <div class="card-hrz__col" >
+    
+    <swiper [slidesPerView]="1" [spaceBetween]="2" class="mySwiper" >
+      <ng-template
+        swiperSlide
+        *ngFor="let img of product.images"
+        class="ion-align-items-stretch"
+      >
+        <img class="card-hrz__col--image" src="{{ img}}" alt="" />
+      </ng-template>
+    </swiper>
   </div>
   <div class="card-hrz__col--data">
     <p class="card-hrz__col--data--name" (click)="selectProduc(product.id)">{{ product.name }}</p>
