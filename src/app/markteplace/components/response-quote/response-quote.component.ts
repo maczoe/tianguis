@@ -10,18 +10,10 @@ import { ProfilesService } from '../../services/profiles.service';
 })
 export class ResponseQuoteComponent implements OnInit {
   @Input() resp: ResponseQuote = {};
-  profile: Profile={};
-  constructor(private profilesService: ProfilesService) {
-
-   }
+  profile: Profile = {};
+  constructor(private profilesService: ProfilesService) {}
 
   ngOnInit() {
-    this.profilesService.getProfile(this.resp.author).subscribe((data) => {
-      this.profile = data;
-
-    });
-
-
-    }
-
+    this.profile = this.resp.author;
+  }
 }
