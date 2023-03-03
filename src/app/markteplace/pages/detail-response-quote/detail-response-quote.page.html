@@ -8,39 +8,56 @@
 </ion-header>
 
 <ion-content>
-  <img src="{{product.images}}" />
+  <swiper *ngIf="responsesDetail.product" [slidesPerView]="1" [spaceBetween]="2" class="mySwiper">
+    <ng-template
+      swiperSlide
+      *ngFor="let img of product.images"
+      class="ion-align-items-stretch"
+    >
+      <img src="{{img}}" />
+    </ng-template>
+  </swiper>
   <ion-card-content>
+    <div *ngIf="responsesDetail.product">
+      <ion-card-title>{{product.name}}</ion-card-title>
+      <ion-card-subtitle
+        ><ion-icon name="star"></ion-icon> {{product.rating}}
+      </ion-card-subtitle>
+      <p>Descripción Producto:</p>
+
+      <p>{{product.description}}</p>
+      <ion-card-title *ngIf="product.oldPrice >0" class="price-desc-title"
+        ><del>{{product.oldPrice | currency:'Q'}}</del>
+      </ion-card-title>
+      <ion-card-title class="price-title"
+        >{{product.price | currency:'Q'}}</ion-card-title
+      >
+      <p>Categorias del producto:</p>
+      <ion-row>
+        <div *ngFor="let category of product.categories">
+          <ion-col
+            ><ion-badge color="medium">{{category.name}} </ion-badge>
+          </ion-col>
+        </div>
+      </ion-row>
+    </div>
+    <!-- Card Profile -->
     <ion-item lines="none">
       <ion-avatar item-start>
         <img src="{{profile.photo}}" />
       </ion-avatar>
       <ion-label>
         <h2>{{profile.name}}</h2>
-        <p class="ion-text-start"><ion-icon name="star"></ion-icon> {{profile.rating}} </p>
-
-        
+        <p class="ion-text-start">
+          <ion-icon name="star"></ion-icon> {{profile.rating}}
+        </p>
       </ion-label>
     </ion-item>
-    <ion-card-title>{{product.name}}</ion-card-title>      
-    <ion-card-subtitle ><ion-icon name="star"></ion-icon> {{product.rating}} </ion-card-subtitle> 
-    <p>Descripción Producto:</p>
-
-      <p>
-        {{product.description}}
-      </p>
-      <ion-card-title *ngIf="product.oldPrice >0" class="price-desc-title"><del>{{product.oldPrice | currency:'Q'}}</del> </ion-card-title>
-  <ion-card-title class="price-title">{{product.price | currency:'Q'}}</ion-card-title>
-    <p>Categorias del producto:</p>
-    <ion-row >
-      <div *ngFor="let category of product.categories">
-        
-        <ion-col><ion-badge color="medium">{{category.name}} </ion-badge> </ion-col>
-      </div>
-    </ion-row>
-
+    <ion-card-title *ngIf="responsesDetail.product===null" class="price-title"
+      >{{responsesDetail.price | currency:'Q'}}</ion-card-title
+    >
     <p>Detalle Oferta:</p>
     <ion-label> {{responsesDetail.comment}} </ion-label>
-    <ion-button expand="block" >Aceptar Oferta</ion-button>
+    <ion-button expand="block">Aceptar Oferta</ion-button>
   </ion-card-content>
 </ion-content>
- 

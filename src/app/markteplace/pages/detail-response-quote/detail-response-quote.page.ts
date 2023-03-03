@@ -34,7 +34,14 @@ export class DetailResponseQuotePage implements OnInit {
         this.responsesDetail = data;
         console.log(this.responsesDetail);
         this.profile = this.responsesDetail.author;
-        this.getProduct(1);
+        console.log(this.responsesDetail.product);
+        if (this.responsesDetail.product) {
+          this.productsService
+            .getProductId(this.responsesDetail.product)
+            .subscribe((pro) => {
+              this.product = pro;
+            });
+        }
       });
   }
 

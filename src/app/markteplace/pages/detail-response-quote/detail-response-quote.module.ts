@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { DetailResponseQuotePageRoutingModule } from './detail-response-quote-routing.module';
 
 import { DetailResponseQuotePage } from './detail-response-quote.page';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    SwiperModule,
     DetailResponseQuotePageRoutingModule
   ],
   declarations: [DetailResponseQuotePage]
