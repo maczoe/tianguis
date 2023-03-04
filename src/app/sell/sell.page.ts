@@ -28,10 +28,8 @@ export class SellPage implements OnInit {
 
   ngOnInit() {
     this.categoriesService.getCategories().subscribe((data) => {
-      console.log(data);
 
       this.categories = data;
-      console.log(this.categories);
     });
   }
 

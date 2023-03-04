@@ -11,20 +11,21 @@ enum QuoteStatus {
 }
 
 export interface Quote {
-  id: string;
+  id?: string;
   title?: string;
   description?: string;
   price?: number;
-  expiration: string;
+  expiration?: string;
   minPrice?: number;
   maxPrice?: number;
-  locationId: string;
-  attachments?: number;
-  type: QuoteTyoe;
-  status: QuoteStatus;
-  author: number;
-  active: boolean;
-  createdAt: string;
-  responses: string[];
+  locationId?: number;
+  attachmentId?: number;
+  type?: QuoteTyoe;
+  status?: QuoteStatus;
+  author?: number;
+  active?: boolean;
+  createdAt?: string;
+  responses?: string[];
+  categoriesIds?: number[];
 
 }

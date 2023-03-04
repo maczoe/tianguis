@@ -4,77 +4,150 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Nueva Cotización</ion-title>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Producto</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Descripción</ion-label>
-          <ion-textarea></ion-textarea>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <ion-label>Rango de precio</ion-label>
-      </ion-col>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Precio mínimo</ion-label>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="12">
-        <ion-item>
-          <ion-label position="floating">Precio máximo</ion-label>
-          <ion-input type="number"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+    <form #frm="ngForm" (ngSubmit)="onSubmit()">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Titulo</ion-label>
+            <ion-input
+              name="title"
+              type="text"
+              [(ngModel)]="quote.title"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-textarea
+              name="description"
+              type="text"
+              [(ngModel)]="quote.description"
+              required
+            ></ion-textarea>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input
+              type="number"
+              step="any"
+              name="price"
+              [(ngModel)]="quote.price"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Fecha de expiración</ion-label>
+            <ion-input
+              name="expiration"
+              type="date"
+              [(ngModel)]="quote.expiration"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <!-- <ion-col size="12">
+          <ion-item>
+            <ion-label>Rango de precio</ion-label>
+          </ion-item>
+        </ion-col> -->
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Precio mínimo</ion-label>
+            <ion-input
+              type="number"
+              step="any"
+              name="minPrice"
+              [(ngModel)]="quote.minPrice"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Precio máximo</ion-label>
+            <ion-input
+              type="number"
+              step="any"
+              name="maxPrice"
+              [(ngModel)]="quote.maxPrice"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
-  <ion-row>
-    <ion-col size="12">
-    <ion-item lines="none">
-      <ion-label>Categorias</ion-label>
-      <ion-select multiple="true" [value]="categories" placeholder="Seleccione una categoria">
-        <ion-select-option value="electrónicos">Electrónicos</ion-select-option>
-        <ion-select-option value="servicios">Servicios</ion-select-option>
-        <ion-select-option value="celulares">Celulares</ion-select-option>
-        <ion-select-option value="repuestos">Repuestos</ion-select-option>
-      </ion-select>
-    </ion-item>
-    </ion-col>
-    <ion-col size="12">
-      <div *ngFor="let category of categories">
-        <ion-badge color="medium">{{category}}</ion-badge>
-      </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="12">
-      <ion-item>
-        <ion-label>Estado</ion-label>
-        <ion-select placeholder="Seleccione un estado">
-          <ion-select-option value="new">Nuevo</ion-select-option>
-          <ion-select-option value="use">Usado</ion-select-option>
-          <ion-select-option value="box">En caja</ion-select-option>
-
-        </ion-select>
-      </ion-item>
-    </ion-col>
-  </ion-row>
-  <ion-button expand="full">Guardar</ion-button>
-            
-
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-label>Categorias</ion-label>
+            <ion-select
+              multiple="true"
+              (ionChange)="handleChange($event)"
+              placeholder="Seleccione una categoria"
+              required
+            >
+              <ion-select-option
+                *ngFor="let category of categories"
+                [value]="category"
+                >{{category.name}}</ion-select-option
+              >
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <span *ngFor="let category of categoriesSelect">
+            <ion-badge color="medium">{{category.name}}</ion-badge>
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Estado</ion-label>
+            <ion-select
+              (ionChange)="handleStatus($event)"
+              placeholder="Seleccione un estado"
+              required
+            >
+              <ion-select-option value="NEW">Nuevo</ion-select-option>
+              <ion-select-option value="USED">Usado</ion-select-option>
+              <ion-select-option value="OPEN BOX">En caja</ion-select-option>
+              <ion-select-option value="REFUBISHED">Renovado</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked">Tipo</ion-label>
+            <ion-select
+              (ionChange)="handleType($event)"
+              placeholder="Seleccione un tipo"
+              required
+            >
+              <ion-select-option value="PRODUCT">Producto</ion-select-option>
+              <ion-select-option value="SERVICE">Servicio</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-button expand="full" type="submit" [disabled]="frm.invalid"
+        >Guardar</ion-button
+      >
+    </form>
   </ion-grid>
 </ion-content>

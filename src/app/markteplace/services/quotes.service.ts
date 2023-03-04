@@ -20,4 +20,13 @@ export class QuotesService {
       return this.http.get<Quote[]>(this.api);
     }
   }
+
+  createQuote(quote: Quote): Observable<any>{
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+    } else {
+      //TODO: make requests to the API server
+      return this.http.post(this.api, quote);
+    }
+  }
 }
