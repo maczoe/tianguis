@@ -55,6 +55,7 @@
               multiple="true"
               (ionChange)="handleChange($event)"
               placeholder="Seleccione una categoria"
+              required
             >
               <ion-select-option
                 *ngFor="let category of categories"
@@ -65,7 +66,7 @@
           </ion-item>
         </ion-col>
         <ion-col size="12">
-          <span *ngFor="let category of product.categories">
+          <span *ngFor="let category of categoriesSelect">
             <ion-badge color="medium">{{category.name}}</ion-badge>
           </span>
         </ion-col>
@@ -74,10 +75,14 @@
         <ion-col size="12">
           <ion-item>
             <ion-label position="stacked">Estado</ion-label>
-            <ion-select placeholder="Seleccione un estado">
-              <ion-select-option value="new">Nuevo</ion-select-option>
-              <ion-select-option value="use">Usado</ion-select-option>
-              <ion-select-option value="box">En caja</ion-select-option>
+            <ion-select
+              (ionChange)="handleStatus($event)"
+              placeholder="Seleccione un estado"
+              required
+            >
+              <ion-select-option value="NEW">Nuevo</ion-select-option>
+              <ion-select-option value="USED">Usado</ion-select-option>
+              <ion-select-option value="OPEN BOX">En caja</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -85,19 +90,32 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label position="stacked">Estado</ion-label>
-            <ion-select placeholder="Seleccione un tipo">
-              <ion-select-option value="product">Producto</ion-select-option>
-              <ion-select-option value="service">Servicio</ion-select-option>
+            <ion-label position="stacked">Tipo</ion-label>
+            <ion-select
+              (ionChange)="handleType($event)"
+              placeholder="Seleccione un tipo"
+              required
+            >
+              <ion-select-option value="PRODUCT">Producto</ion-select-option>
+              <ion-select-option value="SERVICE">Servicio</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-item>
+          <!-- <ion-item>
             <ion-label position="stacked">Imagen </ion-label>
             <ion-input type="file"></ion-input>
+          </ion-item> -->
+          <ion-item>
+            <ion-label position="floating">Imgen URL</ion-label>
+            <ion-input
+              name="imagen"
+              type="text"
+              [(ngModel)]="product.imagesUrl"
+              required
+            ></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

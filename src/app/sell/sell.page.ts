@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Category } from '../markteplace/model/category';
 import { Product } from '../markteplace/model/product';
 import { CategoriesService } from '../markteplace/services/categories.service';
+import { ProductsService } from '../markteplace/services/products.service';
 
 @Component({
   selector: 'app-sell',
@@ -11,8 +13,18 @@ import { CategoriesService } from '../markteplace/services/categories.service';
 export class SellPage implements OnInit {
   categories: Category[] = [];
   categoriesSelect = [];
-  product: Product={};
-  constructor(private categoriesService: CategoriesService) {}
+  product: Product = {
+    profileId: 3,
+  };
+  cat: Category = {
+    id: 1,
+    name: '',
+  };
+  constructor(
+    private categoriesService: CategoriesService,
+    private serviceProduct: ProductsService,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {
     this.categoriesService.getCategories().subscribe((data) => {
@@ -24,10 +36,28 @@ export class SellPage implements OnInit {
   }
 
   handleChange(ev) {
-    this.product.categories = ev.target.value;
+    const cat: Category[] = ev.target.value;
+    const catIds: number[] = [];
+    cat.forEach((c) => {
+      catIds.push(c.id);
+    });
+    this.product.categoriesIds = catIds;
+    this.categoriesSelect = ev.target.value;
   }
 
   onSubmit() {
-    console.log(this.product);
+    const images: string = this.product.imagesUrl;
+    this.product.images = images.split(',');
+    this.serviceProduct.createProduct(this.product).subscribe((data) => {
+      console.log(data);
+      this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
+    });
+    console.log(JSON.stringify(this.product));
+  }
+  handleStatus(e) {
+    this.product.status = e.detail.value;
+  }
+  handleType(e) {
+    this.product.type = e.detail.value;
   }
 }

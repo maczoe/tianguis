@@ -27,8 +27,9 @@ export interface Product {
   warranty?: number;
   profileId?: number;
   images?: string[];
+  imagesUrl?: string;
   rating?: number;
-  categories?: Category[];
+  categoriesIds?: number[];
   favorite?: boolean;
   profile?: Profile;
 }

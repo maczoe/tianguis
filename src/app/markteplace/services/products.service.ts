@@ -55,7 +55,7 @@ export class ProductsService {
     return new Promise((resolve) => {
       if (urlApi) {
         //TODO: make local JSON file requests
-        this.http
+        /* this.http
           .get('./shared/guards/mocks/products.json')
           .subscribe((resp: Product[]) => {
             const products: Product[] = resp;
@@ -64,7 +64,7 @@ export class ProductsService {
               p.categories.some((c) => c.id === categoryId)
             );
             resolve(productsCategory);
-          });
+          }); */
       } else {
         //TODO: make requests to the API server
         resolve([]);
@@ -87,5 +87,14 @@ export class ProductsService {
         resolve([]);
       }
     });
+  }
+
+  createProduct(product: Product): Observable<any> {
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+    } else {
+      //TODO: make requests to the API server
+      return this.http.post(this.api, product);
+    }
   }
 }
