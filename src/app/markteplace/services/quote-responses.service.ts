@@ -30,4 +30,13 @@ export class QuoteResponsesService {
       return this.http.get<ResponseQuote>(this.api + '/' + id);
     }
   }
+
+  createResponse(response: ResponseQuote): Observable<any> {
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+    } else {
+      //TODO: make requests to the API server
+      return this.http.post(this.api, response);
+    }
+  }
 }

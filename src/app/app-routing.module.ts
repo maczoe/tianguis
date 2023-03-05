@@ -128,7 +128,8 @@ const routes: Routes = [
       import(
         './markteplace/pages/detail-undertake/detail-undertake.module'
       ).then((m) => m.DetailUndertakePageModule),
-  },  {
+  },
+  {
     path: 'google-sesion',
     loadChildren: () => import('./markteplace/pages/google-sesion/google-sesion.module').then( m => m.GoogleSesionPageModule)
   },
@@ -139,6 +140,10 @@ const routes: Routes = [
   {
     path: 'complete-profile',
     loadChildren: () => import('./markteplace/pages/complete-profile/complete-profile.module').then( m => m.CompleteProfilePageModule)
+  },
+  {
+    path: 'new-offer/:id',
+    loadChildren: () => import('./markteplace/pages/new-offer/new-offer.module').then( m => m.NewOfferPageModule)
   },
 
 ];

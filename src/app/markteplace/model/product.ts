@@ -30,6 +30,7 @@ export interface Product {
   imagesUrl?: string;
   rating?: number;
   categoriesIds?: number[];
+  categories?: Category[];
   favorite?: boolean;
   profile?: Profile;
 }

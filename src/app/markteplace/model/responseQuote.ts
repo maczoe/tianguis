@@ -11,11 +11,13 @@ export interface ResponseQuote {
   id?: string;
   comment?: string;
   price?: number;
-  attachments?: number;
+  attachments?: string;
+  authorId?: string;
   product?: string;
   expiration?: string;
   terms?: string;
   requests?: string;
+  requestsId?: string;
   author?: Profile;
   status?: ResponseStatus;
   active?: boolean;

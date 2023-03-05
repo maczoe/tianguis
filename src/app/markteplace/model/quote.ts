@@ -1,3 +1,5 @@
+import { ResponseQuote } from './responseQuote';
+
 enum QuoteTyoe {
   product = 'PRODUCT',
   service = 'SERVICE',
@@ -25,7 +27,6 @@ export interface Quote {
   author?: number;
   active?: boolean;
   createdAt?: string;
-  responses?: string[];
+  responses?: ResponseQuote[];
   categoriesIds?: number[];
-
 }
