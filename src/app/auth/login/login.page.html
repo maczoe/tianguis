@@ -5,10 +5,12 @@
     </ion-buttons>
     <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
-
 </ion-header>
 <ion-content padding>
-  <form #form="ngForm" (ngSubmit)="login()">
+  <form
+    [formGroup]="validationFormUser"
+    (ngSubmit)="login(validationFormUser.value)"
+  >
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
@@ -22,26 +24,48 @@
             <ion-item>
               <ion-input
                 name="email"
+                formControlName="email"
                 type="email"
                 placeholder="E-mail"
-                ngModel
-                required
+                [(ngModel)]="user.email"
               ></ion-input>
             </ion-item>
+            <div>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.email"
+              >
+                <div
+                  class="error_message"
+                  *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)"
+                >
+                  {{validation.message}}
+                </div>
+              </ng-container>
+            </div>
             <ion-item>
               <ion-input
                 name="password"
                 type="password"
+                formControlName="password"
                 placeholder="Contraseña"
-                ngModel
-                required
+                [(ngModel)]="user.password"
               ></ion-input>
             </ion-item>
+            <div>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.password"
+              >
+                <div
+                  class="error_message"
+                  *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)"
+                >
+                  {{validation.message}}
+                </div>
+              </ng-container>
+            </div>
           </div>
           <div padding>
-            <ion-button type="submit"  expand="block">
-              Ingresar
-            </ion-button>
+            <ion-button type="submit" expand="block"> Ingresar </ion-button>
           </div>
         </ion-col>
       </ion-row>
@@ -73,7 +97,11 @@
         </ion-col>
         <ion-col size-md="3" size-lg="2" size-xs="6">
           <div padding>
-            <ion-button color="secondary" expand="block" (click)="facebookAuth()">
+            <ion-button
+              color="secondary"
+              expand="block"
+              (click)="facebookAuth()"
+            >
               <ion-icon name="logo-facebook"></ion-icon>
               <ion-text>&nbsp;Facebook</ion-text>
             </ion-button>

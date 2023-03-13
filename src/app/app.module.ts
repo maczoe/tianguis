@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,8 @@ import { HTTP } from '@awesome-cordova-plugins/http/ngx';
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
