@@ -35,6 +35,8 @@
     "@capacitor/splash-screen": "^4.1.1",
     "@capacitor/status-bar": "1.0.2",
     "@ionic/angular": "^6.3.1",
+    "@ionic/storage": "^3.0.6",
+    "@ionic/storage-angular": "^3.0.6",
     "cordova-plugin-advanced-http": "^3.3.1",
     "cordova-plugin-file": "^7.0.0",
     "ngx-autosize": "^1.8.7",

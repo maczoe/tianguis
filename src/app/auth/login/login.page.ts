@@ -8,6 +8,9 @@ import {
   FormControl,
 } from '@angular/forms';
 import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
+import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,7 @@ import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  user = {
+  user: User = {
     email: '',
     password: '',
   };
@@ -41,11 +44,13 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private alertCtrl: AlertController,
+    private storage: Storage,
     public formbuider: FormBuilder,
-    private uiAlerts: UiAlertsService
+    private uiAlerts: UiAlertsService,
+    private authService: AuthService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.validationFormUser = this.formbuider.group({
       email: new FormControl(
         '',
@@ -59,6 +64,7 @@ export class LoginPage implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),
     });
+    await this.storage.create();
   }
 
   login(value) {
@@ -70,9 +76,18 @@ export class LoginPage implements OnInit {
         this.user.email,
         this.user.password
       ); */
-      console.log(this.user);
+      this.authService.login(this.user).subscribe(
+        (data) => {
+          console.log(data);
+          this.authService.saveToken(data.access_token);
+          this.router.navigateByUrl('/app');
+        },
+        (err) => {
+          console.log(err);
+          this.uiAlerts.alertaInfo('Usario y contraseña son incorrectos.');
+        }
+      );
     }
-    //this.router.navigateByUrl('/app');
   }
   googleAuth() {
     this.router.navigateByUrl('/google-sesion');

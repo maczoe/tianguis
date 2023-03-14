@@ -5,13 +5,14 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
+import { IonicStorageModule } from '@ionic/storage-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Drivers } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__local',
+      driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage],
+    }),
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
