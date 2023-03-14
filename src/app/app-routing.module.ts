@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { UserGuard } from './auth/guards/user.guard';
 
 const routes: Routes = [
   {
@@ -131,21 +132,32 @@ const routes: Routes = [
   },
   {
     path: 'google-sesion',
-    loadChildren: () => import('./markteplace/pages/google-sesion/google-sesion.module').then( m => m.GoogleSesionPageModule)
+    loadChildren: () =>
+      import('./markteplace/pages/google-sesion/google-sesion.module').then(
+        (m) => m.GoogleSesionPageModule
+      ),
   },
   {
     path: 'facebook-sesion',
-    loadChildren: () => import('./markteplace/pages/facebook-sesion/facebook-sesion.module').then( m => m.FacebookSesionPageModule)
+    loadChildren: () =>
+      import('./markteplace/pages/facebook-sesion/facebook-sesion.module').then(
+        (m) => m.FacebookSesionPageModule
+      ),
   },
   {
     path: 'complete-profile',
-    loadChildren: () => import('./markteplace/pages/complete-profile/complete-profile.module').then( m => m.CompleteProfilePageModule)
+    loadChildren: () =>
+      import(
+        './markteplace/pages/complete-profile/complete-profile.module'
+      ).then((m) => m.CompleteProfilePageModule),
   },
   {
     path: 'new-offer/:id',
-    loadChildren: () => import('./markteplace/pages/new-offer/new-offer.module').then( m => m.NewOfferPageModule)
+    loadChildren: () =>
+      import('./markteplace/pages/new-offer/new-offer.module').then(
+        (m) => m.NewOfferPageModule
+      ),
   },
-
 ];
 @NgModule({
   imports: [

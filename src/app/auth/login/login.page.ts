@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import {
   FormGroup,
   FormBuilder,
@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
   };
   constructor(
     private router: Router,
-    private alertCtrl: AlertController,
+    private navCtrl: NavController,
     private storage: Storage,
     public formbuider: FormBuilder,
     private uiAlerts: UiAlertsService,
@@ -51,6 +51,11 @@ export class LoginPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    await this.storage.create();
+    const valid = await this.authService.validaToken();
+    if (valid) {
+      this.router.navigateByUrl('/app');
+    }
     this.validationFormUser = this.formbuider.group({
       email: new FormControl(
         '',
@@ -64,7 +69,6 @@ export class LoginPage implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),
     });
-    await this.storage.create();
   }
 
   login(value) {
@@ -80,7 +84,7 @@ export class LoginPage implements OnInit {
         (data) => {
           console.log(data);
           this.authService.saveToken(data.access_token);
-          this.router.navigateByUrl('/app');
+          this.navCtrl.navigateRoot('/app', { animated: true });
         },
         (err) => {
           console.log(err);
