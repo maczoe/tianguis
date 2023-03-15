@@ -102,13 +102,29 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-label>Imagenes del producto</ion-label>
+      <ion-row>
+
+        <ion-col size="6">
+          <ion-button expand="full" shape="round" (click)="selectImageCamera()">
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Cámara
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="full" shape="round" (click)="selectImage()">
+            <ion-icon slot="start" name="images"></ion-icon>
+            Galería
+          </ion-button>
+        </ion-col>
+      </ion-row>
       <ion-row>
         <ion-col size="12">
           <!-- <ion-item>
             <ion-label position="stacked">Imagen </ion-label>
             <ion-input type="file"></ion-input>
           </ion-item> -->
-          <ion-item>
+          <!-- <ion-item>
             <ion-label position="floating">Imgen URL</ion-label>
             <ion-input
               name="imagen"
@@ -116,7 +132,17 @@
               [(ngModel)]="product.imagesUrl"
               required
             ></ion-input>
-          </ion-item>
+          </ion-item> -->
+          <ion-list>
+            <ion-item *ngFor="let file of images">
+              <ion-thumbnail slot="start">
+                <ion-img [src]="file.data"> </ion-img>
+              </ion-thumbnail>
+              <ion-button slot="end" fill="clear" (click)="deleteImage(file)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-list>
         </ion-col>
       </ion-row>
       <ion-button expand="full" type="submit" [disabled]="frm.invalid"
@@ -125,3 +151,4 @@
     </form>
   </ion-grid>
 </ion-content>
+

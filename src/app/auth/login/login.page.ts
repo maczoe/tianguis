@@ -51,11 +51,13 @@ export class LoginPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    await this.storage.create();
+   /*  await this.storage.create();
     const valid = await this.authService.validaToken();
+    console.log(valid);
+
     if (valid) {
       this.router.navigateByUrl('/app');
-    }
+    } */
     this.validationFormUser = this.formbuider.group({
       email: new FormControl(
         '',

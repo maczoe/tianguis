@@ -48,13 +48,15 @@ export class IntroPage implements OnInit {
     private router: Router,
     private storage: Storage,
     private authService: AuthService,
-    private navCtrl: NavController,
+    private navCtrl: NavController
   ) {}
   async ngOnInit() {
     await this.storage.create();
     const valid = await this.authService.validaToken();
     if (valid) {
       this.navCtrl.navigateRoot('/app', { animated: true });
+    } else {
+      this.router.navigateByUrl('/login');
     }
   }
 
