@@ -4,7 +4,7 @@ import { Category } from '../markteplace/model/category';
 import { Product } from '../markteplace/model/product';
 import { CategoriesService } from '../markteplace/services/categories.service';
 import { ProductsService } from '../markteplace/services/products.service';
-
+import { Storage } from '@ionic/storage-angular';
 import {
   Camera,
   CameraResultType,
@@ -12,6 +12,10 @@ import {
   Photo,
 } from '@capacitor/camera';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { environment } from 'src/environments/environment.mock';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth/services/auth.service';
 
 const IMAGE_DIR = 'stored-images';
 interface LocalFile {
@@ -35,17 +39,24 @@ export class SellPage implements OnInit {
     id: 1,
     name: '',
   };
+  private imgUlrs: string[] = [];
+  private api = environment.urlapi;
   constructor(
     private categoriesService: CategoriesService,
     private serviceProduct: ProductsService,
     private navCtrl: NavController,
     private platform: Platform,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private http: HttpClient,
+    private authService: AuthService,
+    private storage: Storage
   ) {
     this.platform = platform;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+    await this.authService.validaToken();
     this.categoriesService.getCategories().subscribe((data) => {
       this.categories = data;
     });
@@ -83,23 +94,17 @@ export class SellPage implements OnInit {
 
   async loadinFileData(filesNames) {
     for (const f of filesNames) {
-      console.log(f);
-
       const filepath = `${IMAGE_DIR}/${f.name}`;
       const readFile = await Filesystem.readFile({
         directory: Directory.Data,
         path: filepath,
       });
-
-      console.log(readFile);
-
       this.images.push({
         name: f,
         path: filepath,
         data: `data:image/jpeg;base64,${readFile.data}`,
       });
     }
-    console.log(this.images);
   }
 
   handleChange(ev) {
@@ -114,12 +119,15 @@ export class SellPage implements OnInit {
 
   onSubmit() {
     const images: string = this.product.imagesUrl;
-    this.product.images = images.split(',');
+    this.images.forEach(async (file) => {
+      await this.startUpload(file);
+    });
+    this.product.images = this.imgUlrs;
     this.serviceProduct.createProduct(this.product).subscribe((data) => {
       console.log(data);
+      console.log(JSON.stringify(this.product));
       this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
     });
-    console.log(JSON.stringify(this.product));
   }
   handleStatus(e) {
     this.product.status = e.detail.value;
@@ -155,7 +163,6 @@ export class SellPage implements OnInit {
       this.saveImage(image);
     }
   }
-
 
   async saveImage(phto: Photo) {
     const base64Data = await this.readAsBase64(phto);
@@ -203,5 +210,26 @@ export class SellPage implements OnInit {
       path: file.path,
     });
     this.loadFiles();
+  }
+
+  async startUpload(file: LocalFile) {
+    const response = await fetch(file.data);
+    const bold = await response.blob();
+    const formData = new FormData();
+    formData.append('file', bold, file.name);
+    this.uploadFile(formData).subscribe((data) => {
+      console.log(data);
+      this.imgUlrs.push(data.secureUrl);
+    });
+    await this.deleteImage(file);
+  }
+
+  uploadFile(formData: FormData): Observable<any> {
+    /*  const loading = await this.loadingCtrl.create({
+      message: 'Upload Image...',
+    });
+    await loading.present(); */
+
+    return this.http.post(`${this.api}files/product`, formData);
   }
 }

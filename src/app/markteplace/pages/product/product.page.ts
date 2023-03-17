@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Product } from '../../model/product';
 import { Profile } from '../../model/profile';
 import { ProductsService } from '../../services/products.service';
-import { ProfilesService } from '../../services/profiles.service';
-
+import { Storage } from '@ionic/storage-angular';
 @Component({
   selector: 'app-product',
   templateUrl: './product.page.html',
@@ -18,14 +18,18 @@ export class ProductPage implements OnInit {
   constructor(
     private router: ActivatedRoute,
     private productsService: ProductsService,
-    private profilesService: ProfilesService,
-    private routerPath: Router
+    private routerPath: Router,
+    private authService: AuthService,
+    private storage: Storage
   ) {
     this.productId = this.router.snapshot.paramMap.get('idProduct');
-    this.getProduct(this.productId);
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.storage.create();
+    await this.authService.validaToken();
+    this.getProduct(this.productId);
+  }
 
   getProduct(idProduct: string) {
     this.productsService.getProductId(idProduct).subscribe((data) => {

@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment.mock';
 import { Product } from '../model/product';
 const urlApi = environment.mockapi;
@@ -10,7 +11,7 @@ const urlApi = environment.mockapi;
 })
 export class ProductsService {
   private api = environment.urlapi + 'products';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getProducts(): Observable<Product[]> {
     if (!urlApi) {
@@ -43,11 +44,17 @@ export class ProductsService {
   }
 
   getProductId(idProduct): Observable<Product> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+    console.log(this.authService.token);
+
     if (!urlApi) {
       //TODO: make local JSON file requests
     } else {
       //TODO: make requests to the API server
-      return this.http.get<Product>(this.api + '/' + idProduct);
+      return this.http.get<Product>(this.api + '/' + idProduct, { headers });
     }
   }
 
@@ -90,11 +97,15 @@ export class ProductsService {
   }
 
   createProduct(product: Product): Observable<any> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
     if (!urlApi) {
       //TODO: make local JSON file requests
     } else {
       //TODO: make requests to the API server
-      return this.http.post(this.api, product);
+      return this.http.post(this.api, product, { headers });
     }
   }
 }
