@@ -3,6 +3,11 @@
 </ion-header>
 
 <ion-content class="container" [fullscreen]="true">
+  <!-- Refresher -->
+  <ion-refresher slot="fixed" (ionRefresh)="refreshCont($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <app-category-list class="item-list" [categories]="categories[0]"></app-category-list>
   <!-- List Products discounted -->
   <app-discounted-product-list [products]="products[0]"></app-discounted-product-list>

@@ -29,6 +29,19 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initializeApp();
+    this.getData();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      this.fcmService.initPush();
+    });
+  }
+
+  getData() {
     this.categoriesService.getCategories().subscribe((data) => {
       this.categories.push(data);
     });
@@ -44,15 +57,13 @@ export class HomePage implements OnInit {
     this.profilesService.getProfiles().subscribe((data) => {
       this.profiles.push(data);
     });
-    this.initializeApp();
+    return true;
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    this.fcmService.initPush();
-
-    });
+  async refreshCont(event) {
+    const done = await this.getData();
+    if (done) {
+      event.target.complete();
+    }
   }
 }
