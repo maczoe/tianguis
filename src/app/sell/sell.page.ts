@@ -34,6 +34,7 @@ export class SellPage implements OnInit {
   categoriesSelect = [];
   product: Product = {
     profileId: 3,
+    images: [],
   };
   cat: Category = {
     id: 1,
@@ -44,12 +45,12 @@ export class SellPage implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private serviceProduct: ProductsService,
-    private navCtrl: NavController,
     private platform: Platform,
     private loadingCtrl: LoadingController,
     private http: HttpClient,
     private authService: AuthService,
-    private storage: Storage
+    private storage: Storage,
+    private navCtrl: NavController,
   ) {
     this.platform = platform;
   }
@@ -117,17 +118,30 @@ export class SellPage implements OnInit {
     this.categoriesSelect = ev.target.value;
   }
 
-  onSubmit() {
-    const images: string = this.product.imagesUrl;
-    this.images.forEach(async (file) => {
-      await this.startUpload(file);
+  async onSubmit() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Registrando Producto...',
     });
-    this.product.images = this.imgUlrs;
+    await loading.present();
+
+    const uploadPromises = this.images.map(async (file) => {
+      const response = await fetch(file.data);
+      const blob = await response.blob();
+      const formData = new FormData();
+      formData.append('file', blob, file.name);
+      const data = await this.uploadFile(formData).toPromise();
+      this.product.images.push(data.secureUrl);
+      await this.deleteImage(file);
+    });
+
+    await Promise.all(uploadPromises);
+
     this.serviceProduct.createProduct(this.product).subscribe((data) => {
       console.log(data);
-      console.log(JSON.stringify(this.product));
+      loading.dismiss();
       this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
     });
+    loading.dismiss();
   }
   handleStatus(e) {
     this.product.status = e.detail.value;
@@ -143,7 +157,6 @@ export class SellPage implements OnInit {
       resultType: CameraResultType.Uri,
       source: CameraSource.Photos,
     });
-    console.log(image);
 
     if (image) {
       this.saveImage(image);
@@ -157,8 +170,6 @@ export class SellPage implements OnInit {
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
     });
-    console.log(image);
-
     if (image) {
       this.saveImage(image);
     }
@@ -166,8 +177,6 @@ export class SellPage implements OnInit {
 
   async saveImage(phto: Photo) {
     const base64Data = await this.readAsBase64(phto);
-    console.log(base64Data);
-
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({
       directory: Directory.Data,
@@ -175,7 +184,6 @@ export class SellPage implements OnInit {
       data: base64Data,
     });
 
-    console.log('Saved: ', savedFile);
     this.loadFiles();
   }
   async readAsBase64(photo: Photo) {
@@ -209,27 +217,10 @@ export class SellPage implements OnInit {
       directory: Directory.Data,
       path: file.path,
     });
-    this.loadFiles();
-  }
-
-  async startUpload(file: LocalFile) {
-    const response = await fetch(file.data);
-    const bold = await response.blob();
-    const formData = new FormData();
-    formData.append('file', bold, file.name);
-    this.uploadFile(formData).subscribe((data) => {
-      console.log(data);
-      this.imgUlrs.push(data.secureUrl);
-    });
-    await this.deleteImage(file);
+    await this.loadFiles();
   }
 
   uploadFile(formData: FormData): Observable<any> {
-    /*  const loading = await this.loadingCtrl.create({
-      message: 'Upload Image...',
-    });
-    await loading.present(); */
-
     return this.http.post(`${this.api}files/product`, formData);
   }
 }
