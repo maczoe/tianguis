@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.mock';
 import { User } from '../models/user.model';
 import { Storage } from '@ionic/storage-angular';
 import { NavController } from '@ionic/angular';
+import { Profile } from 'src/app/markteplace/model/profile';
 
 const URL = environment.urlapi + 'auth/';
 @Injectable({
@@ -13,6 +14,7 @@ const URL = environment.urlapi + 'auth/';
 })
 export class AuthService {
   token: string = null;
+  respUser = {};
   constructor(
     private http: HttpClient,
     private storage: Storage,
@@ -38,11 +40,12 @@ export class AuthService {
     return new Promise<boolean>((resolve) => {
       const headers = new HttpHeaders({
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Authorization': `bearer ${this.token}`,
+        Authorization: `bearer ${this.token}`,
       });
       this.http.get(`${URL}user-token/`, { headers }).subscribe(
         (resp) => {
           console.log(resp);
+          this.respUser = resp;
 
           resolve(true);
         },
@@ -57,5 +60,12 @@ export class AuthService {
 
   async cargarTokenStorage() {
     this.token = (await this.storage.get('token')) || null;
+  }
+
+  logout() {
+    this.token = null;
+    this.respUser = null;
+    this.storage.clear();
+    this.navCtrl.navigateRoot('/login', { animated: true });
   }
 }

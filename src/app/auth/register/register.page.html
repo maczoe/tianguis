@@ -7,9 +7,12 @@
   </ion-toolbar>
 
 </ion-header>
-<ion-content padding>
+<ion-content >
   <form #form="ngForm"  (ngSubmit)="register()">
     <ion-grid>
+      <div class="intro__content__image">
+        <img class="intro__content__image--img" alt="Tianguis" src="../../assets/images/tianguis.png" />
+      </div>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div class="ion-text-center">
@@ -54,7 +57,7 @@
             </ion-item>
           </div>
           <div padding>
-            <ion-button type="submit" [disabled]="form.invalid" expand="block">
+            <ion-button type="submit" [disabled]="form.invalid" expand="block" color="tertiary">
               Registrar
             </ion-button>
           </div>

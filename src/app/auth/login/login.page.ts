@@ -102,4 +102,8 @@ export class LoginPage implements OnInit {
   facebookAuth() {
     this.router.navigateByUrl('/facebook-sesion');
   }
+
+  registerPage() {
+    this.router.navigateByUrl('/register');
+  }
 }

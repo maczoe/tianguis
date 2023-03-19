@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { Platform } from '@ionic/angular';
+import { AuthService } from '../auth/services/auth.service';
 import { NotificationsService } from '../core/services/notifications.service';
 import { CategoriesService } from '../markteplace/services/categories.service';
 import { ProductsService } from '../markteplace/services/products.service';
 import { ProfilesService } from '../markteplace/services/profiles.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-home',
@@ -25,10 +27,14 @@ export class HomePage implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private fcmService: NotificationsService
+    private fcmService: NotificationsService,
+    private authService: AuthService,
+    private storage: Storage
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.storage.create();
+    await this.authService.validaToken();
     this.initializeApp();
     this.getData();
   }

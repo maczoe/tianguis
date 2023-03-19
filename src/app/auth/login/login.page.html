@@ -12,11 +12,11 @@
     (ngSubmit)="login(validationFormUser.value)"
   >
     <ion-grid>
+      <div class="intro__content__image">
+        <img class="intro__content__image--img" alt="Tianguis" src="../../assets/images/tianguis.png" />
+      </div>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div class="ion-text-center">
-            <h3>tianguis</h3>
-          </div>
           <div padding>
             <p>Te damos la bienvenida, introduce tus datos</p>
           </div>
@@ -67,14 +67,14 @@
             </div>
           </div>
           <div padding>
-            <ion-button type="submit" expand="block"> Ingresar </ion-button>
+            <ion-button type="submit" expand="block" color="tertiary"> Ingresar </ion-button>
           </div>
         </ion-col>
       </ion-row>
       <ion-row class="ion-margin-top" justify-content-center>
         <ion-col size-md="3" size-lg="2" size-xs="6">
-          <div padding>
-            <a href="/register">Registrar</a>
+          <div padding (click)="registerPage()">
+            <a >Registrar</a>
           </div>
         </ion-col>
         <ion-col size-md="3" size-lg="2" size-xs="6">
