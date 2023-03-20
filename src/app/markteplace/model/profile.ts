@@ -1,10 +1,8 @@
 enum ProfileType {
   buyer = 'BUYER',
   seller = 'SELLER',
-  employee = 'EMPLOYEE'
+  employee = 'EMPLOYEE',
 }
-
-
 
 export interface Profile {
   id?: number;
@@ -22,4 +20,9 @@ export interface Profile {
   verified?: boolean;
   locationIds?: number[];
   favorite?: boolean;
+}
+export interface RegisterProfile {
+  name: string;
+  phone: string;
+  publicEmail: string;
 }

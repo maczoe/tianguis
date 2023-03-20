@@ -5,59 +5,136 @@
     </ion-buttons>
     <ion-title>Registro</ion-title>
   </ion-toolbar>
-
 </ion-header>
-<ion-content >
-  <form #form="ngForm"  (ngSubmit)="register()">
+<ion-content>
+  <form
+    [formGroup]="validationFormUser"
+    (ngSubmit)="register(validationFormUser.value)"
+  >
     <ion-grid>
       <div class="intro__content__image">
-        <img class="intro__content__image--img" alt="Tianguis" src="../../assets/images/tianguis.png" />
+        <img
+          class="intro__content__image--img"
+          alt="Tianguis"
+          src="../../assets/images/tianguis.png"
+        />
       </div>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div class="ion-text-center">
-            <h3>Registrar nueva cuenta</h3>
+            <h3>Registrarme</h3>
           </div>
           <div padding>
             <ion-item>
+              <ion-label position="floating">Nombre Completo</ion-label>
               <ion-input
                 name="name"
+                formControlName="name"
+                [(ngModel)]="user.name"
                 type="text"
-                placeholder="Nombre de cuenta"
-                ngModel
                 required
               ></ion-input>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.name"
+              >
+                <ion-note
+                  slot="error"
+                  class="ion-invalid"
+                  *ngIf="validationFormUser.get('name').hasError(validation.type) && (validationFormUser.get('name').dirty || validationFormUser.get('name').touched)"
+                >
+                  {{validation.message}}
+                </ion-note>
+              </ng-container>
             </ion-item>
             <ion-item>
+              <ion-label position="floating">Teléfono</ion-label>
+              <ion-input
+                name="phone"
+                formControlName="phone"
+                [(ngModel)]="user.phone"
+                step="any"
+                type="number"
+                required
+              ></ion-input>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.phone"
+              >
+                <ion-note
+                  slot="error"
+                  class="ion-invalid"
+                  *ngIf="validationFormUser.get('phone').hasError(validation.type) && (validationFormUser.get('phone').dirty || validationFormUser.get('phone').touched)"
+                >
+                  {{validation.message}}
+                </ion-note>
+              </ng-container>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Correo</ion-label>
               <ion-input
                 name="email"
+                formControlName="email"
+                [(ngModel)]="user.email"
                 type="email"
-                placeholder="E-mail"
-                ngModel
                 required
               ></ion-input>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.email"
+              >
+                <ion-note
+                  slot="error"
+                  class="ion-invalid"
+                  *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)"
+                >
+                  {{validation.message}}
+                </ion-note>
+              </ng-container>
             </ion-item>
             <ion-item>
+              <ion-label position="floating">Contraseña</ion-label>
               <ion-input
                 name="password"
                 type="password"
-                placeholder="Contraseña"
-                ngModel
+                formControlName="password"
+                [(ngModel)]="user.password"
+                placeholder=""
                 required
               ></ion-input>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.password"
+              >
+                <ion-note
+                  slot="error"
+                  class="ion-invalid"
+                  *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)"
+                >
+                  {{validation.message}}
+                </ion-note>
+              </ng-container>
             </ion-item>
             <ion-item>
+              <ion-label position="floating">Confirmar contraseña</ion-label>
               <ion-input
-                name="confirm_password"
+                name="confirmPassword"
+                formControlName="confirmPassword"
+                [(ngModel)]="user.confirmPassword"
                 type="password"
-                placeholder="Confirmar contraseña"
-                ngModel
                 required
               ></ion-input>
+              <ng-container
+                *ngFor="let validation of validationUserMessage.confirmPassword"
+              >
+                <ion-note
+                  slot="error"
+                  class="ion-invalid"
+                  *ngIf="validationFormUser.get('confirmPassword').hasError(validation.type) && (validationFormUser.get('confirmPassword').dirty || validationFormUser.get('confirmPassword').touched)"
+                >
+                  {{validation.message}}
+                </ion-note>
+              </ng-container>
             </ion-item>
           </div>
           <div padding>
-            <ion-button type="submit" [disabled]="form.invalid" expand="block" color="tertiary">
+            <ion-button type="submit" expand="block" color="tertiary">
               Registrar
             </ion-button>
           </div>
