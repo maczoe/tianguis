@@ -7,53 +7,143 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  
-  <ion-card>
-    <ion-card-header>
-      <div class="img-profile">
-        <ion-img
-          class="img-file"
-          src="https://www.jeancoutu.com/globalassets/revamp/photo/conseils-photo/20160302-01-reseaux-sociaux-profil/photo-profil_301783868.jpg"
-        ></ion-img>
+<ion-content fullscreen>
+  <div class="profile">
+    <div class="profile__header">
+      <img
+        *ngIf="profile.photo"
+        class="profile__header--image"
+        src="{{profile.photo}}"
+        alt=""
+      />
+      <img
+        *ngIf="!profile.photo"
+        class="profile__header--image"
+        src="../../assets/images/avatar-profile.jpg"
+        alt=""
+      />
+      <div class="profile__header--title">{{profile.name}}</div>
+    </div>
+    <div class="profile__info">
+      <div class="profile__info--box">
+        <p><ion-icon name="star"></ion-icon> {{profile.rating}}</p>
       </div>
-      <ion-card-title class="title-profile ion-text-center"
-        >Mauricio Perez</ion-card-title
-      >
-      <ion-card-subtitle class="ion-text-center"
-        >Verificado <ion-icon name="checkmark-circle-outline"></ion-icon
-      ></ion-card-subtitle>
-    </ion-card-header>
+      <div class="profile__info--box">
+        <p><ion-icon name="pricetags"></ion-icon> {{profile.sales}}</p>
+      </div>
+      <div class="profile__info--box">
+        <p><ion-icon name="albums"></ion-icon> 1</p>
+      </div>
+    </div>
 
-    <ion-card-content>
-      <div class="containet">
-        <ion-button color="light" expand="block">Actualizar Perfil</ion-button>
+    <div class="profile__btns">
+      <div class="profile__btns--chat">
+        <ion-button fill="outline" size="small" (click)="presentActionSheet()"
+          >Actualizar Foto</ion-button
+        >
       </div>
-    </ion-card-content>
-  </ion-card>
-  <div class="container">
-    <ion-grid>
+      <div class="profile__btns--favorite"></div>
+    </div>
+  </div>
+  <ion-card-content>
+    <!-- Nav -->
+    <ion-segment
+      value="profile"
+      [(ngModel)]="type"
+      (ionChange)="segmentChanged($event)"
+      scrollable
+    >
+      <ion-segment-button value="profile">
+        <ion-label>Perfil</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="vewProduct" checked>
+        <ion-label>Prod.</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="review">
+        <ion-label>Reseñas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- Detail products -->
+    <ion-list *ngIf="type === 'vewProduct'">
+      <ion-label> Lista de Productos</ion-label>
       <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Descripción: </ion-label>
-            <ion-input disabled="true"> Venta de articulos variados</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Teléfono: </ion-label>
-            <ion-input disabled="true"> +502 45688556</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Correo: </ion-label>
-            <ion-input disabled="true"> example@company.com</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Descripción: </ion-label>
-            <ion-input disabled="true"> Carretera al Salvador Guatemala</ion-input>
-          </ion-item>
+        <ion-col size="12" *ngFor="let product of products[0]">
+          <app-product-card-hrz [product]="product"></app-product-card-hrz>
+          <!-- <app-product-card [product]="product"></app-product-card> -->
         </ion-col>
       </ion-row>
-    </ion-grid>
-  </div>
+    </ion-list>
 
+    <!-- Detail profile -->
+    <ion-list *ngIf="type === 'profile'">
+      <form (ngSubmit)="updated()">
+        <ion-item>
+          <ion-label position="stacked">Descripción: </ion-label>
+          <ion-input
+            name="description"
+            type="text"
+            [(ngModel)]="profile.description"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Teléfono: </ion-label>
+          <ion-input
+            name="phone"
+            type="number"
+            step="any"
+            [(ngModel)]="profile.phone"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Correo: </ion-label>
+          <ion-input
+            name="publicEmail"
+            type="text"
+            [(ngModel)]="profile.publicEmail"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Dirección: </ion-label>
+          <ion-input
+            name="address"
+            type="text"
+            [(ngModel)]="profile.address"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Dirección Web: </ion-label>
+          <ion-input
+            name="website"
+            type="text"
+            [(ngModel)]="profile.website"
+          ></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="block" color="tertiary">
+          Actualizar
+        </ion-button>
+      </form>
+    </ion-list>
+
+    <!-- Detail review -->
+    <ion-list *ngIf="type === 'review'">
+      <ion-list>
+        <!--  <ion-item>
+          <ion-avatar slot="start">
+            <img
+              src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&h=661&q=70&fm=webp"
+            />
+          </ion-avatar>
+          <ion-label>
+            <h2>Juan Perez</h2>
+            <h3>
+              <p><ion-icon name="star"></ion-icon> 4</p>
+            </h3>
+            <p>Una exelente atención.</p>
+          </ion-label>
+        </ion-item> -->
+      </ion-list>
+    </ion-list>
+  </ion-card-content>
 </ion-content>

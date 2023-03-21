@@ -14,7 +14,9 @@ const URL = environment.urlapi + 'auth/';
 })
 export class AuthService {
   token: string = null;
-  respUser = {};
+  respUser = {
+    profile: {},
+  };
   constructor(
     private http: HttpClient,
     private storage: Storage,
@@ -47,8 +49,7 @@ export class AuthService {
         Authorization: `bearer ${this.token}`,
       });
       this.http.get(`${URL}user-token/`, { headers }).subscribe(
-        (resp) => {
-          console.log(resp);
+        (resp: any) => {
           this.respUser = resp;
 
           resolve(true);

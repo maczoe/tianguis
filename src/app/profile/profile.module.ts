@@ -8,6 +8,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import { CoreModule } from '../core/core.module';
+import { MarkteplaceModule } from '../markteplace/markteplace.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CoreModule } from '../core/core.module';
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,
-    CoreModule
+    CoreModule,
+    MarkteplaceModule
   ],
   declarations: [ProfilePage]
 })

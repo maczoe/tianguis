@@ -13,8 +13,18 @@
 <ion-content fullscreen>
   <div class="profile">
     <div class="profile__header">
-      <img *ngIf="profile.photo"  class="profile__header--image" src="{{profile.photo}}" alt="" />
-      <img *ngIf="!profile.photo"  class="profile__header--image" src="../../assets/images/avatar-profile.jpg" alt="" />
+      <img
+        *ngIf="profile.photo"
+        class="profile__header--image"
+        src="{{profile.photo}}"
+        alt=""
+      />
+      <img
+        *ngIf="!profile.photo"
+        class="profile__header--image"
+        src="../../assets/images/avatar-profile.jpg"
+        alt=""
+      />
       <div class="profile__header--title">{{profile.name}}</div>
     </div>
     <div class="profile__info">
@@ -31,16 +41,29 @@
 
     <div class="profile__btns">
       <div class="profile__btns--chat">
-        <ion-button color="success" shape="round" (click)="sendMessage(profile.id)" >
+        <ion-button
+          color="success"
+          shape="round"
+          (click)="sendMessage(profile.id)"
+        >
           <ion-icon name="chatbox-outline"></ion-icon>
           Enviar Mensaje
         </ion-button>
       </div>
       <div class="profile__btns--favorite">
-        <ion-icon (click)="eventFavorite(false)" *ngIf="profile.favorite" slot="start" name="heart"></ion-icon>
-        <ion-icon (click)="eventFavorite(true)" *ngIf="!profile.favorite" slot="start" name="heart-outline"></ion-icon>
+        <ion-icon
+          (click)="eventFavorite(false)"
+          *ngIf="profile.favorite"
+          slot="start"
+          name="heart"
+        ></ion-icon>
+        <ion-icon
+          (click)="eventFavorite(true)"
+          *ngIf="!profile.favorite"
+          slot="start"
+          name="heart-outline"
+        ></ion-icon>
       </div>
-
     </div>
   </div>
 
@@ -95,7 +118,9 @@
           </ion-avatar>
           <ion-label>
             <h2>Juan Perez</h2>
-            <h3><p><ion-icon name="star"></ion-icon> 4</p></h3>
+            <h3>
+              <p><ion-icon name="star"></ion-icon> 4</p>
+            </h3>
             <p>Una exelente atención.</p>
           </ion-label>
         </ion-item>
@@ -108,12 +133,12 @@
           </ion-avatar>
           <ion-label>
             <h2>Juan Perez</h2>
-            <h3><p><ion-icon name="star"></ion-icon> 5</p></h3>
+            <h3>
+              <p><ion-icon name="star"></ion-icon> 5</p>
+            </h3>
             <p>Los productos se encuentra en excelente estado</p>
           </ion-label>
         </ion-item>
-
-        
       </ion-list>
     </ion-list>
   </ion-card-content>

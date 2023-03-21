@@ -186,6 +186,7 @@ export class SellPage implements OnInit {
 
     this.loadFiles();
   }
+
   async readAsBase64(photo: Photo) {
     if (this.platform.is('hybrid')) {
       const file = await Filesystem.readFile({

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../../model/product';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-discounted-product-list',
@@ -8,8 +9,12 @@ import { Product } from '../../model/product';
   styleUrls: ['./discounted-product-list.component.scss'],
 })
 export class DiscountedProductListComponent implements OnInit {
-  @Input() products: Product[] = [];
-  constructor(private router: Router) {}
+  products: Product[] = [];
+  constructor(private router: Router, private productService: ProductsService) {
+    this.productService.getProductsOffer().subscribe((data) => {
+      this.products = data;
+    });
+  }
 
   ngOnInit() {}
 }

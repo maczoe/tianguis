@@ -20,6 +20,8 @@ export interface Profile {
   verified?: boolean;
   locationIds?: number[];
   favorite?: boolean;
+  createAt?: string;
+  updateAt?: string;
 }
 export interface RegisterProfile {
   name: string;
