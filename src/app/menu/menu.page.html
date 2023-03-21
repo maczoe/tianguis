@@ -2,8 +2,11 @@
   <ion-toolbar>
     <ion-item>
       <ion-avatar slot="start">
-        <img
+        <img *ngIf="user.profile.photo"
           src="{{user.profile.photo }}"
+        />
+        <img *ngIf="!user.profile.photo"
+          src="../../assets/images/avatar-profile.jpg"
         />
       </ion-avatar>
       <ion-label>
@@ -51,7 +54,7 @@
       <ion-icon name="star" slot="start"></ion-icon>
       <ion-label>Hazme Premium</ion-label>
     </ion-item> -->
-    <ion-item (click)="viewRedirect('/profile')">
+    <ion-item (click)="viewRedirect('/app/tabs/my-profile')">
       <ion-icon name="person" slot="start"></ion-icon>
       <ion-label>Mi Perfil</ion-label>
     </ion-item>

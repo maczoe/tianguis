@@ -39,7 +39,15 @@ const routes: Routes = [
       },
       {
         path: 'menu',
-        loadChildren: () => import('../menu/menu.module').then( m => m.MenuPageModule)
+        loadChildren: () =>
+          import('../menu/menu.module').then((m) => m.MenuPageModule),
+      },
+      {
+        path: 'my-profile',
+        loadChildren: () =>
+          import('../profile/profile-routing.module').then(
+            (m) => m.ProfilePageRoutingModule
+          ),
       },
       {
         path: '',

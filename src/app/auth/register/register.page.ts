@@ -7,10 +7,11 @@ import {
   FormControl,
 } from '@angular/forms';
 import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { ProfilesService } from 'src/app/markteplace/services/profiles.service';
 import { RegisterProfile } from 'src/app/markteplace/model/profile';
 import { AuthService } from '../services/auth.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-register',
@@ -66,15 +67,16 @@ export class RegisterPage implements OnInit {
     ],
   };
   constructor(
-    private router: Router,
+    private navCtrl: NavController,
     public formbuider: FormBuilder,
     private uiAlerts: UiAlertsService,
     private loadingCtrl: LoadingController,
     private profileService: ProfilesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private storage: Storage
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.validationFormUser = this.formbuider.group({
       email: new FormControl(
         '',
@@ -100,6 +102,8 @@ export class RegisterPage implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),
     });
+    await this.storage.create();
+
   }
 
   async register(value) {
@@ -110,27 +114,47 @@ export class RegisterPage implements OnInit {
     if (this.user.email === '' || this.user.password === '') {
       this.uiAlerts.alertaInfo('Todos los campos deben estar completos.');
       loading.dismiss();
+    } else if (this.user.password !== this.user.confirmPassword) {
+      this.uiAlerts.alertaInfo('Las contraseñas no considen.');
     } else {
-      console.log(this.user);
       const profile: RegisterProfile = {
         name: this.user.name,
         publicEmail: this.user.email,
         phone: this.user.phone,
       };
-      this.profileService.registeProfile(profile).subscribe((resp) => {
-        console.log(resp);
-        const newUser = {
-          email: this.user.email,
-          password: this.user.confirmPassword,
-          fullName: this.user.name,
-          profileId: resp.id,
-        };
-        this.authService.register(this.user).subscribe((data) => {
-          console.log(data);
-        });
+      this.authService.getByEmail(this.user.email).subscribe((us) => {
+        if (us) {
+          loading.dismiss();
+          console.log('us:', us);
+
+          this.uiAlerts.alertaInfo('El Correo ya se encuentra registrado.');
+        } else {
+          this.profileService.registeProfile(profile).subscribe((resp) => {
+            console.log(resp);
+            const newUser = {
+              email: this.user.email,
+              password: this.user.confirmPassword,
+              fullName: this.user.name,
+              profileId: resp.id,
+            };
+            this.authService.register(newUser).subscribe(
+              (data) => {
+                console.log(data);
+                this.authService.saveToken(data.access_token);
+                this.navCtrl.navigateRoot('/app/tabs/my-profile', {
+                  animated: true,
+                });
+              },
+              (err) => {
+                console.log(err);
+                this.uiAlerts.alertaInfo(err.error.message);
+              }
+            );
+          });
+        }
       });
-      loading.dismiss();
     }
     //this.router.navigateByUrl('/complete-profile');
+    loading.dismiss();
   }
 }

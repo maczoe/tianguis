@@ -1,5 +1,6 @@
 <div class="profile">
-  <img (click)="viewProfile(profile.id)" class="profile__image-avatar" src="{{ profile.photo }}" />
+  <img *ngIf="profile.photo" (click)="viewProfile(profile.id)" class="profile__image-avatar" src="{{ profile.photo }}" />
+  <img *ngIf="!profile.photo" (click)="viewProfile(profile.id)" class="profile__image-avatar" src="../../assets/images/avatar-profile.jpg" />
   <div (click)="viewProfile(profile.id)" class="profile__title">
     {{ profile.name }}
   </div>

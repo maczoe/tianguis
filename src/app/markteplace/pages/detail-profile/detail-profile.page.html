@@ -13,7 +13,8 @@
 <ion-content fullscreen>
   <div class="profile">
     <div class="profile__header">
-      <img class="profile__header--image" src="{{profile.photo}}" alt="" />
+      <img *ngIf="profile.photo"  class="profile__header--image" src="{{profile.photo}}" alt="" />
+      <img *ngIf="!profile.photo"  class="profile__header--image" src="../../assets/images/avatar-profile.jpg" alt="" />
       <div class="profile__header--title">{{profile.name}}</div>
     </div>
     <div class="profile__info">

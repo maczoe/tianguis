@@ -72,4 +72,8 @@ export class AuthService {
     this.storage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
   }
+
+  getByEmail(email: string): Observable<any> {
+    return this.http.post(`${URL}by-email`, { email });
+  }
 }
