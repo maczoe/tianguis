@@ -79,6 +79,11 @@
     <ion-list *ngIf="type === 'profile'">
       <form (ngSubmit)="updated()">
         <ion-item>
+          <ion-label position="stacked">Nombre: </ion-label>
+          <ion-input name="name" type="text" [(ngModel)]="profile.name">
+          </ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="stacked">Descripción: </ion-label>
           <ion-input
             name="description"

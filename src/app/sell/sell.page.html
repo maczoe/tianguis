@@ -50,7 +50,7 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label position="floating">Precio Oferta</ion-label>
+            <ion-label position="floating">Precio Anterior</ion-label>
             <ion-input
               type="number"
               step="any"
@@ -58,6 +58,7 @@
               [(ngModel)]="product.oldPrice"
               value="0"
               required
+              placeholder="Para activar oferta"
             ></ion-input>
           </ion-item>
         </ion-col>

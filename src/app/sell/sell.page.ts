@@ -35,6 +35,7 @@ export class SellPage implements OnInit {
   product: Product = {
     profileId: 3,
     images: [],
+    oldPrice: 0,
   };
   cat: Category = {
     id: 1,
@@ -50,7 +51,7 @@ export class SellPage implements OnInit {
     private http: HttpClient,
     private authService: AuthService,
     private storage: Storage,
-    private navCtrl: NavController,
+    private navCtrl: NavController
   ) {
     this.platform = platform;
   }
