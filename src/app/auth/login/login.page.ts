@@ -51,7 +51,6 @@ export class LoginPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    //await this.storage.create();
    /*  const valid = await this.authService.validaToken();
     console.log(valid);
 
@@ -71,6 +70,9 @@ export class LoginPage implements OnInit {
         Validators.compose([Validators.required, Validators.minLength(6)])
       ),
     });
+
+    await this.storage.create();
+
   }
 
   login(value) {

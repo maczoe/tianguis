@@ -11,7 +11,9 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <swiper [slidesPerView]="1" [spaceBetween]="2" class="mySwiper">
+  <swiper [slidesPerView]="1" [spaceBetween]="2" [pagination]="{
+    clickable: true
+  }" class="mySwiper">
     <ng-template
       swiperSlide
       *ngFor="let img of product.images"

@@ -19,7 +19,8 @@ import { LaunchComponent } from './components/launch/launch.component';
 import { LaunchListComponent } from './components/launch-list/launch-list.component';
 import { IonicModule } from '@ionic/angular';
 import { ProductCardHrzComponent } from './components/product-card-hrz/product-card-hrz.component';
-
+import { ListProductCardBigComponent } from './components/list-product-card-big/list-product-card-big.component';
+import { ProductCardBigComponent } from './components/product-card-big/product-card-big.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +40,11 @@ import { ProductCardHrzComponent } from './components/product-card-hrz/product-c
     CouponsListComponent,
     LaunchComponent,
     LaunchListComponent,
-    ProductCardHrzComponent
+    ProductCardHrzComponent,
+    ListProductCardBigComponent,
+    ProductCardBigComponent,
   ],
-  imports: [
-    CommonModule,
-    IonicModule,
-    SwiperModule,
-
-  ],
+  imports: [CommonModule, IonicModule, SwiperModule],
   exports: [
     CategoryCardComponent,
     CategoryListComponent,
@@ -63,7 +61,9 @@ import { ProductCardHrzComponent } from './components/product-card-hrz/product-c
     CouponsListComponent,
     LaunchComponent,
     LaunchListComponent,
-    ProductCardHrzComponent
-  ]
+    ProductCardHrzComponent,
+    ListProductCardBigComponent,
+    ProductCardBigComponent,
+  ],
 })
-export class MarkteplaceModule { }
+export class MarkteplaceModule {}

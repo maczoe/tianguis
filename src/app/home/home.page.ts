@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
     await this.storage.create();
     await this.authService.validaToken();
     this.initializeApp();
-    this.getData();
+    await this.getData();
   }
 
   initializeApp() {
@@ -47,13 +47,9 @@ export class HomePage implements OnInit {
     });
   }
 
-  getData() {
+  async getData() {
     this.categoriesService.getCategories().subscribe((data) => {
       this.categories.push(data);
-    });
-
-    this.productsService.getProducts().subscribe((data) => {
-      this.products.push(data);
     });
 
     this.productsService.getProducts().subscribe((data) => {

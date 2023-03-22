@@ -14,24 +14,14 @@ export class ProductsService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getProducts(): Observable<Product[]> {
-    if (!urlApi) {
-      //TODO: make local JSON file requests
-      /* this.http
-        .get('./shared/guards/mocks/products.json')
-        .subscribe((resp: Product[]) => {
-          resolve(resp.filter((product) => product.oldPrice > 0));
-        }); */
-    } else {
-      //TODO: make requests to the API server
-      return this.http.get<Product[]>(this.api);
-    }
-  }
-
-  getProductsOffer(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.api + '/recommended');
+    return this.http.get<Product[]>(this.api);
   }
 
   getProductsRecomm(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.api + '/recommended');
+  }
+
+  getProductsOffer(): Observable<Product[]> {
     return this.http.get<Product[]>(this.api + '/offer');
   }
 

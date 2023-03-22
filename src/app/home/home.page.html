@@ -7,12 +7,19 @@
   <ion-refresher slot="fixed" (ionRefresh)="refreshCont($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-  <app-category-list class="item-list" [categories]="categories[0]"></app-category-list>
+
+  <app-category-list
+    class="item-list"
+    [categories]="categories[0]"
+  ></app-category-list>
   <!-- List Products discounted -->
-  <app-discounted-product-list ></app-discounted-product-list>
+  <app-discounted-product-list></app-discounted-product-list>
   <!-- Profile list -->
-  <app-recommended-profile-list [profiles]="profiles[0]"></app-recommended-profile-list>
-<!-- List Products recomended -->
-<app-recommended-product-list [products]="productsRecomended[0]"></app-recommended-product-list>
+  <app-recommended-profile-list
+    [profiles]="profiles[0]"
+  ></app-recommended-profile-list>
+  <!-- List Products recomended -->
+  <app-recommended-product-list></app-recommended-product-list>
+  <!-- List Product -->
+  <app-list-product-card-big></app-list-product-card-big>
 </ion-content>

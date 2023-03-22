@@ -1,0 +1,32 @@
+<ion-card (click)="selectProduc(product.id)">
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{product.profile.photo}}" />
+    </ion-avatar>
+    <ion-label>
+      <h2 color="dark"><strong>{{product.profile.name}}</strong></h2>
+      <p class="ion-text-start">
+        <ion-icon name="star"></ion-icon> {{product.profile.rating}}
+      </p>
+    </ion-label>
+  </ion-item>
+  <swiper [slidesPerView]="1" [spaceBetween]="2" [pagination]="{
+    clickable: true
+  }" class="mySwiper">
+    <ng-template
+      swiperSlide
+      
+      *ngFor="let img of product.images"
+      class="ion-align-items-stretch"
+    >
+      <img src="{{ img }}" alt="" />
+    </ng-template>
+  </swiper>
+  <ion-card-header>
+    <ion-card-subtitle color="dark"><strong>{{ product.name }}</strong></ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content >
+    <p class="description">{{ product.description }}</p>
+  </ion-card-content>
+</ion-card>
