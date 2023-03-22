@@ -19,6 +19,7 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, IonicSlides]);
   encapsulation: ViewEncapsulation.None,
 })
 export class IntroPage implements OnInit {
+  isIntroShowed: boolean;
   slides = [
     {
       title: 'Compra',
@@ -52,20 +53,27 @@ export class IntroPage implements OnInit {
   ) {}
   async ngOnInit() {
     await this.storage.create();
-    const valid = await this.authService.validaToken();
-    if (valid) {
-      this.navCtrl.navigateRoot('/app', { animated: true });
-    } else {
-      this.router.navigateByUrl('/login');
+    await this.cargarStorage();
+    if (this.isIntroShowed) {
+      const valid = await this.authService.validaToken();
+      if (valid) {
+        this.navCtrl.navigateRoot('/app', { animated: true });
+      } else {
+        this.router.navigateByUrl('/login');
+      }
     }
   }
 
-  login() {
-    //this.storage.set('isIntroShowed', true);
+  async cargarStorage() {
+    this.isIntroShowed = (await this.storage.get('isIntroShowed')) || false;
+  }
+  async login() {
+    await this.storage.set('isIntroShowed', true);
     this.router.navigateByUrl('/login');
   }
 
-  register() {
+  async register() {
+    await this.storage.set('isIntroShowed', true);
     this.router.navigateByUrl('/register');
   }
 }

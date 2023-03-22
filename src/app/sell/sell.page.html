@@ -49,6 +49,22 @@
 
       <ion-row>
         <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Precio Oferta</ion-label>
+            <ion-input
+              type="number"
+              step="any"
+              name="oldPrice"
+              [(ngModel)]="product.oldPrice"
+              value="0"
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="12">
           <ion-item lines="none">
             <ion-label position="stacked">Categorias</ion-label>
             <ion-select

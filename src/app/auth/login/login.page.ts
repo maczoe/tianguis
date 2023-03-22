@@ -98,11 +98,13 @@ export class LoginPage implements OnInit {
     }
   }
   googleAuth() {
-    this.router.navigateByUrl('/google-sesion');
+    //this.router.navigateByUrl('/google-sesion');
+    this.uiAlerts.alertaInfo('Función no disponible.');
   }
 
   facebookAuth() {
-    this.router.navigateByUrl('/facebook-sesion');
+    //this.router.navigateByUrl('/facebook-sesion');
+    this.uiAlerts.alertaInfo('Función no disponible.');
   }
 
   registerPage() {
