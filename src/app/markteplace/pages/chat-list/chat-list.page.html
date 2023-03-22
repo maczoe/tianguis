@@ -3,74 +3,50 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Juan Perez</ion-title>
+    <ion-title>Chat</ion-title>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
   <ion-grid class="right">
-
-    
-
     <ion-item>
       <ion-avatar slot="start">
-        <img src="https://i.blogs.es/b124a3/p30/450_1000.jpg" />
+        <img src="{{image}}" />
       </ion-avatar>
       <ion-label>
-        <h3>Samsung S22</h3>
-        <p>Q 1500.00</p>
+        <h3>{{product.name}}</h3>
+        <p>{{ product.price | currency: "Q" }}</p>
       </ion-label>
     </ion-item>
 
     <ion-list>
-      <ion-row *ngFor="let i of [1]">
+      <!-- <ion-row *ngFor="let i of [1]">
         <ion-col size="10">
           <div class="no-gutters">
             <div class="message-your">
                 <div class="chat-bubble chat-bubble--left">                
-                  <!-- <b>Juan Lopez</b> <br> -->
                   <span>Hola!</span><br>
                   <div class="time" text-ring>12/02/22, 2:01pm</div>
                 </div>
             </div>
           </div>
+        </ion-col>  
+      </ion-row> -->
+
+      <ion-row *ngFor="let m of messages">
+        <ion-col size="2"></ion-col>
+        <ion-col size="10">
+          <div class="no-gutters">
+            <div class="message-me">
+              <div class="chat-bubble chat-bubble--right">
+                <span>{{m.message}}</span><br />
+                <div class="time" text-ring>{{m.createdAt | date:'short'}}</div>
+              </div>
+            </div>
+          </div>
         </ion-col>
-  
-      </ion-row>
-      <ion-row>
-        <ion-col size="2"></ion-col>      
-        <ion-col size="10">
-          <div class=" no-gutters">
-            <div class="message-me">
-                <div class="chat-bubble chat-bubble--right">                  
-                  <span>Hola.</span><br>
-                  <div class="time" text-ring>12/02/22, 2:15pm</div>                
-                </div>
-            </div>
-          </div>
-        </ion-col>  
-      </ion-row>
-      <ion-row>
-        <ion-col size="2"></ion-col>      
-        <ion-col size="10">
-          <div class=" no-gutters">
-            <div class="message-me">
-                <div class="chat-bubble chat-bubble--right">                  
-                  <span>Un gusto saludarte.</span><br>
-                  <div class="time" text-ring>12/02/22, 2:15pm</div>                
-                </div>
-            </div>
-          </div>
-        </ion-col>  
       </ion-row>
     </ion-list>
-
-    
-		
-    
-   
-    
   </ion-grid>
   <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed" >
     <ion-fab-button expand="block" fill="clear" color="dark">
@@ -86,21 +62,28 @@
     
     
 </ion-fab> -->
-
 </ion-content>
 <ion-footer>
   <ion-toolbar color="light">
-
-    <ion-row >
-			<ion-col >
-			  <div class="chat-box-tray">
+    <ion-row>
+      <ion-col>
+        <div class="chat-box-tray">
           <ion-icon name="settings-outline"></ion-icon>
-				<ion-input type="text" placeholder="Escribe tu mensaje aquí..."> </ion-input>
-				
-				<ion-icon name="send" slot="icon-only"></ion-icon>
-			  </div>
-			</ion-col>
-		</ion-row>
+          <ion-input
+            type="text"
+            [(ngModel)]="newMessage"
+            placeholder="Escribe tu mensaje aquí..."
+          >
+          </ion-input>
+
+          <ion-icon
+            name="send"
+            slot="icon-only"
+            (click)="sendMessage()"
+          ></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
 
     <!-- <ion-row>
       
@@ -115,6 +98,5 @@
         </ion-button>
       </ion-col>
     </ion-row> -->
-
   </ion-toolbar>
 </ion-footer>

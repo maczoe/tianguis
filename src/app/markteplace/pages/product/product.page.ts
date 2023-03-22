@@ -38,7 +38,7 @@ export class ProductPage implements OnInit {
     });
   }
 
-  sendMessage(profileId) {
-    this.routerPath.navigateByUrl('/chat-list/' + profileId);
+  sendMessage(id) {
+    this.routerPath.navigateByUrl('/chat-list/' + id);
   }
 }

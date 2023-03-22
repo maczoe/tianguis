@@ -30,7 +30,6 @@ export class ProductsService {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       Authorization: `bearer ${this.authService.token}`,
     });
-    console.log(this.authService.token);
 
     if (!urlApi) {
       //TODO: make local JSON file requests

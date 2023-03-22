@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
 import { ChatsService } from '../../services/chats.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { ChatsService } from '../../services/chats.service';
 export class ChatsPage implements OnInit {
   chats: any = [];
 
-  constructor(private router: Router, private chatsService: ChatsService) {
+  constructor(
+    private router: Router,
+    private chatsService: ChatsService,
+    private uiAlerts: UiAlertsService
+  ) {
     this.getChats('4565857');
   }
 
@@ -25,5 +30,8 @@ export class ChatsPage implements OnInit {
       this.chats = data;
       console.log(this.chats);
     });
+  }
+  newchat() {
+    this.uiAlerts.alertaInfo('Función no disponible.');
   }
 }

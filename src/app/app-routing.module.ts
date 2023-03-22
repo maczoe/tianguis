@@ -81,7 +81,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'chat-list/:userId',
+    path: 'chat-list/:proId',
     loadChildren: () =>
       import('./markteplace/pages/chat-list/chat-list.module').then(
         (m) => m.ChatListPageModule
