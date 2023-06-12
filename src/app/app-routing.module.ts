@@ -59,6 +59,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'quote-detail/:idQuote',
+    loadChildren: () =>
+      import('./markteplace/pages/detail-quote/detail-quote.module').then(
+        (m) => m.DetailQuotePageModule
+      ),
+  },
+  {
     path: 'detail-response-quote/:idReponse',
     // eslint-disable-next-line max-len
     loadChildren: () =>
@@ -158,6 +165,7 @@ const routes: Routes = [
         (m) => m.NewOfferPageModule
       ),
   },
+
 ];
 @NgModule({
   imports: [

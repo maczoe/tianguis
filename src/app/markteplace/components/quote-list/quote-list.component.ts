@@ -18,7 +18,7 @@ export class QuoteListComponent implements OnInit {
   }
 
   selectQuote(id) {
-    this.router.navigateByUrl('/quote-response/'+id);
+    this.router.navigateByUrl('/quote-detail/'+id);
   }
 
 
