@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController, NavController, Platform } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  IonModal,
+  LoadingController,
+  NavController,
+  Platform,
+} from '@ionic/angular';
 import { Category } from '../markteplace/model/category';
 import { Product } from '../markteplace/model/product';
 import { CategoriesService } from '../markteplace/services/categories.service';
@@ -16,6 +21,7 @@ import { environment } from 'src/environments/environment.mock';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
+import { Item } from '../markteplace/components/category-search/types';
 
 const IMAGE_DIR = 'stored-images';
 interface LocalFile {
@@ -29,7 +35,8 @@ interface LocalFile {
   styleUrls: ['./sell.page.scss'],
 })
 export class SellPage implements OnInit {
-  categories: Category[] = [];
+  @ViewChild('modal', { static: true }) modal!: IonModal;
+
   images: LocalFile[] = [];
   categoriesSelect = [];
   product: Product = {
@@ -41,6 +48,11 @@ export class SellPage implements OnInit {
     id: 1,
     name: '',
   };
+
+  categories: Category[] = [];
+  selectedCategoryCount = 0;
+  selectedCategory: Category[] = [];
+
   private imgUlrs: string[] = [];
   private api = environment.urlapi;
   constructor(
@@ -59,9 +71,9 @@ export class SellPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     await this.authService.validaToken();
-    this.categoriesService.getCategories().subscribe((data) => {
+   /*  this.categoriesService.getCategories().subscribe((data) => {
       this.categories = data;
-    });
+    }); */
     this.loadFiles();
   }
   async loadFiles() {
@@ -224,5 +236,22 @@ export class SellPage implements OnInit {
 
   uploadFile(formData: FormData): Observable<any> {
     return this.http.post(`${this.api}files/product`, formData);
+  }
+
+  /* Search Category */
+  private formatData(data: Category[]) {
+    console.log('cate Rece', data);
+
+    return data.length;
+  }
+
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  categorySelectionChanged(categories: Category[]) {
+    this.selectedCategory = categories;
+    console.log('Selec C:', categories);
+
+    this.selectedCategoryCount = this.formatData(this.selectedCategory);
+    this.modal.dismiss();
   }
 }

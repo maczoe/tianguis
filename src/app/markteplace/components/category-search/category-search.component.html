@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelChanges()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmChanges()">Listo</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionInput)="searchbarInput($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list id="modal-list">
+    <ion-item
+      *ngFor="let category of filteredCategories; trackBy: trackCtegories"
+    >
+      <ion-checkbox
+        slot="start"
+        [value]="category.id"
+        [checked]="isChecked(category.id)"
+        (ionChange)="checkboxChange($event)"
+      ></ion-checkbox
+      ><ion-label>{{ category.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

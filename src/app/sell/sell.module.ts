@@ -8,6 +8,8 @@ import { IonicModule } from '@ionic/angular';
 import { SellPageRoutingModule } from './sell-routing.module';
 
 import { SellPage } from './sell.page';
+import { MarkteplaceModule } from '../markteplace/markteplace.module';
+import { CategorySearchComponent } from '../markteplace/components/category-search/category-search.component';
 
 @NgModule({
   imports: [
@@ -15,8 +17,8 @@ import { SellPage } from './sell.page';
     FormsModule,
     IonicModule,
     CoreModule,
-    SellPageRoutingModule
+    SellPageRoutingModule,
   ],
-  declarations: [SellPage]
+  declarations: [SellPage, CategorySearchComponent],
 })
 export class SellPageModule {}
