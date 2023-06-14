@@ -71,7 +71,7 @@ export class SellPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     await this.authService.validaToken();
-   /*  this.categoriesService.getCategories().subscribe((data) => {
+    /*  this.categoriesService.getCategories().subscribe((data) => {
       this.categories = data;
     }); */
     this.loadFiles();
@@ -132,6 +132,7 @@ export class SellPage implements OnInit {
   }
 
   async onSubmit() {
+    const catIds: number[] = [];
     const loading = await this.loadingCtrl.create({
       message: 'Registrando Producto...',
     });
@@ -149,6 +150,10 @@ export class SellPage implements OnInit {
 
     await Promise.all(uploadPromises);
 
+    this.selectedCategory.forEach((cat) => {
+      catIds.push(cat.id);
+    });
+    this.product.categoriesIds = catIds;
     this.serviceProduct.createProduct(this.product).subscribe((data) => {
       console.log(data);
       loading.dismiss();
@@ -244,7 +249,6 @@ export class SellPage implements OnInit {
 
     return data.length;
   }
-
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   categorySelectionChanged(categories: Category[]) {
