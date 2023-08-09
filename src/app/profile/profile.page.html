@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Mi Perfil</ion-title>
+    <ion-title> Perfil Vendedor</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -84,7 +84,7 @@
           </ion-input>
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Descripción: </ion-label>
+          <ion-label position="stacked">DPI: </ion-label>
           <ion-input
             name="description"
             type="text"
@@ -117,16 +117,16 @@
             [(ngModel)]="profile.address"
           ></ion-input>
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label position="stacked">Dirección Web: </ion-label>
           <ion-input
             name="website"
             type="text"
             [(ngModel)]="profile.website"
           ></ion-input>
-        </ion-item>
+        </ion-item> -->
         <ion-button type="submit" expand="block" color="tertiary">
-          Actualizar
+          Actualizar a Vendedor
         </ion-button>
       </form>
     </ion-list>

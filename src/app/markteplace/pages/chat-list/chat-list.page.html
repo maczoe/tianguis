@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <ion-grid class="right">
     <ion-item>
       <ion-avatar slot="start">
@@ -20,18 +20,18 @@
     </ion-item>
 
     <ion-list>
-      <!-- <ion-row *ngFor="let i of [1]">
+      <ion-row *ngFor="let i of [1]">
         <ion-col size="10">
           <div class="no-gutters">
             <div class="message-your">
                 <div class="chat-bubble chat-bubble--left">                
-                  <span>Hola!</span><br>
-                  <div class="time" text-ring>12/02/22, 2:01pm</div>
+                  <span>Hola!, amigo claro con gusto.</span><br>
+                  <div class="time" text-ring>12/02/23, 2:01pm</div>
                 </div>
             </div>
           </div>
         </ion-col>  
-      </ion-row> -->
+      </ion-row>
 
       <ion-row *ngFor="let m of messages">
         <ion-col size="2"></ion-col>
@@ -63,40 +63,13 @@
     
 </ion-fab> -->
 </ion-content>
+
+
 <ion-footer>
-  <ion-toolbar color="light">
-    <ion-row>
-      <ion-col>
-        <div class="chat-box-tray">
-          <ion-icon name="settings-outline"></ion-icon>
-          <ion-input
-            type="text"
-            [(ngModel)]="newMessage"
-            placeholder="Escribe tu mensaje aquí..."
-          >
-          </ion-input>
-
-          <ion-icon
-            name="send"
-            slot="icon-only"
-            (click)="sendMessage()"
-          ></ion-icon>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <!-- <ion-row>
-      
-      <ion-col size="10">
-          <textarea autozice maxRows="2" class="message-input" [(ngModel)]="newMessage">
-
-          </textarea>
-      </ion-col>
-      <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="primary" [disabled]="newMessage === ''" class="msg-btn" (click)="sendMessage()">
-          <ion-icon name="send" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row> -->
-  </ion-toolbar>
+  <ion-button
+    expand="block"
+    shape="round"
+   
+    >Finalizar Transacción</ion-button
+  >
 </ion-footer>
