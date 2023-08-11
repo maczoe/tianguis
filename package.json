@@ -36,6 +36,7 @@
     "@capacitor/push-notifications": "^4.1.1",
     "@capacitor/splash-screen": "^4.1.1",
     "@capacitor/status-bar": "1.0.2",
+    "@codetrix-studio/capacitor-google-auth": "^3.2.0",
     "@ionic/angular": "^6.3.1",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",

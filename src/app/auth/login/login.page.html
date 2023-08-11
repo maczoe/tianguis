@@ -13,12 +13,16 @@
   >
     <ion-grid>
       <div class="intro__content__image">
-        <img class="intro__content__image--img" alt="Tianguis" src="../../assets/images/tianguis.png" />
+        <img
+          class="intro__content__image--img"
+          alt="Tianguis"
+          src="../../assets/images/tianguis.png"
+        />
       </div>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div padding>
-            <p>Te damos la bienvenida, introduce tus datos</p>
+            <p><strong>Te damos la bienvenida</strong>, introduce tus datos</p>
           </div>
           <div padding>
             <ion-item>
@@ -35,8 +39,8 @@
                 *ngFor="let validation of validationUserMessage.email"
               >
                 <ion-note
-                slot="error"
-                class="ion-invalid" 
+                  slot="error"
+                  class="ion-invalid"
                   *ngIf="validationFormUser.get('email').hasError(validation.type) && (validationFormUser.get('email').dirty || validationFormUser.get('email').touched)"
                 >
                   {{validation.message}}
@@ -57,8 +61,8 @@
                 *ngFor="let validation of validationUserMessage.password"
               >
                 <ion-note
-                slot="error"
-                class="ion-invalid"
+                  slot="error"
+                  class="ion-invalid"
                   *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)"
                 >
                   {{validation.message}}
@@ -67,14 +71,16 @@
             </div>
           </div>
           <div padding>
-            <ion-button type="submit" expand="block" color="tertiary"> Ingresar </ion-button>
+            <ion-button type="submit" expand="block" color="tertiary">
+              Ingresar
+            </ion-button>
           </div>
         </ion-col>
       </ion-row>
       <ion-row class="ion-margin-top" justify-content-center>
         <ion-col size-md="3" size-lg="2" size-xs="6">
           <div padding (click)="registerPage()">
-            <a >Registrar</a>
+            <a>Registrar</a>
           </div>
         </ion-col>
         <ion-col size-md="3" size-lg="2" size-xs="6">
@@ -85,27 +91,33 @@
       </ion-row>
       <ion-row class="ion-margin-top" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <ion-item-divider>Iniciar sesión con:</ion-item-divider>
+          <ion-item-divider
+            ><strong>Iniciar sesión con:</strong></ion-item-divider
+          >
         </ion-col>
       </ion-row>
       <ion-row justify-content-center>
-        <ion-col size-md="3" size-lg="2" size-xs="6">
+        <ion-col size-md="4" size-lg="3" size-xs="6">
           <div padding>
-            <ion-button color="secondary" expand="block" (click)="googleAuth()">
+            <ion-button
+              class="custom-button google-button"
+              expand="block"
+              (click)="googleAuth()"
+            >
               <ion-icon name="logo-google"></ion-icon>
-              <ion-text>&nbsp;Google</ion-text>
+              <ion-text>Google</ion-text>
             </ion-button>
           </div>
         </ion-col>
-        <ion-col size-md="3" size-lg="2" size-xs="6">
+        <ion-col size-md="4" size-lg="3" size-xs="6">
           <div padding>
             <ion-button
-              color="secondary"
+              class="custom-button facebook-button"
               expand="block"
               (click)="facebookAuth()"
             >
               <ion-icon name="logo-facebook"></ion-icon>
-              <ion-text>&nbsp;Facebook</ion-text>
+              <ion-text>Facebook</ion-text>
             </ion-button>
           </div>
         </ion-col>

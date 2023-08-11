@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, Platform } from '@ionic/angular';
 import {
   FormGroup,
   FormBuilder,
@@ -11,6 +11,7 @@ import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage-angular';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Component({
   selector: 'app-login',
@@ -47,16 +48,30 @@ export class LoginPage implements OnInit {
     public formbuider: FormBuilder,
     private uiAlerts: UiAlertsService,
     private authService: AuthService,
-    private storage: Storage
-  ) {}
+    private storage: Storage,
+    private platform: Platform
+  ) {
+    this.initializeApp();
+  }
 
+  initializeApp() {
+    this.platform.ready().then(() => {
+      GoogleAuth.initialize({
+        clientId:
+          '426633935974-63tc30cbqp0elpodm40c7i4ouf7b3h90.apps.googleusercontent.com',
+        scopes: ['profile', 'email'],
+        grantOfflineAccess: true,
+      });
+    });
+  }
   async ngOnInit() {
-   /*  const valid = await this.authService.validaToken();
+    /*  const valid = await this.authService.validaToken();
     console.log(valid);
 
     if (valid) {
       this.router.navigateByUrl('/app');
     }  */
+
     this.validationFormUser = this.formbuider.group({
       email: new FormControl(
         '',
@@ -72,7 +87,6 @@ export class LoginPage implements OnInit {
     });
 
     await this.storage.create();
-
   }
 
   login(value) {
@@ -97,9 +111,14 @@ export class LoginPage implements OnInit {
       );
     }
   }
-  googleAuth() {
+  async googleAuth() {
     //this.router.navigateByUrl('/google-sesion');
-    this.uiAlerts.alertaInfo('Función no disponible.');
+    try {
+      const googleUser = await GoogleAuth.signIn();
+      console.log('signIn:', googleUser);
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
   }
 
   facebookAuth() {

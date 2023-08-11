@@ -3,6 +3,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { NotificationsService } from './core/services/notifications.service';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
