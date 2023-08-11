@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, NavController, Platform } from '@ionic/angular';
+import {
+  LoadingController,
+  NavController,
+  Platform,
+} from '@ionic/angular';
+
+import {v4 as uuidv4} from 'uuid';
 import {
   FormGroup,
   FormBuilder,
@@ -12,6 +18,8 @@ import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage-angular';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { RegisterProfile } from 'src/app/markteplace/model/profile';
+import { ProfilesService } from 'src/app/markteplace/services/profiles.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +30,11 @@ export class LoginPage implements OnInit {
   user: User = {
     email: '',
     password: '',
+  };
+  userLMethod = {
+    email: '',
+    name: '',
+    imageUrl: '',
   };
   loading: any;
   validationFormUser: FormGroup;
@@ -49,7 +62,9 @@ export class LoginPage implements OnInit {
     private uiAlerts: UiAlertsService,
     private authService: AuthService,
     private storage: Storage,
-    private platform: Platform
+    private platform: Platform,
+    private loadingCtrl: LoadingController,
+    private profileService: ProfilesService,
   ) {
     this.initializeApp();
   }
@@ -65,13 +80,6 @@ export class LoginPage implements OnInit {
     });
   }
   async ngOnInit() {
-    /*  const valid = await this.authService.validaToken();
-    console.log(valid);
-
-    if (valid) {
-      this.router.navigateByUrl('/app');
-    }  */
-
     this.validationFormUser = this.formbuider.group({
       email: new FormControl(
         '',
@@ -94,10 +102,6 @@ export class LoginPage implements OnInit {
       //mostrar alerta de usuario incorrecto
       this.uiAlerts.alertaInfo('Todos los campos deben estar completos.');
     } else {
-      /* const valido = await this.usuarioService.login(
-        this.user.email,
-        this.user.password
-      ); */
       this.authService.login(this.user).subscribe(
         (data) => {
           console.log(data);
@@ -116,6 +120,49 @@ export class LoginPage implements OnInit {
     try {
       const googleUser = await GoogleAuth.signIn();
       console.log('signIn:', googleUser);
+      const loading = await this.loadingCtrl.create({
+        message: 'Registrando...',
+      });
+      this.userLMethod.email=googleUser.email;
+      this.userLMethod.name=googleUser.name;
+      this.userLMethod.imageUrl=googleUser.imageUrl;
+
+      this.authService.getByEmail(this.userLMethod.email).subscribe((us) => {
+        if (us) {
+          loading.dismiss();
+          console.log('Login US:', us);
+        }else{
+          const profile: RegisterProfile = {
+            name: this.userLMethod.name,
+            publicEmail: this.userLMethod.email,
+            phone:'',
+            photo: this.userLMethod.imageUrl,
+          };
+
+          console.log('Create Us:', profile);
+          this.profileService.registeProfile(profile).subscribe((resp) => {
+            const newUser = {
+              email: this.userLMethod.email,
+              fullName:this.userLMethod.name,
+              profileId: resp.id,
+              registrationMethod: 'GOOGLE'
+            };
+            this.authService.register(newUser).subscribe(
+              (data) => {
+                this.authService.saveToken(data.access_token);
+                this.navCtrl.navigateRoot('/app/tabs/my-profile', {
+                  animated: true,
+                });
+              },
+              (err) => {
+                console.log(err);
+                this.uiAlerts.alertaInfo(err.error.message);
+              }
+            );
+          });
+
+        }
+      });
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }

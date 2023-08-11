@@ -27,4 +27,5 @@ export interface RegisterProfile {
   name: string;
   phone: string;
   publicEmail: string;
+  photo?: string;
 }
