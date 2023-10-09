@@ -9,12 +9,13 @@ import {
   PushNotifications,
   Token,
 } from '@capacitor/push-notifications';
-
+import { environment } from 'src/environments/environment.mock';
+const urlNoti = environment.urlapiNoti+'/divice-movil';
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationsService {
-  url = 'http://192.168.100.7:3000/divice-movil';
+  url = urlNoti;
   constructor(private router: Router, private http: HTTP) {}
 
   public initPush() {

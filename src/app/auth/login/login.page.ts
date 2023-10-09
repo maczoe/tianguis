@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  LoadingController,
-  NavController,
-  Platform,
-} from '@ionic/angular';
+import { LoadingController, NavController, Platform } from '@ionic/angular';
 
-import {v4 as uuidv4} from 'uuid';
 import {
   FormGroup,
   FormBuilder,
@@ -20,6 +15,8 @@ import { Storage } from '@ionic/storage-angular';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { RegisterProfile } from 'src/app/markteplace/model/profile';
 import { ProfilesService } from 'src/app/markteplace/services/profiles.service';
+import { environment } from 'src/environments/environment.mock';
+const clientId = environment.clientIdGoolge;
 
 @Component({
   selector: 'app-login',
@@ -64,7 +61,7 @@ export class LoginPage implements OnInit {
     private storage: Storage,
     private platform: Platform,
     private loadingCtrl: LoadingController,
-    private profileService: ProfilesService,
+    private profileService: ProfilesService
   ) {
     this.initializeApp();
   }
@@ -72,8 +69,7 @@ export class LoginPage implements OnInit {
   initializeApp() {
     this.platform.ready().then(() => {
       GoogleAuth.initialize({
-        clientId:
-          '426633935974-63tc30cbqp0elpodm40c7i4ouf7b3h90.apps.googleusercontent.com',
+        clientId,
         scopes: ['profile', 'email'],
         grantOfflineAccess: true,
       });
@@ -115,54 +111,52 @@ export class LoginPage implements OnInit {
       );
     }
   }
+
   async googleAuth() {
-    //this.router.navigateByUrl('/google-sesion');
     try {
       const googleUser = await GoogleAuth.signIn();
-      console.log('signIn:', googleUser);
+
       const loading = await this.loadingCtrl.create({
         message: 'Registrando...',
       });
-      this.userLMethod.email=googleUser.email;
-      this.userLMethod.name=googleUser.name;
-      this.userLMethod.imageUrl=googleUser.imageUrl;
 
-      this.authService.getByEmail(this.userLMethod.email).subscribe((us) => {
-        if (us) {
-          loading.dismiss();
-          console.log('Login US:', us);
-        }else{
-          const profile: RegisterProfile = {
-            name: this.userLMethod.name,
-            publicEmail: this.userLMethod.email,
-            phone:'',
-            photo: this.userLMethod.imageUrl,
-          };
+      this.userLMethod.email = googleUser.email;
+      this.userLMethod.name = googleUser.name;
+      this.userLMethod.imageUrl = googleUser.imageUrl;
 
-          console.log('Create Us:', profile);
-          this.profileService.registeProfile(profile).subscribe((resp) => {
-            const newUser = {
-              email: this.userLMethod.email,
-              fullName:this.userLMethod.name,
-              profileId: resp.id,
-              registrationMethod: 'GOOGLE'
-            };
-            this.authService.register(newUser).subscribe(
-              (data) => {
-                this.authService.saveToken(data.access_token);
-                this.navCtrl.navigateRoot('/app/tabs/my-profile', {
-                  animated: true,
-                });
-              },
-              (err) => {
-                console.log(err);
-                this.uiAlerts.alertaInfo(err.error.message);
-              }
-            );
-          });
+      const us = await this.authService
+        .getByEmail(this.userLMethod.email)
+        .toPromise();
 
-        }
-      });
+      if (us) {
+        loading.dismiss();
+        const authEmailResponse = await this.authService
+          .authEmail(this.userLMethod.email)
+          .toPromise();
+        this.handleSuccessfulAuthentication(authEmailResponse, false); // Inicio de sesión
+      } else {
+        const profile: RegisterProfile = {
+          name: this.userLMethod.name,
+          publicEmail: this.userLMethod.email,
+          phone: '',
+          photo: this.userLMethod.imageUrl,
+        };
+
+        const profileResponse = await this.profileService
+          .registeProfile(profile)
+          .toPromise();
+        const newUser = {
+          email: this.userLMethod.email,
+          fullName: this.userLMethod.name,
+          profileId: profileResponse.id,
+          registrationMethod: 'GOOGLE',
+        };
+
+        const registerResponse = await this.authService
+          .register(newUser)
+          .toPromise();
+        this.handleSuccessfulAuthentication(registerResponse, true); // Registro
+      }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }
@@ -175,5 +169,14 @@ export class LoginPage implements OnInit {
 
   registerPage() {
     this.router.navigateByUrl('/register');
+  }
+
+  private handleSuccessfulAuthentication(
+    response: any,
+    isRegistration: boolean
+  ) {
+    this.authService.saveToken(response.access_token);
+    const destinationRoute = isRegistration ? '/app/tabs/my-profile' : '/app';
+    this.navCtrl.navigateRoot(destinationRoute, { animated: true });
   }
 }

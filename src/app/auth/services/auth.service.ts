@@ -77,4 +77,8 @@ export class AuthService {
   getByEmail(email: string): Observable<any> {
     return this.http.post(`${URL}by-email`, { email });
   }
+
+  authEmail(email: string): Observable<any> {
+    return this.http.post(`${URL}auth-login-email`, { email });
+  }
 }
