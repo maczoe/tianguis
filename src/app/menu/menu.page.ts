@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from '../auth/services/auth.service';
 import { Profile } from '../markteplace/model/profile';
+import { PrivacyPolicyPage } from '../modals/privacy-policy/privacy-policy.page';
 
 @Component({
   selector: 'app-menu',
@@ -15,7 +16,8 @@ export class MenuPage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private modalController: ModalController
   ) {
     this.user = this.authService.respUser;
   }
@@ -24,6 +26,14 @@ export class MenuPage implements OnInit {
 
   viewRedirect(view: string) {
     this.router.navigateByUrl(view);
+  }
+
+  async openPrivacyPolicyModal() {
+    const modal = await this.modalController.create({
+      component: PrivacyPolicyPage,
+      componentProps: {},
+    });
+    return await modal.present();
   }
 
   async signOut() {
