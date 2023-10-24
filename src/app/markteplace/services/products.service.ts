@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment.mock';
-import { Product } from '../model/product';
+import { Product, ResponseProducts } from '../model/product';
 const urlApi = environment.mockapi;
 
 @Injectable({
@@ -15,6 +15,12 @@ export class ProductsService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.api);
+  }
+
+  getProductsPage(page = 1, pageSize = 5): Observable<ResponseProducts> {
+    return this.http.get<ResponseProducts>(
+      this.api + `/list/?page=${page}&pageSize=${pageSize}`
+    );
   }
 
   getProductsRecomm(): Observable<Product[]> {

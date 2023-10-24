@@ -34,3 +34,10 @@ export interface Product {
   favorite?: boolean;
   profile?: Profile;
 }
+
+export interface ResponseProducts {
+  products?: Product[];
+  totalItems?: number;
+  currentPage?: string;
+  pageSize?: string;
+}

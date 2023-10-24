@@ -8,6 +8,7 @@ import { CategoriesService } from '../markteplace/services/categories.service';
 import { ProductsService } from '../markteplace/services/products.service';
 import { ProfilesService } from '../markteplace/services/profiles.service';
 import { Storage } from '@ionic/storage-angular';
+import { ResponseProducts } from '../markteplace/model/product';
 
 @Component({
   selector: 'app-home',
@@ -61,10 +62,11 @@ export class HomePage implements OnInit {
       this.profiles.push(data);
     });
 
-    this.productsService.getProducts().subscribe((data) => {
-      this.productsBig = data;
-      console.log('Big');
-    });
+    this.productsService
+      .getProductsPage()
+      .subscribe((data: ResponseProducts) => {
+        this.productsBig = data.products;
+      });
     return true;
   }
 
