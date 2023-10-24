@@ -17,6 +17,7 @@ import { Storage } from '@ionic/storage-angular';
 export class HomePage implements OnInit {
   categories = [];
   products = [];
+  productsBig = [];
   productsRecomended = [];
   profiles = [];
 
@@ -58,6 +59,11 @@ export class HomePage implements OnInit {
 
     this.profilesService.getProfiles().subscribe((data) => {
       this.profiles.push(data);
+    });
+
+    this.productsService.getProducts().subscribe((data) => {
+      this.productsBig = data;
+      console.log('Big');
     });
     return true;
   }

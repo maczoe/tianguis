@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../model/product';
-import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-list-product-card-big',
@@ -8,13 +7,8 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./list-product-card-big.component.scss'],
 })
 export class ListProductCardBigComponent implements OnInit {
-  products: Product[] = [];
-  constructor(private productsService: ProductsService) {
-    this.productsService.getProducts().subscribe((data) => {
-      this.products = data;
-      console.log(this.products);
-    });
-  }
+  @Input() products: Product[] = [];
+  constructor() {}
 
   ngOnInit() {}
 }
