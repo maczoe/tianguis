@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { IonRefresher, LoadingController, ModalController } from '@ionic/angular';
 import { QuotesService } from '../markteplace/services/quotes.service';
 import { NewQuotePage } from '../modals/new-quote/new-quote.page';
 import { AuthService } from '../auth/services/auth.service';
@@ -13,6 +13,7 @@ import { AuthService } from '../auth/services/auth.service';
 export class QuotePage implements OnInit {
   user;
   quotes = [];
+  refresher: IonRefresher;
   constructor(
     private router: Router,
     private quotesService: QuotesService,
@@ -61,4 +62,19 @@ export class QuotePage implements OnInit {
   newQuote() {
     this.router.navigateByUrl('/new-quote');
   }
+  onRefresh() {
+    this.quotesService.getQuotes().subscribe((data) => {
+      this.quotes = data;
+      this.refresher.complete();
+    });
+  }
+
+  handleRefresh(event) {
+    this.quotesService.getQuotes().subscribe((data) => {
+      this.quotes =[];
+      this.quotes.push(data);
+      event.target.complete();
+    });
+  }
+
 }

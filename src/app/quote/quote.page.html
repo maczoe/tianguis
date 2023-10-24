@@ -4,10 +4,14 @@
 
 <ion-content [fullscreen]="true">
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
       <app-quote-list [quotes]="quotes[0]"></app-quote-list>
   </ion-list>
 
+  
   <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newQuote()">
     <ion-fab-button>
       <ion-icon name="add-outline"></ion-icon>
