@@ -5,4 +5,20 @@
     justify-content: center;
     align-items: center;
 }
-
+.fab-button {
+    position: relative;
+    padding: 16px;
+    text-align: left;
+  }
+  
+  .fab-button::after {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+  }
+  

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Quote } from '../../model/quote';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-quote',
@@ -8,19 +9,25 @@ import { Quote } from '../../model/quote';
 })
 export class QuoteComponent implements OnInit {
   @Input() quote: Quote;
+  user;
   ofertas: string;
-  constructor() { }
-
-  ngOnInit() {
-    if (this.quote.responses.length > 0) {
-      if (this.quote.responses.length === 1) {
-        this.ofertas = `Tienes ${this.quote.responses.length} oferta`;
-      } else {
-        this.ofertas = `Tienes ${this.quote.responses.length} ofertas`;
-      }
-    } else {
-      this.ofertas = `A un no tienes ofertas`;
-    }
+  color: string;
+  constructor(private authService: AuthService) {
+    this.user = this.authService.respUser;
   }
 
+  ngOnInit() {
+    const hasResponses = this.quote.responses.length > 0;
+    const isAuthor = this.quote.author === this.user.profile.id;
+
+    if (hasResponses) {
+      this.color = isAuthor ? 'success' : 'light';
+      this.ofertas = `Tienes ${this.quote.responses.length} oferta${
+        this.quote.responses.length === 1 ? '' : 's'
+      }`;
+    } else {
+      this.color = isAuthor ? 'danger' : 'light';
+      this.ofertas = isAuthor ? 'No tienes ofertas' : 'No tiene ofertas';
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { Category } from 'src/app/markteplace/model/category';
 import { Quote } from 'src/app/markteplace/model/quote';
 import { CategoriesService } from 'src/app/markteplace/services/categories.service';
@@ -11,6 +12,7 @@ import { QuotesService } from 'src/app/markteplace/services/quotes.service';
   styleUrls: ['./new-quote.page.scss'],
 })
 export class NewQuotePage implements OnInit {
+  user;
   categories: Category[] = [];
   categoriesSelect = [];
   quote: Quote = {
@@ -21,8 +23,11 @@ export class NewQuotePage implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private quoteService: QuotesService,
-    private navCtrl: NavController
-  ) {}
+    private navCtrl: NavController,
+    private authService: AuthService
+  ) {
+    this.user = this.authService.respUser;
+  }
 
   ngOnInit() {
     this.categoriesService.getCategories().subscribe((data) => {
@@ -47,6 +52,9 @@ export class NewQuotePage implements OnInit {
     this.quote.type = e.detail.value;
   }
   onSubmit() {
+    this.quote.attachmentId= this.user.profile.id;
+    this.quote.author= this.user.profile.id;
+    this.quote.locationId= this.user.profile.id;
     this.quoteService.createQuote(this.quote).subscribe((data) => {
       this.navCtrl.navigateRoot('/app/tabs/quote', { animated: true });
     });

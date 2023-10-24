@@ -1,9 +1,9 @@
-  <ion-card>
-    <ion-item lines="none">
-      <ion-label>
-        {{quote.title}}
-        <p>{{quote.createdAt}}</p>
-        <ion-badge [color]="quote.responses.length>0 ? 'success' : 'danger'">{{ofertas}}</ion-badge>
-      </ion-label>
-    </ion-item>
-  </ion-card>
+<ion-card>
+  <ion-item lines="none">
+    <ion-label>
+      {{ quote.title }}
+      <p>{{ quote.createdAt }}</p>
+      <ion-badge [color]="color">{{ ofertas }}</ion-badge>
+    </ion-label>
+  </ion-item>
+</ion-card>
