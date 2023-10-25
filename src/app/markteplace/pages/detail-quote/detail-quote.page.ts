@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuotesService } from '../../services/quotes.service';
 import { Quote } from '../../model/quote';
 import { ResponseQuote } from '../../model/responseQuote';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-quote',
@@ -14,28 +16,28 @@ export class DetailQuotePage implements OnInit {
   quote: Quote = {};
   ofertas: string;
   lisOfertas: ResponseQuote[] = [];
+
+  user;
+  color: string;
+
+  hasResponses = false;
+  isAuthor = false;
   constructor(
     private router: ActivatedRoute,
+    private alertController: AlertController,
     private quoteSvc: QuotesService,
     private routerPath: Router,
+    private authService: AuthService
   ) {
     this.idQuote = this.router.snapshot.paramMap.get('idQuote');
+    this.user = this.authService.respUser;
   }
 
   ngOnInit() {
     this.quoteSvc.getQuoteById(this.idQuote).subscribe((data) => {
       this.quote = data;
       this.lisOfertas = this.quote.responses;
-      console.log(this.quote);
-      if (this.lisOfertas.length > 0) {
-        if (this.lisOfertas.length === 1) {
-          this.ofertas = `Tienes ${this.lisOfertas.length} oferta`;
-        } else {
-          this.ofertas = `Tienes ${this.lisOfertas.length} ofertas`;
-        }
-      } else {
-        this.ofertas = `A un no tienes ofertas`;
-      }
+      this.messageOfert();
     });
   }
 
@@ -43,7 +45,51 @@ export class DetailQuotePage implements OnInit {
     this.routerPath.navigateByUrl('/quote-response/' + id);
   }
 
+  async cancelQuote(id) {
+    const alert = await this.alertController.create({
+      header: 'Cancelar esta cotizacion.',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {},
+        },
+        {
+          text: 'Si',
+          role: 'confirm',
+          handler: () => {
+            this.quoteSvc.cancelQuoteById(id).subscribe((response: boolean) => {
+              if (response) {
+                this.routerPath.navigateByUrl('/app/tabs/quote');
+
+                this.quoteSvc.notifyQuoteUpdate();
+              } else {
+                console.log('Error cancelar');
+              }
+            });
+          },
+        },
+      ],
+    });
+    await alert.present();
+    const { role } = await alert.onDidDismiss();
+  }
   sendOffer(id) {
-    this.routerPath.navigateByUrl('/new-offer/'+id);
+    this.routerPath.navigateByUrl('/new-offer/' + id);
+  }
+
+  messageOfert() {
+    this.hasResponses = this.quote.responses.length > 0;
+    this.isAuthor = this.quote.author === this.user.profile.id;
+
+    if (this.hasResponses) {
+      this.color = this.isAuthor ? 'success' : 'light';
+      this.ofertas = `Tiene${this.isAuthor ? 's' : ''} ${
+        this.quote.responses.length
+      } oferta${this.quote.responses.length === 1 ? '' : 's'}`;
+    } else {
+      this.color = this.isAuthor ? 'danger' : 'light';
+      this.ofertas = this.isAuthor ? 'No tienes ofertas' : 'No tiene ofertas';
+    }
   }
 }

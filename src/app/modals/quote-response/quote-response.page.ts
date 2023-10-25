@@ -18,15 +18,14 @@ export class QuoteResponsePage implements OnInit {
   constructor(
     private quoteResponsesService: QuoteResponsesService,
     private router: ActivatedRoute,
-    private profilesService: ProfilesService,
     private quotesService: QuotesService,
-    private routerPath: Router,
+    private routerPath: Router
   ) {
     this.id = this.router.snapshot.paramMap.get('idQuote');
   }
 
   ngOnInit() {
-     this.quoteResponsesService
+    this.quoteResponsesService
       .getQuoteReponsesRequest(this.id)
       .subscribe((data: ResponseQuote[]) => {
         this.responses.push(...data);
@@ -39,7 +38,7 @@ export class QuoteResponsePage implements OnInit {
   }
 
   sendOffer() {
-    this.routerPath.navigateByUrl('/new-offer/'+this.quote.id);
+    this.routerPath.navigateByUrl('/new-offer/' + this.quote.id);
   }
 
 }

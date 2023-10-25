@@ -64,11 +64,14 @@
       </ion-item>
     </ion-col>
     </ion-row>
-    <ion-badge expand="full" [color]="lisOfertas.length>0 ? 'success' : 'danger'">{{ofertas}}</ion-badge>
-    <ion-button expand="full" type="submit" [disabled]="lisOfertas.length<1"
+    <ion-badge [color]="color">{{ ofertas }}</ion-badge> 
+    <ion-button *ngIf="isAuthor" expand="full" type="submit" [disabled]="lisOfertas.length<1"
        (click)="selectQuote(quote.id)" >Ver ofertas</ion-button
       >
-      <ion-button color="success" *ngIf="lisOfertas.length<1" expand="full" type="submit" 
+      <ion-button color="warning" *ngIf="isAuthor" expand="full" type="submit" 
+       (click)="cancelQuote(quote.id)" >Cancelar Cotizacion</ion-button
+      >
+      <ion-button color="success" *ngIf="!isAuthor" expand="full" type="submit" 
       (click)="sendOffer(quote.id)" >Enviar Oferta</ion-button
       >
   </ion-grid>

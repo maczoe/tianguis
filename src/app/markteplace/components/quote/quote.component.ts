@@ -22,7 +22,7 @@ export class QuoteComponent implements OnInit {
 
     if (hasResponses) {
       this.color = isAuthor ? 'success' : 'light';
-      this.ofertas = `Tienes ${this.quote.responses.length} oferta${
+      this.ofertas = `Tiene${ isAuthor ? 's' : ''} ${this.quote.responses.length} oferta${
         this.quote.responses.length === 1 ? '' : 's'
       }`;
     } else {
