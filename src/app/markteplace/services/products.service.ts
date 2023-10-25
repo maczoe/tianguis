@@ -17,6 +17,10 @@ export class ProductsService {
     return this.http.get<Product[]>(this.api);
   }
 
+  getProductCategory(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(this.api + `/category/${id}`);
+  }
+
   getProductsPage(page = 1, pageSize = 5): Observable<ResponseProducts> {
     return this.http.get<ResponseProducts>(
       this.api + `/list/?page=${page}&pageSize=${pageSize}`
@@ -43,27 +47,6 @@ export class ProductsService {
       //TODO: make requests to the API server
       return this.http.get<Product>(this.api + '/' + idProduct, { headers });
     }
-  }
-
-  getProductCategory(categoryId) {
-    return new Promise((resolve) => {
-      if (urlApi) {
-        //TODO: make local JSON file requests
-        /* this.http
-          .get('./shared/guards/mocks/products.json')
-          .subscribe((resp: Product[]) => {
-            const products: Product[] = resp;
-            let productsCategory: Product[] = [];
-            productsCategory = products.filter((p) =>
-              p.categories.some((c) => c.id === categoryId)
-            );
-            resolve(productsCategory);
-          }); */
-      } else {
-        //TODO: make requests to the API server
-        resolve([]);
-      }
-    });
   }
 
   getProductsProfile(idProfile) {

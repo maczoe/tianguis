@@ -11,18 +11,18 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products-category.page.scss'],
 })
 export class ProductsCategoryPage implements OnInit {
-  categoryId = '0';
+  categoryId = 0;
   products: Product[] = [];
   category: Category = {
     id: 0,
-    name: ''
+    name: '',
   };
   constructor(
     private router: ActivatedRoute,
     private categoriesService: CategoriesService,
     private productsService: ProductsService
   ) {
-    this.categoryId = this.router.snapshot.paramMap.get('idCategory');
+    this.categoryId = parseInt(this.router.snapshot.paramMap.get('idCategory'));
 
     this.getCategory(this.categoryId);
     this.getProductsCategory(this.categoryId);
@@ -30,16 +30,16 @@ export class ProductsCategoryPage implements OnInit {
 
   ngOnInit() {}
 
-  getCategory(categoryId: string) {
+  getCategory(categoryId: number) {
     this.categoriesService.getCategoryId(categoryId).then((data: Category) => {
       this.category = data;
     });
   }
 
-  getProductsCategory(categoryId: string) {
+  getProductsCategory(categoryId: number) {
     this.productsService
       .getProductCategory(categoryId)
-      .then((resp: Product[]) => {
+      .subscribe((resp: Product[]) => {
         this.products = resp;
       });
   }

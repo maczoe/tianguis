@@ -32,9 +32,7 @@ export class DetailResponseQuotePage implements OnInit {
       .getQuoteReponseById(this.id)
       .subscribe((data) => {
         this.responsesDetail = data;
-        console.log(this.responsesDetail);
         this.profile = this.responsesDetail.author;
-        console.log(this.responsesDetail.product);
         if (this.responsesDetail.product) {
           this.productsService
             .getProductId(this.responsesDetail.product)
@@ -48,14 +46,12 @@ export class DetailResponseQuotePage implements OnInit {
   getProfile(id) {
     this.profilesService.getProfile(id).subscribe((data) => {
       this.profile = data;
-      console.log(this.profile);
     });
   }
 
   getProduct(idProduct) {
     this.productsService.getProductId(idProduct).subscribe((data) => {
       this.product = data;
-      console.log(this.product);
     });
   }
 }

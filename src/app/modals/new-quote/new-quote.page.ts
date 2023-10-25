@@ -58,6 +58,5 @@ export class NewQuotePage implements OnInit {
     this.quoteService.createQuote(this.quote).subscribe((data) => {
       this.navCtrl.navigateRoot('/app/tabs/quote', { animated: true });
     });
-    console.log(JSON.stringify(this.quote));
   }
 }

@@ -24,7 +24,6 @@ export class CategorySearchComponent implements OnInit {
   constructor(private categoriesSvc: CategoriesService) {}
   ngOnInit() {
     this.categoriesSvc.getCategories().subscribe((data) => {
-      console.log(data);
       this.categories = data;
       this.filteredCategories = [...this.categories];
       this.workingSelectedValuesCate = [...this.selectedCategory];
@@ -100,7 +99,6 @@ export class CategorySearchComponent implements OnInit {
       this.workingSelectedValuesCate = this.workingSelectedValuesCate.filter(
         (item: Category) => item.id !== value
       );
-      console.log('cheked 2', this.workingSelectedValuesCate);
     }
   }
 }

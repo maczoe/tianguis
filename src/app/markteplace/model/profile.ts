@@ -1,3 +1,5 @@
+import { Review } from './review';
+
 enum ProfileType {
   buyer = 'BUYER',
   seller = 'SELLER',
@@ -22,6 +24,7 @@ export interface Profile {
   favorite?: boolean;
   createAt?: string;
   updateAt?: string;
+  reviews?: Review[];
 }
 export interface RegisterProfile {
   name: string;

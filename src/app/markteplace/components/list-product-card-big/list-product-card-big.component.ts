@@ -16,7 +16,6 @@ export class ListProductCardBigComponent implements OnInit {
     this.productsService
       .getProductsPage(this.page, this.pageSize)
       .subscribe((data) => {
-        console.log(data);
 
         this.products = this.products.concat(data.products);
         this.page++; // Incrementa el número de página para la próxima carga

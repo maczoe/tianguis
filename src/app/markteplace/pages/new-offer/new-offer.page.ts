@@ -39,6 +39,5 @@ export class NewOfferPage implements OnInit {
           animated: true,
         });
       });
-    console.log(JSON.stringify(this.response));
   }
 }

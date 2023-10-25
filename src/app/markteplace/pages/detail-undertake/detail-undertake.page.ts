@@ -29,7 +29,6 @@ export class DetailUndertakePage implements OnInit {
   getLauch(id) {
     this.launchService.getLaunchId(id).then((data: Launch) => {
       this.launch = data;
-      console.log(this.launch);
     });
   }
 }

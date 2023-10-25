@@ -38,9 +38,7 @@ export class ChatListPage implements OnInit {
     private productsService: ProductsService
   ) {
     this.productId = this.router.snapshot.paramMap.get('proId');
-    console.log(this.productId);
     this.productsService.getProductId(this.productId).subscribe((data) => {
-      console.log(data);
 
       this.product = data;
       this.image = this.product.images[0];

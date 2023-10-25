@@ -109,37 +109,22 @@
 
     <!-- Detail review -->
     <ion-list *ngIf="type === 'review'">
-      <ion-list>
-        <ion-item>
+      ion-butt
+        <ion-item *ngFor="let review of reviews" >
           <ion-avatar slot="start">
-            <img
-              src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&h=661&q=70&fm=webp"
-            />
+            <img src="{{review.author.photo}}" />
           </ion-avatar>
           <ion-label>
-            <h2>Juan Perez</h2>
+            <h2>{{review.author.name}}</h2>
             <h3>
-              <p><ion-icon name="star"></ion-icon> 4</p>
+              <p>
+                <ion-icon name="star"></ion-icon> {{ review.rating |
+                number:'1.1-1' }}
+              </p>
             </h3>
-            <p>Una exelente atención.</p>
+            <p>{{review.content}}</p>
           </ion-label>
         </ion-item>
-
-        <ion-item>
-          <ion-avatar slot="start">
-            <img
-              src="https://www.fsmex.com/foros/data/avatars/o/21/21450.jpg?1567418343"
-            />
-          </ion-avatar>
-          <ion-label>
-            <h2>Juan Perez</h2>
-            <h3>
-              <p><ion-icon name="star"></ion-icon> 5</p>
-            </h3>
-            <p>Los productos se encuentra en excelente estado</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
     </ion-list>
   </ion-card-content>
 </ion-content>

@@ -21,7 +21,6 @@ import { IonicModule } from '@ionic/angular';
 import { ProductCardHrzComponent } from './components/product-card-hrz/product-card-hrz.component';
 import { ListProductCardBigComponent } from './components/list-product-card-big/list-product-card-big.component';
 import { ProductCardBigComponent } from './components/product-card-big/product-card-big.component';
-import { CategorySearchComponent } from './components/category-search/category-search.component';
 
 @NgModule({
   declarations: [

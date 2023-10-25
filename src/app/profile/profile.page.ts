@@ -116,7 +116,6 @@ export class ProfilePage implements OnInit {
     })
       .then(
         (result) => {
-          console.log('HERE :', result);
           this.loadinFileData(result.files);
         },
         async (err) => {
@@ -229,20 +228,15 @@ export class ProfilePage implements OnInit {
     });
     await loading.present();
     const uploadPromises = this.images.map(async (file) => {
-      console.log('File UP:', file);
-
       const response = await fetch(file.data);
       const blob = await response.blob();
       const formData = new FormData();
       formData.append('file', blob, file.name);
       const data = await this.uploadFile(formData).toPromise();
-      console.log(data);
 
       this.profile.photo = data.secureUrl;
       const { id, createAt, updateAt, ...upPro } = this.profile;
-      console.log(upPro );
       this.profileService.updateProfile(upPro).subscribe((resp) => {
-        console.log(resp);
         this.navCtrl.navigateRoot('/app/tabs/my-profile', {
           animated: true,
         });
@@ -267,9 +261,7 @@ export class ProfilePage implements OnInit {
     await loading.present();
 
     const { id, createAt, updateAt, ...upPro } = this.profile;
-    console.log(upPro );
     this.profileService.updateProfile(upPro).subscribe((resp) => {
-      console.log(resp);
       loading.dismiss();
 
       this.navCtrl.navigateRoot('/app/tabs/my-profile', {

@@ -12,7 +12,6 @@ export class ProductCardHrzComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log(this.product);
   }
   selectProduc(productId) {
     this.router.navigateByUrl('/product/' + productId);

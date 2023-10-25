@@ -14,7 +14,6 @@ export class HeaderBarComponent {
   constructor(private menu: MenuController) { }
 
   async openMenu() {
-    console.log('Menu open');
     this.menu.open('sidemenu');
   }
 

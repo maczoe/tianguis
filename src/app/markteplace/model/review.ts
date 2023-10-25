@@ -1,10 +1,12 @@
+import { Profile } from './profile';
+
 export interface Review {
-  id: number;
-  timestamp: Date;
-  comment: string;
-  rating: number;
-  authorId: number;
+  id?: number;
+  createAt?: Date;
+  content?: string;
+  rating?: number;
+  authorId?: number;
   profileId?: number;
   productId?: number;
-  transactionId?: number;
+  author?: Profile;
 }

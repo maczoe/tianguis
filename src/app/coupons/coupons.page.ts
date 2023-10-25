@@ -17,7 +17,6 @@ export class CouponsPage implements OnInit {
   ngOnInit() {
     this.couponsService.getCoupons().then((coupons) => {
       this.coupons.push(coupons);
-      console.log(this.coupons);
     });
 
   }

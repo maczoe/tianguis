@@ -29,7 +29,6 @@ export class QuoteResponsePage implements OnInit {
       .getQuoteReponsesRequest(this.id)
       .subscribe((data: ResponseQuote[]) => {
         this.responses.push(...data);
-        console.log(this.responses);
       });
 
     this.quotesService.getQuoteById(this.id).subscribe((data: Quote) => {

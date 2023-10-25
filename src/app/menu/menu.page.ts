@@ -59,7 +59,6 @@ export class MenuPage implements OnInit {
     await alert.present();
     const { role } = await alert.onDidDismiss();
     if (this.confirExit) {
-      console.log('exit');
       this.authService.logout();
     }
   }

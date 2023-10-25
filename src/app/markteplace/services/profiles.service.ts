@@ -44,7 +44,6 @@ export class ProfilesService {
       // eslint-disable-next-line @typescript-eslint/naming-convention
       Authorization: `bearer ${this.authService.token}`,
     });
-    console.log(this.authService.token);
     return this.http.put<Profile>(this.api, profile, { headers });
   }
 }

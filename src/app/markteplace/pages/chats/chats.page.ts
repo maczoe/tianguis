@@ -28,7 +28,6 @@ export class ChatsPage implements OnInit {
   getChats(userId: string) {
     this.chatsService.getChats(userId).then((data) => {
       this.chats = data;
-      console.log(this.chats);
     });
   }
   newchat() {
