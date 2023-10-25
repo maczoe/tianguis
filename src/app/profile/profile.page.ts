@@ -38,7 +38,9 @@ export class ProfilePage implements OnInit {
   images: LocalFile[] = [];
   result: string;
   products = [];
+  reviews = [];
   type = 'profile';
+  user;
   private api = environment.urlapi;
 
   constructor(
@@ -49,14 +51,26 @@ export class ProfilePage implements OnInit {
     private platform: Platform,
     private http: HttpClient,
     private profileService: ProfilesService,
-    private navCtrl: NavController
-  ) {}
+    private navCtrl: NavController,
+    private profilesService: ProfilesService
+  ) {
+    this.user = this.authService.respUser;
+  }
 
   async ngOnInit() {
     await this.storage.create();
     await this.authService.validaToken();
-    this.profile = this.authService.respUser.profile;
+    this.getProfile(this.user.profile.id);
     this.loadFiles();
+  }
+
+  getProfile(id) {
+    this.profilesService.getProfile(id).subscribe((data) => {
+      this.profile = data;
+      console.log(this.profile);
+      this.products.push(this.profile.products);
+      this.reviews = this.profile.reviews;
+    });
   }
 
   async presentActionSheet() {
