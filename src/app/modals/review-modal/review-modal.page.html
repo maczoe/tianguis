@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Reseña</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="submitReview()">
+    <ion-item>
+      <ion-textarea
+        [(ngModel)]="content"
+        name="content"
+        placeholder="Agregar comentario de la reseña"
+      ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-range
+        [min]="1"
+        [max]="5"
+        [value]="3"
+        [pin]="true"
+        [ticks]="true"
+        [snaps]="true"
+        (ionChange)="onIonChange($event)"
+      ></ion-range>
+    </ion-item>
+    <ion-button expand="full" type="submit">Crear Reseña</ion-button>
+  </form>
+</ion-content>

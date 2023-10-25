@@ -168,6 +168,10 @@ const routes: Routes = [
     path: 'privacy-policy',
     loadChildren: () => import('./modals/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
   },
+  {
+    path: 'review-modal',
+    loadChildren: () => import('./modals/review-modal/review-modal.module').then( m => m.ReviewModalPageModule)
+  },
 
 
 ];

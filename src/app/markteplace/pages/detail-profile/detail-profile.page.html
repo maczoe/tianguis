@@ -109,22 +109,27 @@
 
     <!-- Detail review -->
     <ion-list *ngIf="type === 'review'">
-      ion-butt
-        <ion-item *ngFor="let review of reviews" >
-          <ion-avatar slot="start">
-            <img src="{{review.author.photo}}" />
-          </ion-avatar>
-          <ion-label>
-            <h2>{{review.author.name}}</h2>
-            <h3>
-              <p>
-                <ion-icon name="star"></ion-icon> {{ review.rating |
-                number:'1.1-1' }}
-              </p>
-            </h3>
-            <p>{{review.content}}</p>
-          </ion-label>
-        </ion-item>
+      <ion-button *ngIf="!isProfile"
+        fill="outline"
+        size="small"
+        (click)="openReviewModal(profile.id)"
+        ><ion-icon slot="start" name="add"></ion-icon> Agregar
+      </ion-button>
+      <ion-item *ngFor="let review of reviews">
+        <ion-avatar slot="start">
+          <img src="{{review.author.photo}}" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{review.author.name}}</h2>
+          <h3>
+            <p>
+              <ion-icon name="star"></ion-icon> {{ review.rating |
+              number:'1.1-1' }}
+            </p>
+          </h3>
+          <p>{{review.content}}</p>
+        </ion-label>
+      </ion-item>
     </ion-list>
   </ion-card-content>
 </ion-content>
