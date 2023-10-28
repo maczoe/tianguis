@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { AuthService } from '../auth/services/auth.service';
 import { NotificationsService } from '../core/services/notifications.service';
 import { CategoriesService } from '../markteplace/services/categories.service';
@@ -9,7 +9,6 @@ import { ProductsService } from '../markteplace/services/products.service';
 import { ProfilesService } from '../markteplace/services/profiles.service';
 import { Storage } from '@ionic/storage-angular';
 import { ResponseProducts } from '../markteplace/model/product';
-import { Camera } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +20,7 @@ export class HomePage implements OnInit {
   products = [];
   productsBig = [];
   isAuth = false;
+  showLoginMessage = false;
   productsRecomended = [];
   profiles = [];
 
@@ -33,12 +33,23 @@ export class HomePage implements OnInit {
     private statusBar: StatusBar,
     private fcmService: NotificationsService,
     private authService: AuthService,
-    private storage: Storage
+    private storage: Storage,
+    private navCtrl: NavController
   ) {}
 
   async ngOnInit() {
     await this.storage.create();
-    this.isAuth = await this.authService.validateAuth();
+    this.authService.validateAuth().then((isAuth) => {
+      console.log(isAuth);
+      this.isAuth = isAuth;
+    });
+    setTimeout(() => {
+      if (!this.isAuth) {
+        // Muestra el mensaje o realiza la acción que desees
+        // Por ejemplo, puedes utilizar una variable booleana para mostrar un mensaje en tu HTML.
+        this.showLoginMessage = true;
+      }
+    }, 5000); // 5000 milisegund
     this.initializeApp();
     await this.getData();
   }
@@ -48,7 +59,6 @@ export class HomePage implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.fcmService.initPush();
-      Camera.requestPermissions();
     });
   }
 
@@ -84,5 +94,9 @@ export class HomePage implements OnInit {
     if (done) {
       event.target.complete();
     }
+  }
+
+  goLogin() {
+    this.navCtrl.navigateRoot('/login', { animated: true });
   }
 }

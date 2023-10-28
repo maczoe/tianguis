@@ -2,7 +2,7 @@
   <app-header-bar [isAuth]="isAuth"></app-header-bar>
 </ion-header>
 
-<ion-content class="container" [fullscreen]="true">
+<ion-content class="container" [fullscreen]="true" >
   <!-- Refresher -->
   <ion-refresher slot="fixed" (ionRefresh)="refreshCont($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -24,8 +24,10 @@
   <app-list-product-card-big [products]="productsBig"></app-list-product-card-big>
 </ion-content>
 <ion-footer>
-  <ion-toolbar *ngIf="!isAuth">
-    <p>Para ver todas las opciones (Vender, comprar y cotizar). </p>
-    <p> <a href="/login">Inicia sesión</a></p>
+  <ion-toolbar *ngIf="showLoginMessage && !isAuth">
+    <p>Para ver todas las opciones (Vender, comprar y cotizar).</p>
+    <ion-button expand="block"  shape="round" (click)="goLogin()"
+        >Inicia sesión</ion-button
+      >
   </ion-toolbar>
 </ion-footer>
