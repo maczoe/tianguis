@@ -18,21 +18,21 @@ export class QuotePage implements OnInit {
   user;
   quotes = [];
   refresher: IonRefresher;
+  isAuth = false;
+
   constructor(
     private router: Router,
     private quotesService: QuotesService,
     private loadingCtrl: LoadingController,
     private authService: AuthService
-  ) {
-    this.getQuote();
-    this.user = this.authService.respUser;
-  }
+  ) {}
 
   async showLoading() {
     const loading = await this.loadingCtrl.create({
       message: 'Obteniendo datos..',
       //duration: 3000,
     });
+    this.isAuth = await this.authService.validateAuth();
 
     loading.present();
   }
@@ -41,7 +41,7 @@ export class QuotePage implements OnInit {
     return await this.loadingCtrl.dismiss();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.quotesService.onQuoteUpdate().subscribe(() => {
       this.showLoading();
       setTimeout(() => {
@@ -49,6 +49,11 @@ export class QuotePage implements OnInit {
         this.finishLoading();
       }, 500);
     });
+    this.isAuth = await this.authService.validateAuth();
+    if (this.isAuth) {
+      this.getQuote();
+      this.user = this.authService.respUser;
+    }
   }
 
   async getQuote() {

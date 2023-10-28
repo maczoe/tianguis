@@ -40,6 +40,8 @@ export class ProfilesService {
   }
 
   updateProfile(profile: Profile): Observable<Profile> {
+    console.log(profile);
+
     const headers = new HttpHeaders({
       // eslint-disable-next-line @typescript-eslint/naming-convention
       Authorization: `bearer ${this.authService.token}`,

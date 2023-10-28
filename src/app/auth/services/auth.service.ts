@@ -1,6 +1,6 @@
 /* eslint-disable quote-props */
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
 import { User } from '../models/user.model';
@@ -14,9 +14,12 @@ const URL = environment.urlapi + 'auth/';
 })
 export class AuthService {
   token: string = null;
+  isAuth = false;
   respUser = {
     profile: {},
   };
+  authChanged = new EventEmitter<boolean>();
+
   constructor(
     private http: HttpClient,
     private storage: Storage,
@@ -33,11 +36,14 @@ export class AuthService {
 
   async saveToken(token: string) {
     this.token = token;
+    this.isAuth = true;
+    this.authChanged.emit(true);
     await this.storage.set('token', token);
     await this.validaToken();
   }
 
   async validaToken(): Promise<boolean> {
+    this.isAuth = true;
     await this.cargarTokenStorage();
     if (!this.token) {
       this.navCtrl.navigateRoot('/login');
@@ -63,13 +69,23 @@ export class AuthService {
     });
   }
 
+  async validateAuth(): Promise<boolean> {
+    return new Promise<boolean>(async (resolve) => {
+      this.isAuth = (await this.storage.get('isAuth')) || null;
+      this.authChanged.emit(this.isAuth);
+      resolve(this.isAuth);
+    });
+  }
+
   async cargarTokenStorage() {
     this.token = (await this.storage.get('token')) || null;
+    this.isAuth = true;
   }
 
   logout() {
     this.token = null;
     this.respUser = null;
+    this.isAuth = false;
     this.storage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
   }

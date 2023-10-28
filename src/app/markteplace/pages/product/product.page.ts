@@ -27,7 +27,6 @@ export class ProductPage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-    await this.authService.validaToken();
     this.getProduct(this.productId);
   }
 

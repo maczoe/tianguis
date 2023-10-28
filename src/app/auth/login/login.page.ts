@@ -99,9 +99,9 @@ export class LoginPage implements OnInit {
       this.uiAlerts.alertaInfo('Todos los campos deben estar completos.');
     } else {
       this.authService.login(this.user).subscribe(
-        (data) => {
-          console.log(data);
+        async (data) => {
           this.authService.saveToken(data.access_token);
+          await this.storage.set('isAuth', true);
           this.navCtrl.navigateRoot('/app', { animated: true });
         },
         (err) => {
@@ -114,14 +114,17 @@ export class LoginPage implements OnInit {
 
   async googleAuth() {
     try {
+      await GoogleAuth.signOut();
       const googleUser = await GoogleAuth.signIn();
+      console.log(googleUser);
 
       const loading = await this.loadingCtrl.create({
         message: 'Registrando...',
       });
 
       this.userLMethod.email = googleUser.email;
-      this.userLMethod.name = googleUser.name;
+      this.userLMethod.name = googleUser.name || googleUser.displayName;
+
       this.userLMethod.imageUrl = googleUser.imageUrl;
 
       const us = await this.authService
@@ -141,10 +144,11 @@ export class LoginPage implements OnInit {
           phone: '',
           photo: this.userLMethod.imageUrl,
         };
-
         const profileResponse = await this.profileService
           .registeProfile(profile)
           .toPromise();
+
+        console.log(profileResponse);
         const newUser = {
           email: this.userLMethod.email,
           fullName: this.userLMethod.name,
@@ -176,7 +180,7 @@ export class LoginPage implements OnInit {
     isRegistration: boolean
   ) {
     this.authService.saveToken(response.access_token);
-    const destinationRoute = isRegistration ? '/app/tabs/my-profile' : '/app';
+    const destinationRoute = isRegistration ? '/app' : '/app';
     this.navCtrl.navigateRoot(destinationRoute, { animated: true });
   }
 }

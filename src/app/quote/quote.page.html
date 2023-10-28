@@ -17,7 +17,7 @@
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab> -->
-  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start" *ngIf="isAuth">
     <ion-fab-button>
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
@@ -34,3 +34,9 @@
   </ion-fab>
     
 </ion-content>
+<ion-footer>
+  <ion-toolbar *ngIf="!isAuth">
+    <p>Para ver todas las opciones (Vender, comprar y cotizar). </p>
+    <p> <a href="/login">Inicia sesión</a></p>
+  </ion-toolbar>
+</ion-footer>

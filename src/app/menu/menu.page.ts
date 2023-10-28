@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import {
+  AlertController,
+  ModalController,
+  NavController,
+} from '@ionic/angular';
 import { AuthService } from '../auth/services/auth.service';
 import { Profile } from '../markteplace/model/profile';
 import { PrivacyPolicyPage } from '../modals/privacy-policy/privacy-policy.page';
@@ -11,18 +15,27 @@ import { PrivacyPolicyPage } from '../modals/privacy-policy/privacy-policy.page'
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-  user;
+  user = {
+    profile: {},
+  };
   confirExit = false;
+  isAuth = false;
+
   constructor(
     private router: Router,
     private authService: AuthService,
     private alertController: AlertController,
-    private modalController: ModalController
-  ) {
+    private modalController: ModalController,
+    private navCtrl: NavController
+  ) {}
+
+  async ngOnInit() {
+    this.isAuth = await this.authService.validateAuth();
+    if (!this.isAuth) {
+      this.navCtrl.navigateRoot('/app', { animated: true });
+    }
     this.user = this.authService.respUser;
   }
-
-  ngOnInit() {}
 
   viewRedirect(view: string) {
     this.router.navigateByUrl(view);

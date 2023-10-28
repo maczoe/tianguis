@@ -10,6 +10,8 @@ export class HeaderBarComponent {
 
   @Input()
   title: string;
+  @Input()
+  isAuth: boolean;
 
   constructor(private menu: MenuController) { }
 

@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <app-header-bar></app-header-bar>
+  <app-header-bar [isAuth]="isAuth"></app-header-bar>
 </ion-header>
 
 <ion-content class="container" [fullscreen]="true">
@@ -8,7 +8,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <app-category-list
+<app-category-list
     class="item-list"
     [categories]="categories[0]"
   ></app-category-list>
@@ -23,3 +23,9 @@
   <!-- List Product -->
   <app-list-product-card-big [products]="productsBig"></app-list-product-card-big>
 </ion-content>
+<ion-footer>
+  <ion-toolbar *ngIf="!isAuth">
+    <p>Para ver todas las opciones (Vender, comprar y cotizar). </p>
+    <p> <a href="/login">Inicia sesión</a></p>
+  </ion-toolbar>
+</ion-footer>

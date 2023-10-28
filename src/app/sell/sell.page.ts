@@ -21,7 +21,7 @@ import { environment } from 'src/environments/environment.mock';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
-import { Item } from '../markteplace/components/category-search/types';
+import { Capacitor } from '@capacitor/core';
 
 const IMAGE_DIR = 'stored-images';
 interface LocalFile {
@@ -56,7 +56,6 @@ export class SellPage implements OnInit {
   private imgUlrs: string[] = [];
   private api = environment.urlapi;
   constructor(
-    private categoriesService: CategoriesService,
     private serviceProduct: ProductsService,
     private platform: Platform,
     private loadingCtrl: LoadingController,
@@ -71,10 +70,8 @@ export class SellPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     await this.authService.validaToken();
-    /*  this.categoriesService.getCategories().subscribe((data) => {
-      this.categories = data;
-    }); */
     this.loadFiles();
+    await this.requestPermissions();
   }
   async loadFiles() {
     this.images = [];
@@ -168,12 +165,23 @@ export class SellPage implements OnInit {
     this.product.type = e.detail.value;
   }
 
+  async requestPermissions() {
+    if (Capacitor.isNativePlatform()) {
+      const permissions = await Camera.requestPermissions();
+      if (permissions.camera === 'denied' || permissions.photos === 'denied') {
+        console.log('Permisos', permissions);
+      }
+    }
+  }
+
   async selectImage() {
+    await this.requestPermissions();
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Uri,
       source: CameraSource.Photos,
+      saveToGallery: false,
     });
 
     if (image) {
@@ -182,6 +190,8 @@ export class SellPage implements OnInit {
   }
 
   async selectImageCamera() {
+    await this.requestPermissions();
+
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,

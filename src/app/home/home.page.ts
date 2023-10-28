@@ -9,6 +9,7 @@ import { ProductsService } from '../markteplace/services/products.service';
 import { ProfilesService } from '../markteplace/services/profiles.service';
 import { Storage } from '@ionic/storage-angular';
 import { ResponseProducts } from '../markteplace/model/product';
+import { Camera } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomePage implements OnInit {
   categories = [];
   products = [];
   productsBig = [];
+  isAuth = false;
   productsRecomended = [];
   profiles = [];
 
@@ -36,7 +38,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-    await this.authService.validaToken();
+    this.isAuth = await this.authService.validateAuth();
     this.initializeApp();
     await this.getData();
   }
@@ -46,10 +48,17 @@ export class HomePage implements OnInit {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.fcmService.initPush();
+      Camera.requestPermissions();
     });
   }
 
   async getData() {
+    this.categories = [];
+    this.products = [];
+    this.productsBig = [];
+    this.productsRecomended = [];
+    this.profiles = [];
+
     this.categoriesService.getCategories().subscribe((data) => {
       this.categories.push(data);
     });

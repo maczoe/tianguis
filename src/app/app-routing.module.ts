@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { UserGuard } from './auth/guards/user.guard';
 
 const routes: Routes = [
   {
@@ -164,7 +163,8 @@ const routes: Routes = [
       import('./markteplace/pages/new-offer/new-offer.module').then(
         (m) => m.NewOfferPageModule
       ),
-  },  {
+  },
+  {
     path: 'privacy-policy',
     loadChildren: () => import('./modals/privacy-policy/privacy-policy.module').then( m => m.PrivacyPolicyPageModule)
   },

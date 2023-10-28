@@ -62,6 +62,7 @@ export class ProfilePage implements OnInit {
     await this.authService.validaToken();
     this.getProfile(this.user.profile.id);
     this.loadFiles();
+    Camera.requestPermissions();
   }
 
   getProfile(id) {
@@ -274,7 +275,8 @@ export class ProfilePage implements OnInit {
     });
     await loading.present();
 
-    const { id, createAt, updateAt, ...upPro } = this.profile;
+    const { id, createAt, updateAt, products, reviews, ...upPro } = this.profile;
+
     this.profileService.updateProfile(upPro).subscribe((resp) => {
       loading.dismiss();
 
@@ -282,5 +284,6 @@ export class ProfilePage implements OnInit {
         animated: true,
       });
     });
+    loading.dismiss();
   }
 }

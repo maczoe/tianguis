@@ -55,12 +55,7 @@ export class IntroPage implements OnInit {
     await this.storage.create();
     await this.cargarStorage();
     if (this.isIntroShowed) {
-      const valid = await this.authService.validaToken();
-      if (valid) {
-        this.navCtrl.navigateRoot('/app', { animated: true });
-      } else {
-        this.router.navigateByUrl('/login');
-      }
+      this.navCtrl.navigateRoot('/app', { animated: true });
     }
   }
 
@@ -70,6 +65,10 @@ export class IntroPage implements OnInit {
   async login() {
     await this.storage.set('isIntroShowed', true);
     this.router.navigateByUrl('/login');
+  }
+  async continue() {
+    await this.storage.set('isIntroShowed', true);
+    this.router.navigateByUrl('/app');
   }
 
   async register() {
