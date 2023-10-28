@@ -1,0 +1,29 @@
+.review-card {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  
+    .review-info {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .username {
+      margin-bottom: 5px;
+      font-weight: bold;
+      flex: 1;
+    }
+  
+    .star-icon {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+  
+    .description {
+      color: #333;
+      font-size: 14px;
+      margin-top: 5px; /* Ajusta el margen superior si es necesario */
+    }
+  }
+  

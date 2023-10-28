@@ -9,6 +9,7 @@ import { ProductPageRoutingModule } from './product-routing.module';
 import { ProductPage } from './product.page';
 import { CoreModule } from 'src/app/core/core.module';
 import { SwiperModule } from 'swiper/angular';
+import { MarkteplaceModule } from '../../markteplace.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     CoreModule,
     SwiperModule,
-    ProductPageRoutingModule
+    ProductPageRoutingModule,
+    MarkteplaceModule
   ],
   declarations: [ProductPage]
 })

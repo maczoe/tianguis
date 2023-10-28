@@ -24,4 +24,13 @@ export class ReviewsService {
     const response = this.http.post(this.api, data, { headers });
     return response;
   }
+
+  setReviewsProducto(data): Observable<any> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+    const response = this.http.post(this.api, data, { headers });
+    return response;
+  }
 }

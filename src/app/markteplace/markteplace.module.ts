@@ -21,6 +21,7 @@ import { IonicModule } from '@ionic/angular';
 import { ProductCardHrzComponent } from './components/product-card-hrz/product-card-hrz.component';
 import { ListProductCardBigComponent } from './components/list-product-card-big/list-product-card-big.component';
 import { ProductCardBigComponent } from './components/product-card-big/product-card-big.component';
+import { ReviewComponent } from './components/review/review.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ProductCardBigComponent } from './components/product-card-big/product-c
     ProductCardHrzComponent,
     ListProductCardBigComponent,
     ProductCardBigComponent,
+    ReviewComponent,
   ],
   imports: [CommonModule, IonicModule, SwiperModule],
   exports: [
@@ -64,6 +66,7 @@ import { ProductCardBigComponent } from './components/product-card-big/product-c
     ProductCardHrzComponent,
     ListProductCardBigComponent,
     ProductCardBigComponent,
+    ReviewComponent,
   ],
 })
 export class MarkteplaceModule {}
