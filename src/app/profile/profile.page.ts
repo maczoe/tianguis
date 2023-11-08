@@ -54,10 +54,10 @@ export class ProfilePage implements OnInit {
     private navCtrl: NavController,
     private profilesService: ProfilesService
   ) {
-    this.user = this.authService.respUser;
   }
 
   async ngOnInit() {
+    this.user = this.authService.respUser;
     await this.storage.create();
     await this.authService.validaToken();
     this.getProfile(this.user.profile.id);

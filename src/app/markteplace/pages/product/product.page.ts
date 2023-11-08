@@ -14,6 +14,7 @@ export class ProductPage implements OnInit {
   productId = '0';
   product: Product = {};
   profile: Profile = {};
+  type = 'info';
 
   constructor(
     private router: ActivatedRoute,
@@ -40,4 +41,5 @@ export class ProductPage implements OnInit {
   sendMessage(id) {
     this.routerPath.navigateByUrl('/chat-list/' + id);
   }
+  segmentChanged($event) {}
 }

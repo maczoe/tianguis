@@ -11,9 +11,14 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <swiper [slidesPerView]="1" [spaceBetween]="2" [pagination]="{
+  <swiper
+    [slidesPerView]="1"
+    [spaceBetween]="2"
+    [pagination]="{
     clickable: true
-  }" class="mySwiper">
+  }"
+    class="mySwiper"
+  >
     <ng-template
       swiperSlide
       *ngFor="let img of product.images"
@@ -44,28 +49,45 @@
     <ion-card-title color="primary" class="price-title"
       >{{product.price | currency:'Q'}}</ion-card-title
     >
-    <p><strong>Categorias:</strong></p>
-    <ion-row>
-      <div *ngFor="let category of product.categories">
-        <ion-col
-          ><ion-badge color="medium">{{category.name}} </ion-badge>
-        </ion-col>
-      </div>
-    </ion-row>
+    <ion-segment
+      value="info"
+      [(ngModel)]="type"
+      (ionChange)="segmentChanged($event)"
+      scrollable
+    >
+      <ion-segment-button value="info">
+        <ion-label>Info.</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="review">
+        <ion-label>Reseñas</ion-label>
+      </ion-segment-button>
+    </ion-segment>
 
-    <p><strong>Descripción:</strong></p>
-    <ion-label> {{product.description}} </ion-label>
-    <p><strong>Reseñas:</strong></p>
-    <ion-list>
-      <app-review></app-review>
+    <ion-list *ngIf="type === 'info'">
+      <p><strong>Categorias:</strong></p>
+      <ion-row>
+        <div *ngFor="let category of product.categories">
+          <ion-col
+            ><ion-badge color="medium">{{category.name}} </ion-badge>
+          </ion-col>
+        </div>
+      </ion-row>
+
+      <p><strong>Descripción:</strong></p>
+      <ion-label> {{product.description}} </ion-label>
     </ion-list>
+
+    <ion-list *ngIf="type === 'review'">
+        <app-review></app-review>
+    </ion-list>
+
   </ion-card-content>
 </ion-content>
 <ion-footer>
-  <ion-button
-    expand="block"
-    shape="round"
-    (click)="sendMessage(product.id)"
+  <ion-button *ngIf="type === 'info'" expand="block" shape="round" (click)="sendMessage(product.id)"
     >Comprar</ion-button
+  >
+  <ion-button *ngIf="type === 'review'" expand="block" shape="round" (click)="sendMessage(product.id)"
+    >Enviar Rese</ion-button
   >
 </ion-footer>

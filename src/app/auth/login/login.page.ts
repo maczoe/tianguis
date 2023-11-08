@@ -178,11 +178,12 @@ export class LoginPage implements OnInit {
     this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
   }
 
-  private handleSuccessfulAuthentication(
+  private async handleSuccessfulAuthentication(
     response: any,
     isRegistration: boolean
   ) {
     this.authService.saveToken(response.access_token);
+    await this.storage.set('isAuth', true);
     const destinationRoute = isRegistration ? '/app' : '/app';
     this.navCtrl.navigateRoot(destinationRoute, { animated: true });
   }
