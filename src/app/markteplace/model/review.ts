@@ -10,3 +10,10 @@ export interface Review {
   productId?: number;
   author?: Profile;
 }
+
+export interface ReviewsPage {
+  reviews: Review[];
+  totalItems: number;
+  currentPage: number;
+  pageSize: number;
+}

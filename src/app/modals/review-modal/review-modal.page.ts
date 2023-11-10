@@ -12,6 +12,7 @@ export class ReviewModalPage implements OnInit {
   content: string = '';
   rating;
   profileId;
+  productId;
 
   constructor(
     private modalController: ModalController,
@@ -28,8 +29,8 @@ export class ReviewModalPage implements OnInit {
       content: this.content,
       rating: this.rating ? this.rating : 3,
       profileId: this.profileId,
+      productId: this.productId,
     };
-    console.log(data);
 
     this.reviewSvc.setReviewsProfile(data).subscribe(async (resp) => {
       if (resp.active) {
@@ -47,5 +48,6 @@ export class ReviewModalPage implements OnInit {
 
   ngOnInit() {
     this.profileId = this.navParams.get('profileId');
+    this.productId = this.navParams.get('productId');
   }
 }

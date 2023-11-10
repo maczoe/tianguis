@@ -1,16 +1,17 @@
 <ion-item class="review-card" lines="none">
   <ion-avatar slot="start">
-    <img src="https://placekitten.com/300/300" />
+    <img src="{{review.author.photo}}" />
   </ion-avatar>
   <div>
     <ion-row class="review-info">
-      <h2 class="username">Jaime Sazo</h2>
+      <h2 class="username">{{review.author.name}}</h2>
       <p>
-        4.5 <ion-icon class="star-icon" color="primary" name="star"></ion-icon>
+        {{ review.rating |number:'1.1-1' }} <ion-icon class="star-icon" color="primary" name="star"></ion-icon>
+  
       </p>
     </ion-row>
     <p class="description">
-      Excelentes productos, todo es de calidad y la entrega puntual. Todos sus productos excelentes
+      {{review.content}}
     </p>
   </div>
 </ion-item>

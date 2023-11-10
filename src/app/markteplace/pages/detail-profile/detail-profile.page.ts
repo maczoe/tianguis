@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../model/profile';
-import { ProductsService } from '../../services/products.service';
 import { ProfilesService } from '../../services/profiles.service';
-import { Review } from '../../model/review';
-import { ReviewsService } from '../../services/reviews.service';
 import { ModalController } from '@ionic/angular';
 import { ReviewModalPage } from 'src/app/modals/review-modal/review-modal.page';
 import { AuthService } from 'src/app/auth/services/auth.service';

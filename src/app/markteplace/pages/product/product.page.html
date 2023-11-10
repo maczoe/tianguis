@@ -77,9 +77,11 @@
       <ion-label> {{product.description}} </ion-label>
     </ion-list>
 
-    <ion-list *ngIf="type === 'review'">
-        <app-review></app-review>
-    </ion-list>
+    <ion-list *ngIf="type === 'review'" >
+      <div *ngFor="let review of reviews">
+        <app-review [review]="review"></app-review>
+      </div>
+  </ion-list>
 
   </ion-card-content>
 </ion-content>
@@ -87,7 +89,7 @@
   <ion-button *ngIf="type === 'info'" expand="block" shape="round" (click)="sendMessage(product.id)"
     >Comprar</ion-button
   >
-  <ion-button *ngIf="type === 'review'" expand="block" shape="round" (click)="sendMessage(product.id)"
-    >Enviar Rese</ion-button
+  <ion-button *ngIf="type === 'review'" expand="block" shape="round" (click)="openReviewModal(product.id)"
+    >Enviar Reseña</ion-button
   >
 </ion-footer>
