@@ -1,9 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>home-preview</ion-title>
-  </ion-toolbar>
+<ion-header [translucent]="true">
+  <app-header-bar [isAuth]="false"></app-header-bar>
 </ion-header>
 
-<ion-content>
+<ion-content class="container" [fullscreen]="true" >
+ <!-- Refresher -->
+ <ion-refresher slot="fixed" (ionRefresh)="refreshCont($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+  
+  <app-category-list
+    class="item-list"
+    [categories]="categories[0]"
+  ></app-category-list>
+  <!-- List Products discounted -->
+  <app-discounted-product-list></app-discounted-product-list>
+  <!-- Profile list -->
+  <app-recommended-profile-list
+    [profiles]="profiles[0]"
+  ></app-recommended-profile-list>
+  <!-- List Products recomended -->
+  <app-recommended-product-list></app-recommended-product-list>
+  <!-- List Product -->
+  <app-list-product-card-big [products]="productsBig"></app-list-product-card-big>
 
 </ion-content>
+<ion-footer>
+  <ion-toolbar >
+    <p>Para ver todas las opciones (Vender, comprar y cotizar).</p>
+    <ion-button expand="block"  shape="round" (click)="goLogin()"
+        >Inicia sesión</ion-button
+      >
+  </ion-toolbar>
+</ion-footer>

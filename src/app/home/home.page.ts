@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
-import { NavController, Platform } from '@ionic/angular';
+import { Platform } from '@ionic/angular';
 import { AuthService } from '../auth/services/auth.service';
 import { NotificationsService } from '../core/services/notifications.service';
 import { CategoriesService } from '../markteplace/services/categories.service';
@@ -34,7 +34,6 @@ export class HomePage implements OnInit {
     private fcmService: NotificationsService,
     private authService: AuthService,
     private storage: Storage,
-    private navCtrl: NavController
   ) {}
 
   async ngOnInit() {
@@ -86,9 +85,5 @@ export class HomePage implements OnInit {
     if (done) {
       event.target.complete();
     }
-  }
-
-  goLogin() {
-    this.navCtrl.navigateRoot('/login', { animated: true });
   }
 }

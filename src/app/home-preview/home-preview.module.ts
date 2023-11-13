@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { HomePreviewPageRoutingModule } from './home-preview-routing.module';
 
 import { HomePreviewPage } from './home-preview.page';
+import { MarkteplaceModule } from '../markteplace/markteplace.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePreviewPageRoutingModule
+    CoreModule,
+    HomePreviewPageRoutingModule,
+    MarkteplaceModule
   ],
   declarations: [HomePreviewPage]
 })

@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <app-header-bar [isAuth]="isAuth"></app-header-bar>
+  <app-header-bar [isAuth]="true"></app-header-bar>
 </ion-header>
 
 <ion-content class="container" [fullscreen]="true" >
@@ -23,11 +23,4 @@
   <!-- List Product -->
   <app-list-product-card-big [products]="productsBig"></app-list-product-card-big>
 </ion-content>
-<ion-footer>
-  <ion-toolbar *ngIf="showLoginMessage && !isAuth">
-    <p>Para ver todas las opciones (Vender, comprar y cotizar).</p>
-    <ion-button expand="block"  shape="round" (click)="goLogin()"
-        >Inicia sesión</ion-button
-      >
-  </ion-toolbar>
-</ion-footer>
+
