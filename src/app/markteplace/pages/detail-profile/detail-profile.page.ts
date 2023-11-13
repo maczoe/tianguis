@@ -19,6 +19,8 @@ export class DetailProfilePage implements OnInit {
   type = 'vewProduct';
   user;
   isProfile = false;
+  isAuth = false;
+
   constructor(
     private router: ActivatedRoute,
     private routerPath: Router,
@@ -31,7 +33,11 @@ export class DetailProfilePage implements OnInit {
     this.user = this.authService.respUser;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.validateAuth().then((isAuth) => {
+      this.isAuth = isAuth;
+    });
+  }
 
   getProfile(id) {
     this.profilesService.getProfile(id).subscribe((data) => {

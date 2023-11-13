@@ -41,7 +41,7 @@
 
     <div class="profile__btns">
       <div class="profile__btns--chat">
-        <ion-button
+        <ion-button *ngIf="isAuth"
           color="success"
           shape="round"
           (click)="sendMessage(profile.id)"
@@ -109,7 +109,7 @@
 
     <!-- Detail review -->
     <ion-list *ngIf="type === 'review'">
-      <ion-button *ngIf="!isProfile"
+      <ion-button *ngIf="!isProfile && isAuth"
         fill="outline"
         size="small"
         (click)="openReviewModal(profile.id)"

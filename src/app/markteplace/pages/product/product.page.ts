@@ -21,6 +21,7 @@ export class ProductPage implements OnInit {
   profile: Profile = {};
   type = 'info';
   reviews = [];
+  isAuth = false;
 
   constructor(
     private router: ActivatedRoute,
@@ -37,6 +38,9 @@ export class ProductPage implements OnInit {
   async ngOnInit() {
     await this.storage.create();
     this.getProduct(this.productId);
+    this.authService.validateAuth().then((isAuth) => {
+      this.isAuth = isAuth;
+    });
   }
 
   getProduct(idProduct: string) {
@@ -44,7 +48,7 @@ export class ProductPage implements OnInit {
       this.product = data;
       this.profile = data.profile;
     });
-    this.reviewSvc.getReviewsProduct(idProduct).subscribe(res=>{
+    this.reviewSvc.getReviewsProduct(idProduct).subscribe((res) => {
       this.reviews = res.reviews;
     });
   }
@@ -64,8 +68,8 @@ export class ProductPage implements OnInit {
 
     modal.onDidDismiss().then((data) => {
       if (data.data && data.data.reviewCreated === true) {
-        this.reviewSvc.getReviewsProduct(productId).subscribe(res=>{
-            this.reviews = res.reviews;
+        this.reviewSvc.getReviewsProduct(productId).subscribe((res) => {
+          this.reviews = res.reviews;
         });
       } else {
         console.log('Error al agregar reseña');
