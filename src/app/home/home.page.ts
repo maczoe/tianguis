@@ -39,17 +39,9 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-    this.authService.validateAuth().then((isAuth) => {
+    this.authService.validaToken().then((isAuth) => {
       console.log(isAuth);
-      this.isAuth = isAuth;
     });
-    setTimeout(() => {
-      if (!this.isAuth) {
-        // Muestra el mensaje o realiza la acción que desees
-        // Por ejemplo, puedes utilizar una variable booleana para mostrar un mensaje en tu HTML.
-        this.showLoginMessage = true;
-      }
-    }, 5000); // 5000 milisegund
     this.initializeApp();
     await this.getData();
   }

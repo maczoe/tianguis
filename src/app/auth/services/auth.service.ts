@@ -45,7 +45,7 @@ export class AuthService {
   async validaToken(): Promise<boolean> {
     await this.cargarTokenStorage();
     if (!this.token) {
-      this.navCtrl.navigateRoot('/login');
+      this.navCtrl.navigateRoot('/preview');
       return Promise.resolve(false);
     }
     return new Promise<boolean>((resolve) => {
@@ -60,7 +60,7 @@ export class AuthService {
           resolve(true);
         },
         (err) => {
-          this.navCtrl.navigateRoot('/login');
+          this.navCtrl.navigateRoot('/preview');
 
           resolve(false);
         }

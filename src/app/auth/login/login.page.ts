@@ -175,7 +175,7 @@ export class LoginPage implements OnInit {
     this.router.navigateByUrl('/register');
   }
   goHome() {
-    this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
+    this.navCtrl.navigateRoot('/preview', { animated: true });
   }
 
   private async handleSuccessfulAuthentication(

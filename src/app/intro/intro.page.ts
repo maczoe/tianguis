@@ -68,7 +68,7 @@ export class IntroPage implements OnInit {
   }
   async continue() {
     await this.storage.set('isIntroShowed', true);
-    this.router.navigateByUrl('/app');
+    this.router.navigateByUrl('/preview');
   }
 
   async register() {

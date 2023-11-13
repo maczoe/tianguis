@@ -172,6 +172,19 @@ const routes: Routes = [
     path: 'review-modal',
     loadChildren: () => import('./modals/review-modal/review-modal.module').then( m => m.ReviewModalPageModule)
   },
+  {
+    path: 'home-preview',
+    loadChildren: () => import('./home-preview/home-preview.module').then( m => m.HomePreviewPageModule)
+  },
+  {
+    path: 'preview',
+    loadChildren: () => import('./tabs-preview/tabs-preview.module').then( m => m.TabsPreviewPageModule)
+  },
+{
+    path: 'app',
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+  },
 
 
 ];
