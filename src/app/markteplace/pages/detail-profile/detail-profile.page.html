@@ -3,7 +3,7 @@
     <ion-buttons>
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end"  *ngIf="isAuth">
       <app-notification-icon [newNotifications]="10"></app-notification-icon>
       <app-chat-icon [newNotifications]="10"></app-chat-icon>
     </ion-buttons>
@@ -29,7 +29,7 @@
     </div>
     <div class="profile__info">
       <div class="profile__info--box">
-        <p><ion-icon name="star"></ion-icon> {{profile.rating}}</p>
+        <p><ion-icon name="star"></ion-icon> {{profile.rating |number:'1.1-1'}}</p>
       </div>
       <div class="profile__info--box">
         <p><ion-icon name="pricetags"></ion-icon> {{profile.sales}}</p>
@@ -133,3 +133,13 @@
     </ion-list>
   </ion-card-content>
 </ion-content>
+
+<ion-footer *ngIf="!isAuth">
+  <ion-toolbar >
+    <p>Para ver todas las opciones (Vender, comprar y cotizar).</p>
+    <ion-button expand="block"  shape="round" (click)="goLogin()"
+        >Inicia sesión</ion-button
+      >
+  </ion-toolbar>
+</ion-footer>
+

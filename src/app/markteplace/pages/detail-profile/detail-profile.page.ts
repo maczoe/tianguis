@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from '../../model/profile';
 import { ProfilesService } from '../../services/profiles.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { ReviewModalPage } from 'src/app/modals/review-modal/review-modal.page';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -26,7 +26,9 @@ export class DetailProfilePage implements OnInit {
     private routerPath: Router,
     private profilesService: ProfilesService,
     private modalController: ModalController,
-    private authService: AuthService
+    private authService: AuthService,
+    private navCtrl: NavController
+
   ) {
     this.profileId = this.router.snapshot.paramMap.get('idProfile');
     this.getProfile(this.profileId);
@@ -74,5 +76,9 @@ export class DetailProfilePage implements OnInit {
 
   sendMessage(profileId) {
     this.routerPath.navigateByUrl('/chat-list/' + profileId);
+  }
+
+  goLogin() {
+    this.navCtrl.navigateRoot('/login', { animated: true });
   }
 }

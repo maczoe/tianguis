@@ -69,7 +69,7 @@ export class AuthService {
   }
 
   async validateAuth(): Promise<boolean> {
-    return (await this.storage.get('toisAuthken')) || false;
+    return (await this.storage.get('isAuth')) || false;
 }
 
   async cargarTokenStorage() {

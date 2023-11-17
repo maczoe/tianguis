@@ -5,7 +5,7 @@ import { Product } from '../../model/product';
 import { Profile } from '../../model/profile';
 import { ProductsService } from '../../services/products.service';
 import { Storage } from '@ionic/storage-angular';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 
 import { ReviewModalPage } from 'src/app/modals/review-modal/review-modal.page';
 import { ReviewsService } from '../../services/reviews.service';
@@ -30,7 +30,8 @@ export class ProductPage implements OnInit {
     private authService: AuthService,
     private reviewSvc: ReviewsService,
     private modalController: ModalController,
-    private storage: Storage
+    private storage: Storage,
+    private navCtrl: NavController
   ) {
     this.productId = this.router.snapshot.paramMap.get('idProduct');
   }
@@ -77,5 +78,9 @@ export class ProductPage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  goLogin() {
+    this.navCtrl.navigateRoot('/login', { animated: true });
   }
 }
