@@ -4,6 +4,7 @@ import { ProductsService } from '../markteplace/services/products.service';
 import { ProfilesService } from '../markteplace/services/profiles.service';
 import { ResponseProducts } from '../markteplace/model/product';
 import { NavController } from '@ionic/angular';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-home-preview',
@@ -23,10 +24,18 @@ export class HomePreviewPage implements OnInit {
     private categoriesService: CategoriesService,
     private productsService: ProductsService,
     private profilesService: ProfilesService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private authSvc: AuthService
   ) { }
 
  async ngOnInit() {
+
+  this.authSvc.validateAuth().then((isAuth) => {
+    console.log(isAuth);
+    if(isAuth){
+    this.navCtrl.navigateRoot('/app', { animated: true });
+    }
+  });
     await this.getData();
   }
 

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../../model/product';
+import { FavoriteProductService } from '../../services/favorite-product.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,16 +9,33 @@ import { Product } from '../../model/product';
   styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product: Product={};
-  constructor( private router: Router) { }
+  @Input() product: Product = {};
+  @Input() isFavorite = false;
+  constructor(
+    private router: Router,
+    private favProductSvc: FavoriteProductService
+  ) {}
 
   ngOnInit() {}
   selectProduc(productId) {
-    this.router.navigateByUrl('/product/'+productId);
+    this.router.navigateByUrl('/product/' + productId);
   }
 
   eventFavorite(favorite) {
-    this.product.favorite=favorite;
+    if (favorite) {
+      this.isFavorite = favorite;
+      this.favProductSvc
+        .addFavoriteProduct(this.product.id)
+        .subscribe((data) => {
+          console.log(data);
+        });
+    } else {
+      this.isFavorite = favorite;
+      this.favProductSvc
+        .removeFavoriteProduct(this.product.id)
+        .subscribe((data) => {
+          console.log(data);
+        });
+    }
   }
-
 }

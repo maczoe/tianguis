@@ -9,6 +9,7 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./recommended-product-list.component.scss'],
 })
 export class RecommendedProductListComponent implements OnInit {
+  @Input() productsFavorite = [];
   products: Product[] = [];
   constructor(private router: Router, private productService: ProductsService) {
     this.productService.getProductsRecomm().subscribe((data) => {
@@ -20,5 +21,9 @@ export class RecommendedProductListComponent implements OnInit {
 
   selectProduc(productId) {
     this.router.navigateByUrl('/product/' + productId);
+  }
+
+  isProductFavorite(product: Product): boolean {
+    return this.productsFavorite.some((favoriteProduct) => favoriteProduct.product.id === product.id);
   }
 }

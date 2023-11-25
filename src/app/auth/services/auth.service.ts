@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
 import { Storage } from '@ionic/storage-angular';
 import { NavController } from '@ionic/angular';
 import { Profile } from 'src/app/markteplace/model/profile';
+import { LoginPage } from '../login/login.page';
 
 const URL = environment.urlapi + 'auth/';
 @Injectable({
@@ -16,7 +17,7 @@ export class AuthService {
   token: string = null;
   isAuth = false;
   respUser = {
-    profile: {},
+    profile: { id: 0 },
   };
   authChanged = new EventEmitter<boolean>();
 
@@ -45,6 +46,8 @@ export class AuthService {
   async validaToken(): Promise<boolean> {
     await this.cargarTokenStorage();
     if (!this.token) {
+      this.authChanged.emit(false);
+      await this.storage.set('isAuth', false);
       this.navCtrl.navigateRoot('/preview');
       return Promise.resolve(false);
     }
@@ -60,8 +63,7 @@ export class AuthService {
           resolve(true);
         },
         (err) => {
-          this.navCtrl.navigateRoot('/preview');
-
+          this.logout();
           resolve(false);
         }
       );
@@ -70,18 +72,31 @@ export class AuthService {
 
   async validateAuth(): Promise<boolean> {
     return (await this.storage.get('isAuth')) || false;
-}
+  }
 
   async cargarTokenStorage() {
     this.token = (await this.storage.get('token')) || null;
     this.isAuth = true;
   }
 
-  logout() {
+  async getUserData() {
+    if (this.respUser.profile.id > 0) {
+      console.log(this.respUser);
+
+      return this.respUser;
+    } else {
+      await this.validaToken();
+      return this.respUser;
+    }
+  }
+
+  async logout() {
     this.token = null;
     this.respUser = null;
     this.isAuth = false;
     this.storage.clear();
+    this.authChanged.emit(false);
+    await this.storage.set('isAuth', false);
     this.navCtrl.navigateRoot('/login', { animated: true });
   }
 

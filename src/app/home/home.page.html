@@ -13,13 +13,13 @@
     [categories]="categories[0]"
   ></app-category-list>
   <!-- List Products discounted -->
-  <app-discounted-product-list></app-discounted-product-list>
+  <app-discounted-product-list [productsFavorite]="productsFavorite"></app-discounted-product-list>
   <!-- Profile list -->
   <app-recommended-profile-list
     [profiles]="profiles[0]"
   ></app-recommended-profile-list>
   <!-- List Products recomended -->
-  <app-recommended-product-list></app-recommended-product-list>
+  <app-recommended-product-list [productsFavorite]="productsFavorite"></app-recommended-product-list>
   <!-- List Product -->
   <app-list-product-card-big [products]="productsBig"></app-list-product-card-big>
 </ion-content>

@@ -17,13 +17,13 @@
     <div class="product__header--heart">
       <ion-icon
         (click)="eventFavorite(false)"
-        *ngIf="product.favorite"
+        *ngIf="isFavorite"
         slot="start"
         name="heart"
       ></ion-icon>
       <ion-icon
         (click)="eventFavorite(true)"
-        *ngIf="!product.favorite"
+        *ngIf="!isFavorite"
         slot="start"
         name="heart-outline"
       ></ion-icon>
