@@ -9,9 +9,9 @@
 
 <ion-content>
   <ion-searchbar placeholder="Buscar"></ion-searchbar>
-  <ion-row *ngIf="products.length>0">
+  <ion-row *ngIf="productsFavorite.length>0">
     <ion-col size="12" *ngFor="let product of products">
-      <app-product-card-hrz [product]="product"></app-product-card-hrz>
+      <app-product-card-hrz [product]="product" [productsFavorite]="productsFavorite"></app-product-card-hrz>
     </ion-col>
   </ion-row>  
   <ion-row *ngIf="products.length===0">

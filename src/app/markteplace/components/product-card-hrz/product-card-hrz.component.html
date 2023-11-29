@@ -22,8 +22,8 @@
         </div>
       </div>
       <div class="card-hrz__col--data--details--heart">
-        <ion-icon (click)="eventFavorite(false)" *ngIf="product.favorite" slot="start" name="heart"></ion-icon>
-      <ion-icon (click)="eventFavorite(true)" *ngIf="!product.favorite" slot="start" name="heart-outline"></ion-icon>
+        <ion-icon (click)="eventFavorite(false)" *ngIf="isFavorite" slot="start" name="heart"></ion-icon>
+        <ion-icon (click)="eventFavorite(true)" *ngIf="!isFavorite" slot="start" name="heart-outline"></ion-icon>
       </div>
     </div>
     

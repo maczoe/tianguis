@@ -4,6 +4,8 @@ import { Category } from '../../model/category';
 import { Product } from '../../model/product';
 import { CategoriesService } from '../../services/categories.service';
 import { ProductsService } from '../../services/products.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { FavoriteProductService } from '../../services/favorite-product.service';
 
 @Component({
   selector: 'app-products-category',
@@ -17,18 +19,25 @@ export class ProductsCategoryPage implements OnInit {
     id: 0,
     name: '',
   };
+  user;
+  productsFavorite = [];
   constructor(
     private router: ActivatedRoute,
     private categoriesService: CategoriesService,
-    private productsService: ProductsService
-  ) {
-    this.categoryId = parseInt(this.router.snapshot.paramMap.get('idCategory'));
+    private productsService: ProductsService,
+    private authService: AuthService,
+    private favProductSvc: FavoriteProductService
+  ) {}
 
+  async ngOnInit() {
+    this.user = await this.authService.getUserData();
+    this.categoryId = parseInt(
+      this.router.snapshot.paramMap.get('idCategory'),
+      10
+    );
     this.getCategory(this.categoryId);
     this.getProductsCategory(this.categoryId);
   }
-
-  ngOnInit() {}
 
   getCategory(categoryId: number) {
     this.categoriesService.getCategoryId(categoryId).then((data: Category) => {
@@ -39,8 +48,18 @@ export class ProductsCategoryPage implements OnInit {
   getProductsCategory(categoryId: number) {
     this.productsService
       .getProductCategory(categoryId)
-      .subscribe((resp: Product[]) => {
+      .subscribe(async (resp: Product[]) => {
+        await this.getFavoriteProducts();
         this.products = resp;
+      });
+  }
+
+  async getFavoriteProducts() {
+    this.favProductSvc
+      .getFavoriteProducts(this.user.profile.id)
+      .subscribe((data) => {
+        console.log(data, this.user.profile.id);
+        this.productsFavorite = data;
       });
   }
 }

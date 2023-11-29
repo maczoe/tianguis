@@ -81,8 +81,6 @@ export class AuthService {
 
   async getUserData() {
     if (this.respUser.profile.id > 0) {
-      console.log(this.respUser);
-
       return this.respUser;
     } else {
       await this.validaToken();
