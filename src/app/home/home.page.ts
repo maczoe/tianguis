@@ -10,6 +10,7 @@ import { ProfilesService } from '../markteplace/services/profiles.service';
 import { Storage } from '@ionic/storage-angular';
 import { Product, ResponseProducts } from '../markteplace/model/product';
 import { FavoriteProductService } from '../markteplace/services/favorite-product.service';
+import { FavoriteProfileService } from '../markteplace/services/favorite-profile.service';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomePage implements OnInit {
   user;
 
   productsFavorite = [];
+  profilesFavorite = [];
 
   constructor(
     private categoriesService: CategoriesService,
@@ -38,7 +40,8 @@ export class HomePage implements OnInit {
     private fcmService: NotificationsService,
     private authService: AuthService,
     private storage: Storage,
-    private favProductSvc: FavoriteProductService
+    private favProductSvc: FavoriteProductService,
+    private favProfileSvc: FavoriteProfileService
   ) {}
 
   async ngOnInit() {
@@ -82,6 +85,11 @@ export class HomePage implements OnInit {
         this.productsFavorite = data;
       });
 
+    this.favProfileSvc
+      .getFavoriteProfiles(this.user.profile.id)
+      .subscribe((data) => {
+        this.profilesFavorite = data;
+      });
     this.productsService
       .getProductsPage()
       .subscribe((data: ResponseProducts) => {

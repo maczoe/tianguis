@@ -3,6 +3,8 @@
 </ion-text>
 <swiper [slidesPerView]="2.3" [spaceBetween]="10" class="product-descount">
   <ng-template swiperSlide *ngFor="let profile of profiles">
-    <app-profile-card [profile]="profile"></app-profile-card>
+    <app-profile-card [profile]="profile"
+    [isFavorite]="isProfileFavorite(profile)"
+    ></app-profile-card>
   </ng-template>
 </swiper>

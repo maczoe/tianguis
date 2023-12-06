@@ -21,8 +21,8 @@
       <div>Ventas</div>
     </div>
     <div class="profile__footer--heart">
-      <ion-icon (click)="eventFavorite(false)" *ngIf="profile.favorite" slot="start" name="heart"></ion-icon>
-      <ion-icon (click)="eventFavorite(true)" *ngIf="!profile.favorite" slot="start" name="heart-outline"></ion-icon>
+      <ion-icon (click)="eventFavorite(false)" *ngIf="isFavorite" slot="start" name="heart"></ion-icon>
+      <ion-icon (click)="eventFavorite(true)" *ngIf="!isFavorite" slot="start" name="heart-outline"></ion-icon>
     </div>
   </div>
 </div>

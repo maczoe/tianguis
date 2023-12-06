@@ -9,7 +9,12 @@ import { Profile } from '../../model/profile';
 })
 export class RecommendedProfileListComponent implements OnInit {
   @Input() profiles: Profile[] = [];
+  @Input() profilesFavorite = [];
   constructor() {}
 
   ngOnInit() {}
+
+  isProfileFavorite(profile: Profile): boolean {
+    return this.profilesFavorite.some((favoriteProfile) => favoriteProfile.profile.id === profile.id);
+  }
 }
