@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
-import { Category } from '../model/category';
+import { Category, ResponseCategories } from '../model/category';
 const urlApi = environment.mockapi;
 
 @Injectable({
@@ -29,6 +29,10 @@ export class CategoriesService {
 
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.api);
+  }
+
+  getCategoriesList(): Observable<ResponseCategories> {
+    return this.http.get<ResponseCategories>(this.api + '/list');
   }
 
   getCategoryId(categoryId) {
