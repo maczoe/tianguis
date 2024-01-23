@@ -67,8 +67,8 @@ export class HomePage implements OnInit {
     this.productsRecomended = [];
     this.profiles = [];
 
-    this.categoriesService.getCategories().subscribe((data) => {
-      this.categories.push(data);
+    this.categoriesService.getCategoriesList().subscribe((data) => {
+      this.categories.push(data.categories);
     });
 
     this.productsService.getProducts().subscribe((data) => {

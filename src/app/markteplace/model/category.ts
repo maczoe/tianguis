@@ -3,3 +3,10 @@ export interface Category {
   name: string;
   image?: string;
 }
+
+export interface ResponseCategories {
+  categories: Category[];
+  totalItems: number;
+  currentPage: number;
+  pageSize: number;
+}
