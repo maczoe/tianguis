@@ -16,12 +16,7 @@ export class ChatListPage implements OnInit {
     {
       user: 'Mario Lopez',
       createdAt: new Date('20223-12-2 14:01').getTime(),
-      message: ' Hola !',
-    },
-    {
-      user: 'Mario Lopez',
-      createdAt: new Date('2023-12-2 14:05').getTime(),
-      message: ' Quisiera información de producto.',
+      message: ' Hola!',
     },
     {
       user: 'Simon Perez',
