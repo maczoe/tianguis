@@ -7,31 +7,30 @@
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-list>
+  <ion-segment
+      value="info"
+      [(ngModel)]="type"
+      (ionChange)="segmentChanged($event)"
+      scrollable
+    >
+      <ion-segment-button value="quotes">
+        <ion-label>Cotizaciones</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="myQuotes" *ngIf="isAuth">
+        <ion-label>Mis Cotizaciones</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  <ion-list *ngIf="type === 'quotes'">
       <app-quote-list [quotes]="quotes[0]"></app-quote-list>
   </ion-list>
 
   
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newQuote()">
+ <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newQuote()" *ngIf="isAuth && type==='myQuotes'">
     <ion-fab-button>
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab> -->
-  <ion-fab slot="fixed" vertical="bottom" horizontal="start" *ngIf="isAuth">
-    <ion-fab-button>
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-    <ion-fab-list side="top">
-      <ion-button color="tertiary"  (click)="newQuote()">
-        <ion-icon name="add-circle-outline"></ion-icon>
-        <ion-label>Nueva</ion-label>
-      </ion-button>
-      <ion-button color="success" (click)="getQuoteUser()">
-        <ion-icon name="list-circle-outline"></ion-icon>
-        <ion-label>Mis Cotizaciones</ion-label>
-      </ion-button>
-    </ion-fab-list>
-  </ion-fab>
+  </ion-fab> 
+
     
 </ion-content>
 <ion-footer>

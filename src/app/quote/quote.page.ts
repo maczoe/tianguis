@@ -20,6 +20,8 @@ export class QuotePage implements OnInit {
   refresher: IonRefresher;
   isAuth = false;
 
+  type = 'quotes';
+
   constructor(
     private router: Router,
     private quotesService: QuotesService,
@@ -64,6 +66,8 @@ export class QuotePage implements OnInit {
       // this.finishLoading();
     });
   }
+
+  segmentChanged($event) {}
 
   getQuoteUser() {
     if (this.user) {
