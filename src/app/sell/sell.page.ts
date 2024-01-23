@@ -7,7 +7,6 @@ import {
 } from '@ionic/angular';
 import { Category } from '../markteplace/model/category';
 import { Product } from '../markteplace/model/product';
-import { CategoriesService } from '../markteplace/services/categories.service';
 import { ProductsService } from '../markteplace/services/products.service';
 import { Storage } from '@ionic/storage-angular';
 import {
@@ -22,6 +21,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/services/auth.service';
 import { Capacitor } from '@capacitor/core';
+import { NgForm } from '@angular/forms';
+import { UiAlertsService } from '../core/services/ui-alerts.service';
 
 const IMAGE_DIR = 'stored-images';
 interface LocalFile {
@@ -49,6 +50,8 @@ export class SellPage implements OnInit {
     name: '',
   };
   inOfer = false;
+  selectedStatus = '';
+  selectedType = '';
 
   categories: Category[] = [];
   selectedCategoryCount = 0;
@@ -63,7 +66,8 @@ export class SellPage implements OnInit {
     private http: HttpClient,
     private authService: AuthService,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private uiAlerts: UiAlertsService
   ) {
     this.platform = platform;
   }
@@ -106,6 +110,20 @@ export class SellPage implements OnInit {
   productOfer(ofer: boolean) {
     this.inOfer = ofer;
   }
+  //Reset from
+  resetForm(frm: NgForm) {
+    this.images = [];
+    this.selectedCategory = [];
+    this.imgUlrs = [];
+    this.product = {
+      profileId: 3,
+      images: [],
+      oldPrice: 0,
+    };
+    this.selectedStatus = '';
+    this.selectedType = '';
+    frm.reset();
+  }
 
   async loadinFileData(filesNames) {
     for (const f of filesNames) {
@@ -132,7 +150,7 @@ export class SellPage implements OnInit {
     this.categoriesSelect = ev.target.value;
   }
 
-  async onSubmit() {
+  async onSubmit(frm: NgForm) {
     const catIds: number[] = [];
     const loading = await this.loadingCtrl.create({
       message: 'Registrando Producto...',
@@ -155,12 +173,23 @@ export class SellPage implements OnInit {
       catIds.push(cat.id);
     });
     this.product.categoriesIds = catIds;
-    this.serviceProduct.createProduct(this.product).subscribe((data) => {
-      console.log(data);
-      loading.dismiss();
-      this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
-    });
+    this.serviceProduct.createProduct(this.product).subscribe(
+      (data) => {
+        console.log(data);
+        loading.dismiss();
+        this.resetForm(frm);
+        this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
+      },
+      (err) => {
+        console.error('Error:', err);
+        loading.dismiss();
+        this.uiAlerts.alertaInfo(
+          'Ocurrió un error al crear el producto. Por favor, inténtalo de nuevo.'
+        );
+      }
+    );
     loading.dismiss();
+    this.resetForm(frm);
   }
   handleStatus(e) {
     this.product.status = e.detail.value;
@@ -259,8 +288,6 @@ export class SellPage implements OnInit {
 
   /* Search Category */
   private formatData(data: Category[]) {
-    console.log('cate Rece', data);
-
     return data.length;
   }
 

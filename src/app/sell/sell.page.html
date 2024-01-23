@@ -20,7 +20,7 @@
     <div class="ion-text-center">
       <h2>Registrar</h2>
     </div>
-    <form #frm="ngForm" (ngSubmit)="onSubmit()">
+    <form #frm="ngForm" (ngSubmit)="onSubmit(frm)">
       <ion-row>
         <ion-col size="12">
           <ion-item>
@@ -124,6 +124,8 @@
           <ion-item>
             <ion-label position="stacked">Estado</ion-label>
             <ion-select
+              [(ngModel)]="selectedStatus"
+              name="status"
               (ionChange)="handleStatus($event)"
               placeholder="Seleccione un estado"
               required
@@ -140,6 +142,8 @@
           <ion-item>
             <ion-label position="stacked">Tipo</ion-label>
             <ion-select
+              [(ngModel)]="selectedType"
+              name="type"
               (ionChange)="handleType($event)"
               placeholder="Seleccione un tipo"
               required
