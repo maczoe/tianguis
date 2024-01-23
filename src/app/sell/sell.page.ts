@@ -48,6 +48,7 @@ export class SellPage implements OnInit {
     id: 1,
     name: '',
   };
+  inOfer = false;
 
   categories: Category[] = [];
   selectedCategoryCount = 0;
@@ -101,6 +102,9 @@ export class SellPage implements OnInit {
       .then(() => {
         loading.dismiss();
       });
+  }
+  productOfer(ofer: boolean) {
+    this.inOfer = ofer;
   }
 
   async loadinFileData(filesNames) {

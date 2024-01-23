@@ -5,6 +5,8 @@ import { ProfilesService } from '../../services/profiles.service';
 import { ModalController, NavController } from '@ionic/angular';
 import { ReviewModalPage } from 'src/app/modals/review-modal/review-modal.page';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { FavoriteProfileService } from '../../services/favorite-profile.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-detail-profile',
@@ -21,33 +23,46 @@ export class DetailProfilePage implements OnInit {
   isProfile = false;
   isAuth = false;
 
+  isFavorite = false;
+
+  productsFavorite = [];
+  profilesFavorite = [];
+
   constructor(
     private router: ActivatedRoute,
     private routerPath: Router,
     private profilesService: ProfilesService,
     private modalController: ModalController,
     private authService: AuthService,
-    private navCtrl: NavController
-
+    private navCtrl: NavController,
+    private storage: Storage,
+    private favProfileSvc: FavoriteProfileService
   ) {
     this.profileId = this.router.snapshot.paramMap.get('idProfile');
     this.getProfile(this.profileId);
     this.user = this.authService.respUser;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.authService.validateAuth().then((isAuth) => {
       this.isAuth = isAuth;
     });
   }
 
-  getProfile(id) {
-    this.profilesService.getProfile(id).subscribe((data) => {
+   getProfile(id) {
+    this.profilesService.getProfile(id).subscribe(async (data) => {
+      this.productsFavorite = JSON.parse(
+        await this.storage.get('productsFavorite')
+      );
+      this.profilesFavorite = JSON.parse(
+        await this.storage.get('profilesFavorite')
+      );
+      console.log(this.profilesFavorite);
       this.profile = data;
       this.isProfile = this.profile.id === this.user.profile.id;
       this.products.push(this.profile.products);
       this.reviews = this.profile.reviews;
-      console.log(this.reviews);
+      this.isProfileFavorite(this.profile);
     });
   }
   async openReviewModal(profileId: number) {
@@ -71,7 +86,21 @@ export class DetailProfilePage implements OnInit {
 
   segmentChanged($event) {}
   eventFavorite(favorite) {
-    this.profile.favorite = favorite;
+    if (favorite) {
+      this.isFavorite = favorite;
+      this.favProfileSvc
+        .addFavoriteProfile(this.profile.id)
+        .subscribe((data) => {
+          console.log(data);
+        });
+    } else {
+      this.isFavorite = favorite;
+      this.favProfileSvc
+        .removeFavoriteProfile(this.profile.id)
+        .subscribe((data) => {
+          console.log(data);
+        });
+    }
   }
 
   sendMessage(profileId) {
@@ -80,5 +109,12 @@ export class DetailProfilePage implements OnInit {
 
   goLogin() {
     this.navCtrl.navigateRoot('/login', { animated: true });
+  }
+
+  isProfileFavorite(profile: Profile) {
+    this.isFavorite = this.profilesFavorite.some(
+      (favoriteProfile) => favoriteProfile.profile.id === profile.id
+    );
+    console.log(this.isFavorite);
   }
 }

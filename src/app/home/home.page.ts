@@ -83,12 +83,16 @@ export class HomePage implements OnInit {
       .getFavoriteProducts(this.user.profile.id)
       .subscribe((data) => {
         this.productsFavorite = data;
+        this.storage.set('productFavorite', JSON.stringify(this.productsFavorite));
+
       });
 
     this.favProfileSvc
       .getFavoriteProfiles(this.user.profile.id)
       .subscribe((data) => {
         this.profilesFavorite = data;
+         this.storage.set('profileFavorite', JSON.stringify(this.profilesFavorite));
+
       });
     this.productsService
       .getProductsPage()
