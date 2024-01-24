@@ -41,14 +41,14 @@
 
     <div class="profile__btns">
       <div class="profile__btns--chat">
-        <ion-button *ngIf="isAuth"
+        <!-- <ion-button *ngIf="isAuth"
           color="success"
           shape="round"
           (click)="sendMessage(profile.id)"
         >
           <ion-icon name="chatbox-outline"></ion-icon>
           Enviar Mensaje
-        </ion-button>
+        </ion-button> -->
       </div>
       <div class="profile__btns--favorite">
         <ion-icon (click)="eventFavorite(false)" *ngIf="isFavorite" slot="start" name="heart"></ion-icon>
