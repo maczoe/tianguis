@@ -16,7 +16,13 @@ import { PrivacyPolicyPage } from '../modals/privacy-policy/privacy-policy.page'
 })
 export class MenuPage implements OnInit {
   user = {
-    profile: {},
+    profile: {
+      name: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      photo: '',
+    },
   };
   confirExit = false;
   isAuth = false;

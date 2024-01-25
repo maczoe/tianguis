@@ -1,4 +1,5 @@
 import { CoreModule } from './core/core.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -13,6 +14,7 @@ import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Drivers } from '@ionic/storage';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,16 @@ import { Drivers } from '@ionic/storage';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Optional registration options
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -17,7 +17,13 @@ export class AuthService {
   token: string = null;
   isAuth = false;
   respUser = {
-    profile: { id: 0 },
+    profile: { id: 0,
+      name: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      photo: '',
+    },
   };
   authChanged = new EventEmitter<boolean>();
 
