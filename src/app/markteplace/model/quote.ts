@@ -30,3 +30,10 @@ export interface Quote {
   responses?: ResponseQuote[];
   categoriesIds?: number[];
 }
+
+export interface QuotesResponse {
+  quotes: Quote[];
+  totalItems?: number;
+  currentPage?: string;
+  pageSize?: string;
+}

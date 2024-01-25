@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, NavController, Platform } from '@ionic/angular';
 
@@ -7,6 +7,7 @@ import {
   FormBuilder,
   Validators,
   FormControl,
+  NgForm,
 } from '@angular/forms';
 import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
 import { User } from '../models/user.model';
@@ -24,6 +25,7 @@ const clientId = environment.clientIdGoolge;
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  @ViewChild('lgForm') lgForm: NgForm;
   user: User = {
     email: '',
     password: '',
@@ -110,6 +112,10 @@ export class LoginPage implements OnInit {
         }
       );
     }
+  }
+
+  submitForm(){
+    this.lgForm.ngSubmit.emit();
   }
 
   async googleAuth() {

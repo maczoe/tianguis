@@ -8,6 +8,7 @@
 </ion-header>
 <ion-content padding>
   <form
+    #lgForm="ngForm" 
     [formGroup]="validationFormUser"
     (ngSubmit)="login(validationFormUser.value)"
   >
@@ -54,6 +55,7 @@
                 formControlName="password"
                 placeholder="Contraseña"
                 [(ngModel)]="user.password"
+                (keyup.enter)="submitForm()"
               ></ion-input>
             </ion-item>
             <div>

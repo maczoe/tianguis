@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
 
-import { Quote } from '../model/quote';
+import { Quote, QuotesResponse } from '../model/quote';
 import { AuthService } from 'src/app/auth/services/auth.service';
 const urlApi = environment.mockapi;
 @Injectable({
@@ -22,21 +22,39 @@ export class QuotesService {
     return this.quoteUpdated.asObservable();
   }
 
-  getQuotes(): Observable<Quote[]> {
+  getQuotes(): Observable<QuotesResponse> {
     if (!urlApi) {
       //TODO: make local JSON file requests/*  */
     } else {
       //TODO: make requests to the API server
-      return this.http.get<Quote[]>(this.api);
+      return this.http.get<QuotesResponse>(this.api);
     }
   }
 
-  getQuoteById(id): Observable<Quote> {
+  getMyQuotes(): Observable<QuotesResponse> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
     if (!urlApi) {
       //TODO: make local JSON file requests/*  */
     } else {
       //TODO: make requests to the API server
-      return this.http.get<Quote>(this.api + '/' + id);
+    return this.http.get<QuotesResponse>(this.api+  '/my',{ headers });
+    }
+  }
+
+
+  getQuoteById(id): Observable<Quote> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+    if (!urlApi) {
+      //TODO: make local JSON file requests/*  */
+    } else {
+      //TODO: make requests to the API server
+      return this.http.get<Quote>(this.api + '/' + id,{ headers });
     }
   }
   cancelQuoteById(id): Observable<boolean> {

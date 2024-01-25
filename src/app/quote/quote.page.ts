@@ -8,6 +8,7 @@ import {
 import { QuotesService } from '../markteplace/services/quotes.service';
 import { NewQuotePage } from '../modals/new-quote/new-quote.page';
 import { AuthService } from '../auth/services/auth.service';
+import { Quote } from '../markteplace/model/quote';
 
 @Component({
   selector: 'app-quote',
@@ -17,6 +18,7 @@ import { AuthService } from '../auth/services/auth.service';
 export class QuotePage implements OnInit {
   user;
   quotes = [];
+  myquotes = [];
   refresher: IonRefresher;
   isAuth = false;
 
@@ -59,12 +61,24 @@ export class QuotePage implements OnInit {
   }
 
   async getQuote() {
-    //this.showLoading();
     this.quotesService.getQuotes().subscribe((data) => {
       this.quotes = [];
-      this.quotes.push(data);
-      // this.finishLoading();
+      this.quotes.push(data.quotes);
     });
+  }
+
+  async getMyQuote() {
+    this.quotesService.getMyQuotes().subscribe((data) => {
+      console.log(data);
+      this.myquotes = [];
+      this.myquotes.push(data.quotes);
+    });
+  }
+
+  myQuotes() {
+    if (this.myquotes.length === 0) {
+      this.getMyQuote();
+    }
   }
 
   segmentChanged($event) {}
@@ -88,16 +102,15 @@ export class QuotePage implements OnInit {
   }
   onRefresh() {
     this.quotesService.getQuotes().subscribe((data) => {
-      this.quotes = data;
+      console.log(data.quotes);
+      this.quotes = data.quotes;
       this.refresher.complete();
     });
   }
 
-  handleRefresh(event) {
-    this.quotesService.getQuotes().subscribe((data) => {
-      this.quotes = [];
-      this.quotes.push(data);
-      event.target.complete();
-    });
+  async handleRefresh(event) {
+    await  this.getQuote();
+    await  this.getMyQuote();
+    event.target.complete();
   }
 }

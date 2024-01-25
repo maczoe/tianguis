@@ -16,12 +16,15 @@
       <ion-segment-button value="quotes">
         <ion-label>Cotizaciones</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="myQuotes" *ngIf="isAuth">
+      <ion-segment-button value="myQuotes" *ngIf="isAuth" (click)="myQuotes()">
         <ion-label>Mis Cotizaciones</ion-label>
       </ion-segment-button>
     </ion-segment>
   <ion-list *ngIf="type === 'quotes'">
       <app-quote-list [quotes]="quotes[0]"></app-quote-list>
+  </ion-list>
+  <ion-list *ngIf="type === 'myQuotes'">
+      <app-quote-list [quotes]="myquotes[0]"></app-quote-list>
   </ion-list>
 
   
