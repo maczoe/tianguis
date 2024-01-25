@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../model/product';
 import { Profile } from '../../model/profile';
-import { ResponseQuote } from '../../model/responseQuote';
+import { ResponseQuote, ResponseStatus } from '../../model/responseQuote';
 import { ProductsService } from '../../services/products.service';
 import { ProfilesService } from '../../services/profiles.service';
 import { QuoteResponsesService } from '../../services/quote-responses.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail-response-quote',
@@ -15,12 +16,16 @@ import { QuoteResponsesService } from '../../services/quote-responses.service';
 export class DetailResponseQuotePage implements OnInit {
   id = '0';
   responsesDetail: ResponseQuote = {};
+  responseStatus = ResponseStatus;
+
   product: Product = {};
   profile: Profile = {};
+  confirAcepted = false;
 
   constructor(
     private quoteResponsesService: QuoteResponsesService,
     private router: ActivatedRoute,
+    private alertController: AlertController,
     private profilesService: ProfilesService,
     private productsService: ProductsService
   ) {
@@ -31,6 +36,7 @@ export class DetailResponseQuotePage implements OnInit {
     this.quoteResponsesService
       .getQuoteReponseById(this.id)
       .subscribe((data) => {
+        console.log(data);
         this.responsesDetail = data;
         this.profile = this.responsesDetail.author;
         if (this.responsesDetail.product) {
@@ -53,5 +59,35 @@ export class DetailResponseQuotePage implements OnInit {
     this.productsService.getProductId(idProduct).subscribe((data) => {
       this.product = data;
     });
+  }
+
+  async acepted(id) {
+    const alert = await this.alertController.create({
+      header: 'Aceptar Oferta',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            this.confirAcepted = false;
+          },
+        },
+        {
+          text: 'Aceptar',
+          role: 'confirm',
+          handler: () => {
+            this.confirAcepted = true;
+          },
+        },
+      ],
+    });
+    await alert.present();
+    if (this.confirAcepted) {
+      this.quoteResponsesService.acceptedReponseQuote(id).subscribe((data) => {
+        console.log(data);
+
+        this.responsesDetail = data;
+      });
+    }
   }
 }

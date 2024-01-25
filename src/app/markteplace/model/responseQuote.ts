@@ -1,10 +1,11 @@
 import { Profile } from './profile';
 
-enum ResponseStatus {
+export enum ResponseStatus {
   won = 'WON',
   lost = 'LOST',
   aborted = 'ABORTED',
   pending = 'PENDING',
+  aproved = 'APROVED',
 }
 
 export interface ResponseQuote {
