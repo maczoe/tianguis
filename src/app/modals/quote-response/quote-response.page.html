@@ -8,11 +8,28 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <div *ngIf="responses.length <1">
-    <h2>No tienes ofertas.</h2>
-  </div>
+  <ion-segment
+    value="info"
+    [(ngModel)]="type"
+    (ionChange)="segmentChanged($event)"
+    scrollable
+  >
+    <ion-segment-button value="offers">
+      <ion-label>Ofertas</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="myOffers">
+      <ion-label>Aceptadas</ion-label>
+    </ion-segment-button>
+  </ion-segment>
   <app-response-quote-list
+    *ngIf="type === 'offers'"
     [responseQuotes]="responses"
   ></app-response-quote-list>
+  <app-response-quote-list
+    *ngIf="type === 'myOffers'"
+    [responseQuotes]="responsesAcepted"
+  ></app-response-quote-list>
+  <div *ngIf="responses.length <1 && responsesAcepted.length<1">
+    <h2>No tienes ofertas.</h2>
+  </div>
 </ion-content>
-
