@@ -40,7 +40,7 @@ export class ProfilesService {
   }
 
   updateProfile(profile: Profile): Observable<Profile> {
-    console.log(profile);
+    console.log('Update',profile);
 
     const headers = new HttpHeaders({
       // eslint-disable-next-line @typescript-eslint/naming-convention

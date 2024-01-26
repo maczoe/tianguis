@@ -53,8 +53,7 @@ export class ProfilePage implements OnInit {
     private profileService: ProfilesService,
     private navCtrl: NavController,
     private profilesService: ProfilesService
-  ) {
-  }
+  ) {}
 
   async ngOnInit() {
     this.user = this.authService.respUser;
@@ -250,7 +249,8 @@ export class ProfilePage implements OnInit {
       const data = await this.uploadFile(formData).toPromise();
 
       this.profile.photo = data.secureUrl;
-      const { id, createAt, updateAt, ...upPro } = this.profile;
+      const { id, createAt, updateAt, products, reviews, ...upPro } =
+        this.profile;
       this.profileService.updateProfile(upPro).subscribe((resp) => {
         this.navCtrl.navigateRoot('/app/tabs/my-profile', {
           animated: true,
@@ -275,7 +275,8 @@ export class ProfilePage implements OnInit {
     });
     await loading.present();
 
-    const { id, createAt, updateAt, products, reviews, ...upPro } = this.profile;
+    const { id, createAt, updateAt, products, reviews, ...upPro } =
+      this.profile;
 
     this.profileService.updateProfile(upPro).subscribe((resp) => {
       loading.dismiss();

@@ -14,6 +14,7 @@ export class FavoriteProfileService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getFavoriteProfiles(idProfile: number): Observable<FavoriteProfiles[]> {
+    console.log('getFavoriteProfiles  ', idProfile);
     const headers = new HttpHeaders({
       // eslint-disable-next-line @typescript-eslint/naming-convention
       Authorization: `bearer ${this.authService.token}`,

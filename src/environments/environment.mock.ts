@@ -6,8 +6,8 @@ export const environment = {
   privateKeyFirebase:
     // eslint-disable-next-line max-len
     'AAAAiwo3ajY:APA91bGUItjYflsgXuGtJVPsUp3BNLbU69tUDGvxB7Ww1J5E0SFUxB5fjvjn3A39T7YSZOuho53Vv88NR9h7Ih1EdIvkTvC3PyZ50l0FhWMAUMbAKNzWYyIDglF-ucqIJndVr4a2irPY',
-  //urlapi: 'http://34.136.96.13:3000/',
-  //urlapiNoti: 'http://34.136.96.13:3001'
+  //urlapi: 'http://34.16.48.193:3000/',
+  //urlapiNoti: 'http://34.16.48.193:3001'
   urlapi: 'http://localhost:3000/',
   urlapiNoti: 'http://localhost:3001',
 };
