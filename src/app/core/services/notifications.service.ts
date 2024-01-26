@@ -10,7 +10,8 @@ import {
   Token,
 } from '@capacitor/push-notifications';
 import { environment } from 'src/environments/environment.mock';
-const urlNoti = environment.urlapiNoti+'/divice-movil';
+const urlNoti = environment.urlapiNoti + '/divice-movil';
+const keyFire = environment.privateKeyFirebase;
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +23,8 @@ export class NotificationsService {
     if (Capacitor.platform !== 'web') {
       this.registerPush();
     } else {
-      console.log('Vista Web');
+      console.log('Vista Web Push');
+      this.registerWebPush();
     }
   }
   registerPush() {
@@ -66,6 +68,39 @@ export class NotificationsService {
     );
   }
 
+  registerWebPush() {
+    if ('Notification' in window) {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          console.log('Notification permission granted.');
+
+          // Register the service worker
+          navigator.serviceWorker.ready
+            .then((registration) => {
+              registration.pushManager
+                .subscribe({
+                  userVisibleOnly: true,
+                  applicationServerKey: keyFire, // Reemplazar con tu clave pública de Firebase
+                })
+                .then((subscription) => {
+                  console.log('Web Push registration success', subscription);
+                  const token = subscription.endpoint;
+                  this.registerDeviceWeb(token);
+                })
+                .catch((error) => {
+                  console.error('Web Push registration error', error);
+                  // Aquí puedes mostrar un mensaje al usuario
+                });
+            })
+            .catch((error) => {
+              console.error('Service Worker registration error', error);
+              // Aquí puedes mostrar un mensaje al usuario
+            });
+        }
+      });
+    }
+  }
+
   async registerDivice(key: any) {
     const info = await Device.getInfo();
     const model = info.model;
@@ -79,23 +114,36 @@ export class NotificationsService {
     };
     console.log(body);
 
-    this.http.post(this.url, body, {})
-  .then(data => {
-
-    console.log(data.status);
-    console.log('response:',JSON.parse(data.data)); // data received by server
-    console.log(data.headers);
-
-  })
-  .catch(error => {
-
-    console.log(error.status);
-    console.log(error.error); // error message as string
-    console.log(error.headers);
-
-  });
+    this.http
+      .post(this.url, body, {})
+      .then((data) => {
+        console.log(data.status);
+        console.log('response:', JSON.parse(data.data)); // data received by server
+        console.log(data.headers);
+      })
+      .catch((error) => {
+        console.log(error.status);
+        console.log(error.error); // error message as string
+        console.log(error.headers);
+      });
     /* this.http.post<any>(this.url, body).subscribe((res) => {
       console.log(res);
     }); */
+  }
+
+  async registerDeviceWeb(key: any) {
+    const info = await Device.getInfo();
+    const model = info.model;
+    const manufacturer = info.manufacturer;
+    const user = info.name;
+    const body = {
+      divice: manufacturer,
+      token: key,
+      user,
+      model,
+    };
+    console.log(body);
+
+    //this.http.post(this.url, body, {})
   }
 }

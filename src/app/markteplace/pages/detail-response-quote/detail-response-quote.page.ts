@@ -81,11 +81,14 @@ export class DetailResponseQuotePage implements OnInit {
         },
       ],
     });
+
     await alert.present();
+
+    await alert.onDidDismiss();
+
     if (this.confirAcepted) {
       this.quoteResponsesService.acceptedReponseQuote(id).subscribe((data) => {
-        console.log(data);
-
+        console.log('data', data);
         this.responsesDetail = data;
       });
     }
