@@ -12,16 +12,14 @@
 
   <ion-list>
     <ion-card *ngFor="let chat of chats">
-      <ion-item lines="none" (click)="viewRedirect('/chat-list/'+chat.chatId)">
+      <ion-item lines="none">
         <ion-avatar slot="start">
-          <img
-            src="{{chat.userImage}}"
-          />
+          <img src="{{chat.profile.photo}}" />
         </ion-avatar>
         <ion-label>
-          <b> {{chat.userName}}</b> <br />
-          <p>{{chat.lastMessage}}</p>
-          <div class="time">{{chat.time|date:'short'}}</div>
+          <b> {{chat.profile.name}}</b> <br />
+          <p>{{chat.messages[0].message}}</p>
+          <div class="time">{{chat.messages[0].createdAt|date:'short'}}</div>
         </ion-label>
       </ion-item>
     </ion-card>

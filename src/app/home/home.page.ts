@@ -46,10 +46,11 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-    this.user = await this.authService.getUserData();
-    this.authService.validaToken().then((isAuth) => {});
-    this.initializeApp();
-    await this.getData();
+    this.authService.validaToken().then(async (isAuth) => {
+      this.user = await this.authService.getUserData();
+      this.initializeApp();
+      await this.getData();
+    });
   }
 
   initializeApp() {
@@ -83,16 +84,20 @@ export class HomePage implements OnInit {
       .getFavoriteProducts(this.user.profile.id)
       .subscribe((data) => {
         this.productsFavorite = data;
-        this.storage.set('productFavorite', JSON.stringify(this.productsFavorite));
-
+        this.storage.set(
+          'productFavorite',
+          JSON.stringify(this.productsFavorite)
+        );
       });
 
     this.favProfileSvc
       .getFavoriteProfiles(this.user.profile.id)
       .subscribe((data) => {
         this.profilesFavorite = data;
-         this.storage.set('profileFavorite', JSON.stringify(this.profilesFavorite));
-
+        this.storage.set(
+          'profileFavorite',
+          JSON.stringify(this.profilesFavorite)
+        );
       });
     this.productsService
       .getProductsPage()

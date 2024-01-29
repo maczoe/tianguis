@@ -1,31 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
+import { Chat } from '../model/chat';
 
-const urlApi =environment.mockapi;
-const URL= './shared/guards/mocks/chats-list.json';
-
+const urlApi = environment.mockapi;
+const URL = './shared/guards/mocks/chats-list.json';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatsService {
+  private api = environment.urlapiChat;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getChats(userId){
-    return new Promise((resolve) => {
-
-      if (urlApi) {
-        //TODO: make local JSON file requests
-        this.http.get(URL).subscribe((resp) => {
-          resolve(resp);
-        });
-      } else {
-        //TODO: make requests to the API server
-        resolve([]);
-      }
-
-    });
+  getChats(userId): Observable<Chat[]> {
+    return this.http.get<Chat[]>(this.api + '/chat/');
   }
 }
