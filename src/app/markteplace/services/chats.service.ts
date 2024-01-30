@@ -1,31 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.mock';
+import { Chat, ResponseMessages } from '../model/chat';
+import { Message } from '../model/message';
 
-const urlApi =environment.mockapi;
-const URL= './shared/guards/mocks/chats-list.json';
-
+const urlApi = environment.mockapi;
+const URL = './shared/guards/mocks/chats-list.json';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatsService {
+  private api = environment.urlapiChat;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+  getChats(userId): Observable<Chat[]> {
+    return this.http.get<Chat[]>(this.api + '/chat/');
+  }
 
-  getChats(userId){
-    return new Promise((resolve) => {
+  getChat(idChat: string): Observable<Chat> {
+    return this.http.get<Chat>(this.api + '/chat/' + idChat);
+  }
+  sendMessage(idChat, message): Observable<Message> {
+    return this.http.post<Message>(this.api + '/message/' + idChat, message);
+  }
 
-      if (urlApi) {
-        //TODO: make local JSON file requests
-        this.http.get(URL).subscribe((resp) => {
-          resolve(resp);
-        });
-      } else {
-        //TODO: make requests to the API server
-        resolve([]);
-      }
-
-    });
+  getMessagesChat(idChat): Observable<ResponseMessages> {
+    return this.http.get<ResponseMessages>(this.api + '/message/' + idChat);
   }
 }

@@ -52,7 +52,7 @@ export class ProfilePage implements OnInit {
     private http: HttpClient,
     private profileService: ProfilesService,
     private navCtrl: NavController,
-    private profilesService: ProfilesService
+    private profilesService: ProfilesService,
   ) {}
 
   async ngOnInit() {
@@ -67,7 +67,10 @@ export class ProfilePage implements OnInit {
   getProfile(id) {
     this.profilesService.getProfile(id).subscribe((data) => {
       this.profile = data;
-      console.log(this.profile);
+      this.storage.set(
+        'profile',
+        JSON.stringify(this.profile)
+      );
       this.products.push(this.profile.products);
       this.reviews = this.profile.reviews;
     });
