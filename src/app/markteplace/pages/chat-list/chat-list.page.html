@@ -9,36 +9,18 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid class="right">
-    <ion-item>
-      <ion-avatar slot="start">
-        <img src="{{image}}" />
-      </ion-avatar>
-      <ion-label>
-        <h3>{{product.name}}</h3>
-        <p>{{ product.price | currency: "Q" }}</p>
-      </ion-label>
-    </ion-item>
-
-    <ion-list>
-      <ion-row *ngFor="let i of [1]">
+    <ion-list class="chats">
+      <ion-row *ngFor="let m of messages; let i = index">
+        <ion-col size="2" *ngIf="m.sender === profile.id"></ion-col>
         <ion-col size="10">
           <div class="no-gutters">
-            <div class="message-your">
-                <div class="chat-bubble chat-bubble--left">                
-                  <span>Hola!, me interesa este proucto.</span><br>
-                  <div class="time" text-ring>12/02/23, 2:01pm</div>
-                </div>
-            </div>
-          </div>
-        </ion-col>  
-      </ion-row>
-
-      <ion-row *ngFor="let m of messages">
-        <ion-col size="2"></ion-col>
-        <ion-col size="10">
-          <div class="no-gutters">
-            <div class="message-me">
-              <div class="chat-bubble chat-bubble--right">
+            <div
+              [ngClass]="{'message-me': m.sender === profile.id, 'message-your': m.sender !== profile.id}"
+            >
+              <div
+                class="chat-bubble"
+                [ngClass]="{'chat-bubble--right': m.sender === profile.id, 'chat-bubble--left': m.sender !== profile.id}"
+              >
                 <span>{{m.message}}</span><br />
                 <div class="time" text-ring>{{m.createdAt | date:'short'}}</div>
               </div>
@@ -46,30 +28,38 @@
           </div>
         </ion-col>
       </ion-row>
+      <div #lastMessage></div>
     </ion-list>
   </ion-grid>
-  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed" >
+  <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button expand="block" fill="clear" color="dark">
       <ion-icon name="settings"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
-      <ion-fab-button ><ion-icon name="clipboard"></ion-icon></ion-fab-button>
+      <ion-fab-button><ion-icon name="clipboard"></ion-icon></ion-fab-button>
       <ion-fab-button><ion-icon name="share"></ion-icon></ion-fab-button>
-      <ion-fab-button><ion-icon name="checkmark-circle-outline"></ion-icon></ion-fab-button>
-
-
+      <ion-fab-button
+        ><ion-icon name="checkmark-circle-outline"></ion-icon
+      ></ion-fab-button>
     </ion-fab-list>
-    
-    
-</ion-fab> -->
+  </ion-fab> -->
 </ion-content>
 
-
 <ion-footer>
-  <ion-button
-    expand="block"
-    shape="round"
-   
-    >Finalizar Transacción</ion-button
-  >
+  <ion-toolbar class="message-toolbar">
+    <ion-row class="message-row">
+      <ion-col size="10" class="message-input-col">
+        <ion-input
+          class="message-input"
+          placeholder="Escribe un mensaje..."
+          [(ngModel)]="newMessage"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="2" class="send-button-col">
+        <ion-button class="send-button" expand="full" (click)="sendMessage()">
+          <ion-icon name="send-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
 </ion-footer>

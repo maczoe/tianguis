@@ -14,12 +14,9 @@
     color: #fff;
 }
 
-/* .time{
-    color: #dfdfdf;
-    float: right;
-    font-size:small;
+.chats{
+  padding-bottom: 4rem;
 }
- */
 .message-input{
     width:100%;
     border: 1px solid var(--ion-color-medium);
@@ -111,4 +108,40 @@ $blue: #6304cc;
         margin-left: 25px;
       }
     }
+  }
+
+  .message-toolbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+  }
+  
+  .message-row {
+    padding: 5px;
+  }
+  
+  .message-input-col {
+    padding-right: 5px;
+  }
+  
+  .message-input {
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #f3f3f3;
+    width: 100%;
+  }
+  
+  .send-button-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .send-button {
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
   }

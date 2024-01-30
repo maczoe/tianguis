@@ -19,7 +19,8 @@ export class ChatsPage implements OnInit {
     private router: Router,
     private chatsService: ChatsService,
     private profilesService: ProfilesService,
-    private uiAlerts: UiAlertsService
+    private uiAlerts: UiAlertsService,
+    private routerPath: Router,
   ) {
     this.getChats('4565857');
   }
@@ -28,6 +29,10 @@ export class ChatsPage implements OnInit {
 
   viewRedirect(view: string) {
     this.router.navigateByUrl(view);
+  }
+
+  sendMessage(id) {
+    this.routerPath.navigateByUrl('/chat-list/' + id);
   }
 
   getChats(userId: string) {

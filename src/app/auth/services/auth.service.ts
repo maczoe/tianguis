@@ -65,7 +65,10 @@ export class AuthService {
       this.http.get(`${URL}user-token/`, { headers }).subscribe(
         (resp: any) => {
           this.respUser = resp;
-
+          this.storage.set(
+            'profile',
+            JSON.stringify(this.respUser.profile)
+          );
           resolve(true);
         },
         (err) => {
