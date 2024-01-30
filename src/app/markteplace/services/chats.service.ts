@@ -15,8 +15,37 @@ export class ChatsService {
   private api = environment.urlapiChat;
   constructor(private http: HttpClient) {}
 
-  getChats(userId): Observable<Chat[]> {
-    return this.http.get<Chat[]>(this.api + '/chat/');
+  getChats(profileId): Observable<Chat[]> {
+    return this.http.get<Chat[]>(this.api + '/chat/profile/' + profileId);
+  }
+
+  createChat(
+    productId = 0,
+    profileId = 0,
+    quoteId = 0,
+    myProfileId = 0,
+    type = 'PRODUCT'
+  ): Observable<Chat> {
+    const data: {
+      receiver: number;
+      sender: number;
+      type: string;
+      quote?: number;
+      product?: number;
+    } = {
+      receiver: profileId,
+      type,
+      sender: myProfileId,
+    };
+
+    if (quoteId > 0) {
+      data.quote = quoteId;
+    }
+
+    if (productId > 0) {
+      data.product = productId;
+    }
+    return this.http.post<Chat>(this.api + '/chat/', data);
   }
 
   getChat(idChat: string): Observable<Chat> {

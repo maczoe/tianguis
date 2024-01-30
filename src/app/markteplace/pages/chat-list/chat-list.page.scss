@@ -5,6 +5,10 @@
     white-space: pre-wrap;
 }
 
+ion-title.ion-text-left.custom-title div {
+  display: flex;
+  align-items: center;
+}
 .other-message{
     background: #004170;
     color: #fff;

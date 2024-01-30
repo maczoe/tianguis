@@ -9,6 +9,7 @@ import { ModalController, NavController } from '@ionic/angular';
 
 import { ReviewModalPage } from 'src/app/modals/review-modal/review-modal.page';
 import { ReviewsService } from '../../services/reviews.service';
+import { ChatsService } from '../../services/chats.service';
 
 @Component({
   selector: 'app-product',
@@ -19,6 +20,7 @@ export class ProductPage implements OnInit {
   productId = '0';
   product: Product = {};
   profile: Profile = {};
+  myProfile: Profile = {};
   type = 'info';
   reviews = [];
   isAuth = false;
@@ -31,13 +33,17 @@ export class ProductPage implements OnInit {
     private reviewSvc: ReviewsService,
     private modalController: ModalController,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private chatSvc: ChatsService
   ) {
     this.productId = this.router.snapshot.paramMap.get('idProduct');
   }
 
   async ngOnInit() {
     await this.storage.create();
+    this.storage.get('profile').then((profile) => {
+      this.myProfile = JSON.parse(profile);
+    });
     this.getProduct(this.productId);
     this.authService.validateAuth().then((isAuth) => {
       this.isAuth = isAuth;
@@ -54,8 +60,14 @@ export class ProductPage implements OnInit {
     });
   }
 
-  sendMessage(id) {
-    this.routerPath.navigateByUrl('/chat-list/' + id);
+  sendMessage(product) {
+    this.chatSvc
+      .createChat(product, this.profile.id, 0, this.myProfile.id)
+      .subscribe((res) => {
+        console.log('res', res);
+        // eslint-disable-next-line no-underscore-dangle
+        this.routerPath.navigateByUrl('/chat-list/' + res._id);
+      });
   }
   segmentChanged($event) {}
 

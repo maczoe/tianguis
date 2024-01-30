@@ -8,6 +8,7 @@ import { Chat } from '../../model/chat';
 import { Profile } from '../../model/profile';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Storage } from '@ionic/storage-angular';
+import { ProfilesService } from '../../services/profiles.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -23,6 +24,7 @@ export class ChatListPage implements OnInit {
   messages: Message[] = [];
   chat: Chat = {};
   profile: Profile = {};
+  receiver: Profile = {};
 
   currentUser = 'Simon Perez';
   newMessage = '';
@@ -31,44 +33,60 @@ export class ChatListPage implements OnInit {
     private productsService: ProductsService,
     private authService: AuthService,
     private chatsService: ChatsService,
+    private profileSvc: ProfilesService,
     private storage: Storage
   ) {
     this.chatId = this.router.snapshot.paramMap.get('chat');
-    /* this.productsService.getProductId(this.productId).subscribe((data) => {
-
-      this.product = data;
-      this.image = this.product.images[0];
-    }); */
   }
 
   async ngOnInit() {
     await this.storage.create();
     this.storage.get('profile').then((profile) => {
       this.profile = JSON.parse(profile);
-      console.log(this.profile);
+
+      if (this.profile === null) {
+        this.authService.getUserData().then((res) => {
+          this.profile = res.profile;
+          this.getChat(this.chatId);
+          this.getMessagesChat(this.chatId);
+        });
+      } else {
+        this.getChat(this.chatId);
+        this.getMessagesChat(this.chatId);
+      }
     });
-
-    if (this.profile === null) {
-      this.authService.getUserData().then((res) => {
-        this.profile = res.profile;
-      });
-    }
-
-    this.getChat(this.chatId);
-    this.getMessagesChat(this.chatId);
   }
 
   getMessagesChat(idChat) {
     this.chatsService.getMessagesChat(idChat).subscribe((res) => {
-      console.log(res.messages);
-
       this.messages = res.messages.reverse();
       this.scrollToBottom();
     });
   }
+
   getChat(idChat) {
     this.chatsService.getChat(idChat).subscribe((res) => {
       this.chat = res;
+
+      if (this.profile.id === this.chat.receiver) {
+        this.getReceiver(this.chat.sender);
+      } else {
+        this.getReceiver(this.chat.receiver);
+      }
+      this.getProduct(this.chat.product);
+    });
+  }
+
+  getReceiver(idReceiver) {
+    this.profileSvc.getProfile(idReceiver).subscribe((res) => {
+      this.receiver = res;
+    });
+  }
+
+  getProduct(idProduct) {
+    this.productsService.getProductId(idProduct).subscribe((data) => {
+      this.product = data;
+      this.image = this.product.images[0];
     });
   }
   sendMessage() {
@@ -78,7 +96,6 @@ export class ChatListPage implements OnInit {
         sender: this.profile.id,
       };
       this.chatsService.sendMessage(this.chatId, message).subscribe((res) => {
-        console.log(res);
         this.messages.push(res);
         setTimeout(() => this.scrollToBottom(), 0);
       });

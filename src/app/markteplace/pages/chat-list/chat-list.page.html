@@ -3,34 +3,53 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Chat</ion-title>
+    <ion-title class="ion-text-left custom-title">
+      <div>
+        <img src="{{receiver.photo}}" alt="Avatar de {{receiver.name}}" style="width: 30px; height: 30px; border-radius: 50%;">
+        {{receiver.name}}
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-toolbar *ngIf="chat.product">
+  <ion-avatar slot="start">
+    <img src="{{image}}" />
+  </ion-avatar>
+  <ion-label>
+    <h3>{{product.name}}</h3>
+    <p>{{ product.price | currency: "Q" }}</p>
+  </ion-label>
+</ion-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-grid class="right">
-    <ion-list class="chats">
-      <ion-row *ngFor="let m of messages; let i = index">
-        <ion-col size="2" *ngIf="m.sender === profile.id"></ion-col>
-        <ion-col size="10">
-          <div class="no-gutters">
-            <div
-              [ngClass]="{'message-me': m.sender === profile.id, 'message-your': m.sender !== profile.id}"
-            >
+  <div class="container">
+    
+    <ion-grid class="right">
+      <ion-list class="chats">
+        <ion-row *ngFor="let m of messages; let i = index">
+          <ion-col size="2" *ngIf="m.sender === profile.id"></ion-col>
+          <ion-col size="10">
+            <div class="no-gutters">
               <div
-                class="chat-bubble"
-                [ngClass]="{'chat-bubble--right': m.sender === profile.id, 'chat-bubble--left': m.sender !== profile.id}"
+                [ngClass]="{'message-me': m.sender === profile.id, 'message-your': m.sender !== profile.id}"
               >
-                <span>{{m.message}}</span><br />
-                <div class="time" text-ring>{{m.createdAt | date:'short'}}</div>
+                <div
+                  class="chat-bubble"
+                  [ngClass]="{'chat-bubble--right': m.sender === profile.id, 'chat-bubble--left': m.sender !== profile.id}"
+                >
+                  <span>{{m.message}}</span><br />
+                  <div class="time" text-ring>
+                    {{m.createdAt | date:'short'}}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </ion-col>
-      </ion-row>
-      <div #lastMessage></div>
-    </ion-list>
-  </ion-grid>
+          </ion-col>
+        </ion-row>
+        <div #lastMessage></div>
+      </ion-list>
+    </ion-grid>
+  </div>
   <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button expand="block" fill="clear" color="dark">
       <ion-icon name="settings"></ion-icon>
