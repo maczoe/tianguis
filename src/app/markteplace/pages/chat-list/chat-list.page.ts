@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../model/product';
 import { ProductsService } from '../../services/products.service';
@@ -9,13 +9,14 @@ import { Profile } from '../../model/profile';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Storage } from '@ionic/storage-angular';
 import { ProfilesService } from '../../services/profiles.service';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.page.html',
   styleUrls: ['./chat-list.page.scss'],
 })
-export class ChatListPage implements OnInit {
+export class ChatListPage implements OnInit, OnDestroy {
   @ViewChild('lastMessage', { static: false }) lastMessage: ElementRef;
 
   chatId = '';
@@ -28,11 +29,14 @@ export class ChatListPage implements OnInit {
 
   currentUser = 'Simon Perez';
   newMessage = '';
+
+  private socket;
   constructor(
     private router: ActivatedRoute,
     private productsService: ProductsService,
     private authService: AuthService,
     private chatsService: ChatsService,
+    private messagesService: MessagesService,
     private profileSvc: ProfilesService,
     private storage: Storage
   ) {
@@ -55,6 +59,11 @@ export class ChatListPage implements OnInit {
         this.getMessagesChat(this.chatId);
       }
     });
+
+    this.messagesService.receiveNewMessages().subscribe((message: any) => {
+      this.messages.push(message);
+      setTimeout(() => this.scrollToBottom(), 0);
+    });
   }
 
   getMessagesChat(idChat) {
@@ -67,7 +76,7 @@ export class ChatListPage implements OnInit {
   getChat(idChat) {
     this.chatsService.getChat(idChat).subscribe((res) => {
       this.chat = res;
-
+      this.messagesService.joinChat(idChat);
       if (this.profile.id === this.chat.receiver) {
         this.getReceiver(this.chat.sender);
       } else {
@@ -95,8 +104,8 @@ export class ChatListPage implements OnInit {
         message: this.newMessage,
         sender: this.profile.id,
       };
-      this.chatsService.sendMessage(this.chatId, message).subscribe((res) => {
-        this.messages.push(res);
+      this.messagesService.sendMessage(this.chatId, message).subscribe((res) => {
+        //this.messages.push(res);
         setTimeout(() => this.scrollToBottom(), 0);
       });
 
@@ -108,5 +117,10 @@ export class ChatListPage implements OnInit {
     if (this.lastMessage) {
       this.lastMessage.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+
+  ngOnDestroy() {
+    //this.messagesService.closeConnection();
   }
 }
