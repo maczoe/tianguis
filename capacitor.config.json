@@ -2,6 +2,10 @@
   "appId": "com.tianguis.app",
   "appName": "Tianguis",
   "webDir": "www",
+  "resources": {
+    "icon": "resources/icon.png",
+    "splash": "resources/splash.png"
+  },
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "plugins": {
@@ -14,7 +18,7 @@
     "GoogleAuth": {
       "scopes": ["profile", "email"],
       "serverClientId": "426633935974-63tc30cbqp0elpodm40c7i4ouf7b3h90.apps.googleusercontent.com",
-      "forceCodeForRefreshToken" : true
+      "forceCodeForRefreshToken": true
     }
   },
   "cordova": {}

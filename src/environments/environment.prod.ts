@@ -7,7 +7,7 @@ export const environment = {
   '',
   //urlapi: 'http://34.136.96.13:3000/',
   //urlapiNoti: 'http://34.136.96.13:3001'
-  urlapi: 'http://localhost:3000/',
-  urlapiNoti: 'http://localhost:3001',
-  urlapiChat: 'http://localhost:3003',
+  urlapi: 'http://192.168.0.175:3000/',
+  urlapiNoti: 'http://192.168.0.175:3001',
+  urlapiChat: 'http://192.168.0.175:3003',
 };
