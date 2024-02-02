@@ -31,10 +31,14 @@ export class NotificationsService {
     PushNotifications.requestPermissions().then((result) => {
       if (result.receive === 'granted') {
         // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register();
+        PushNotifications.register().catch((error) => {
+          console.error('Error registering for push notifications', error);
+        });
       } else {
         // Show some error
       }
+    }).catch((error) => {
+      console.error('Error requesting push notifications permissions', error);
     });
 
     PushNotifications.addListener('registration', (token: Token) => {

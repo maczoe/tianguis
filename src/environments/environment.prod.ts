@@ -5,9 +5,10 @@ export const environment = {
   privateKeyFirebase:
   // eslint-disable-next-line max-len
   '',
-  //urlapi: 'http://34.136.96.13:3000/',
-  //urlapiNoti: 'http://34.136.96.13:3001'
-  urlapi: 'http://192.168.0.175:3000/',
-  urlapiNoti: 'http://192.168.0.175:3001',
-  urlapiChat: 'http://192.168.0.175:3003',
+  urlapi: 'http://34.16.48.193:3000/',
+  urlapiNoti: 'http://34.16.48.193:3001',
+  urlapiChat: 'http://34.16.48.193:3003',
+  //urlapi: 'http://192.168.0.175:3000/',
+  //urlapiNoti: 'http://192.168.0.175:3001',
+  //urlapiChat: 'http://192.168.0.175:3003',
 };

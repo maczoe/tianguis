@@ -16,6 +16,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private notiSvc: NotificationsService
   ) {
-    this.notiSvc.initPush();
+    this.platform.ready().then(() => {
+      this.notiSvc.initPush();
+    });
   }
 }

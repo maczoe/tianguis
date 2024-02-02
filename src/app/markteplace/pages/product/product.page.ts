@@ -10,6 +10,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { ReviewModalPage } from 'src/app/modals/review-modal/review-modal.page';
 import { ReviewsService } from '../../services/reviews.service';
 import { ChatsService } from '../../services/chats.service';
+import { ImageModalPage } from 'src/app/modals/image-modal/image-modal.page';
 
 @Component({
   selector: 'app-product',
@@ -94,5 +95,13 @@ export class ProductPage implements OnInit {
 
   goLogin() {
     this.navCtrl.navigateRoot('/login', { animated: true });
+  }
+
+  async openPreview(img) {
+    const modal = await this.modalController.create({
+      component: ImageModalPage,
+      componentProps: { img },
+    });
+    return await modal.present();
   }
 }

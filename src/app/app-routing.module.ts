@@ -185,6 +185,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
+  {
+    path: 'image-modal',
+    loadChildren: () => import('./modals/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
+  },
 
 
 ];

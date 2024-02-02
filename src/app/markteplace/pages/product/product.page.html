@@ -24,7 +24,7 @@
       *ngFor="let img of product.images"
       class="ion-align-items-stretch"
     >
-      <img src="{{img}}" />
+      <img src="{{img}}" (click)="openPreview(img)" />
     </ng-template>
   </swiper>
   <ion-card-content>
@@ -77,28 +77,35 @@
       <ion-label> {{product.description}} </ion-label>
     </ion-list>
 
-    <ion-list *ngIf="type === 'review'" >
+    <ion-list *ngIf="type === 'review'">
       <div *ngFor="let review of reviews">
         <app-review [review]="review"></app-review>
       </div>
-  </ion-list>
-
+    </ion-list>
   </ion-card-content>
 </ion-content>
 <ion-footer *ngIf="isAuth">
-  <ion-button *ngIf="type === 'info'" expand="block" shape="round" (click)="sendMessage(product.id)"
+  <ion-button
+    *ngIf="type === 'info'"
+    expand="block"
+    shape="round"
+    (click)="sendMessage(product.id)"
     >Crear Chat (Comprar)</ion-button
   >
-  <ion-button *ngIf="type === 'review'" expand="block" shape="round" (click)="openReviewModal(product.id)"
+  <ion-button
+    *ngIf="type === 'review'"
+    expand="block"
+    shape="round"
+    (click)="openReviewModal(product.id)"
     >Enviar Reseña</ion-button
   >
 </ion-footer>
 
 <ion-footer *ngIf="!isAuth">
-  <ion-toolbar >
+  <ion-toolbar>
     <p>Para ver todas las opciones (Vender, comprar y cotizar).</p>
-    <ion-button expand="block"  shape="round" (click)="goLogin()"
-        >Inicia sesión</ion-button
-      >
+    <ion-button expand="block" shape="round" (click)="goLogin()"
+      >Inicia sesión</ion-button
+    >
   </ion-toolbar>
 </ion-footer>
