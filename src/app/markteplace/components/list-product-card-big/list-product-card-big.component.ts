@@ -9,14 +9,14 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ListProductCardBigComponent implements OnInit {
   @Input() products: Product[] = [];
-  page = 2;
-  pageSize = 5;
+  @Input() page = 2;
+  @Input() pageSize = 5;
   constructor(private productsService: ProductsService) {}
   loadProducts() {
+
     this.productsService
       .getProductsPage(this.page, this.pageSize)
       .subscribe((data) => {
-
         this.products = this.products.concat(data.products);
         this.page++; // Incrementa el número de página para la próxima carga
       });
@@ -25,5 +25,11 @@ export class ListProductCardBigComponent implements OnInit {
     this.loadProducts();
     event.target.complete(); // Marca la carga como completa
   }
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  reset() {
+    this.page = 2;
+    this.products = []; // Reinicia la lista de productos
+  }
 }

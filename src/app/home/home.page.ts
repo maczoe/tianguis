@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
 import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { Platform } from '@ionic/angular';
@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage-angular';
 import { Product, ResponseProducts } from '../markteplace/model/product';
 import { FavoriteProductService } from '../markteplace/services/favorite-product.service';
 import { FavoriteProfileService } from '../markteplace/services/favorite-profile.service';
+import { ListProductCardBigComponent } from '../markteplace/components/list-product-card-big/list-product-card-big.component';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { FavoriteProfileService } from '../markteplace/services/favorite-profile
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  @ViewChild(ListProductCardBigComponent) listProductCardBigComponent: ListProductCardBigComponent;
   categories = [];
   products = [];
   productsBig = [];
@@ -26,6 +28,7 @@ export class HomePage implements OnInit {
   productsRecomended = [];
   profiles = [];
   user;
+  pageProbig = 2;
 
   productsFavorite = [];
   profilesFavorite = [];
@@ -55,6 +58,7 @@ export class HomePage implements OnInit {
     this.productsService.reload$.subscribe(reload => {
       if (reload) {
         this.getData();
+        this.listProductCardBigComponent.reset();
         this.productsService.setReload(false); // reset the value to false after reloading
       }
     });
