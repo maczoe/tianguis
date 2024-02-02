@@ -26,6 +26,18 @@ export class ProfilesService {
     }
   }
 
+  getProfilesRecomend(): Observable<Profile[]> {
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+      /* this.http.get('./shared/guards/mocks/profiles.json').subscribe((resp: Profile[]) => {
+          resolve(resp);
+        }); */
+    } else {
+      //TODO: make requests to the API server
+      return this.http.get<Profile[]>(this.api + '/recomend');
+    }
+  }
+
   getProfile(id): Observable<Profile> {
     if (!urlApi) {
       //TODO: make local JSON file requests
@@ -40,7 +52,7 @@ export class ProfilesService {
   }
 
   updateProfile(profile: Profile): Observable<Profile> {
-    console.log('Update',profile);
+    console.log('Update', profile);
 
     const headers = new HttpHeaders({
       // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.mock';
 import { ProfilesService } from '../markteplace/services/profiles.service';
+import { ProductsService } from '../markteplace/services/products.service';
 
 const IMAGE_DIR = 'stored-images';
 interface LocalFile {
@@ -53,6 +54,7 @@ export class ProfilePage implements OnInit {
     private profileService: ProfilesService,
     private navCtrl: NavController,
     private profilesService: ProfilesService,
+    private productsService: ProductsService,
   ) {}
 
   async ngOnInit() {
@@ -62,6 +64,12 @@ export class ProfilePage implements OnInit {
     this.getProfile(this.user.profile.id);
     this.loadFiles();
     Camera.requestPermissions();
+    this.productsService.reload$.subscribe(reload => {
+      if (reload) {
+        this.getProfile(this.user.profile.id);
+        this.productsService.setReload(false); // reset the value to false after reloading
+      }
+    });
   }
 
   getProfile(id) {

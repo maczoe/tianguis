@@ -83,7 +83,7 @@ export class HomePage implements OnInit {
       this.productsRecomended.push(data);
     });
 
-    this.profilesService.getProfiles().subscribe((data) => {
+    this.profilesService.getProfilesRecomend().subscribe((data) => {
       this.profiles.push(data);
     });
 
