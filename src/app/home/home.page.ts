@@ -51,6 +51,13 @@ export class HomePage implements OnInit {
       this.initializeApp();
       await this.getData();
     });
+
+    this.productsService.reload$.subscribe(reload => {
+      if (reload) {
+        this.getData();
+        this.productsService.setReload(false); // reset the value to false after reloading
+      }
+    });
   }
 
   initializeApp() {

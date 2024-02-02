@@ -146,6 +146,7 @@ export class EditProductPage implements OnInit {
         console.log('Data:', data);
         loading.dismiss();
         this.resetForm(frm);
+        this.serviceProduct.setReload(true);
         this.routerPth.navigate(['/app/tabs/home']);
       },
       (err) => {
@@ -195,6 +196,7 @@ export class EditProductPage implements OnInit {
       (data) => {
         console.log('Data:', data);
         loading.dismiss();
+        this.serviceProduct.setReload(true);
         this.routerPth.navigate(['/app/tabs/home']);
       },
       (err) => {

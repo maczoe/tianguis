@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment.mock';
 import { Product, ResponseProducts } from '../model/product';
@@ -11,8 +11,14 @@ const urlApi = environment.mockapi;
 })
 export class ProductsService {
   private api = environment.urlapi + 'products';
+  private reloadSource = new BehaviorSubject(false);
+  // eslint-disable-next-line @typescript-eslint/member-ordering
+  reload$ = this.reloadSource.asObservable();
   constructor(private http: HttpClient, private authService: AuthService) {}
 
+  setReload(value: boolean) {
+    this.reloadSource.next(value);
+  }
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.api);
   }

@@ -76,7 +76,7 @@ export class ProductPage implements OnInit {
   }
   segmentChanged($event) {}
 
-  async openReviewModal(productId: string) {
+  async openReviewModal(productId: number) {
     const modal = await this.modalController.create({
       component: ReviewModalPage,
       componentProps: {

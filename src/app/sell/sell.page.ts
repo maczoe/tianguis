@@ -23,6 +23,7 @@ import { AuthService } from '../auth/services/auth.service';
 import { Capacitor } from '@capacitor/core';
 import { NgForm } from '@angular/forms';
 import { UiAlertsService } from '../core/services/ui-alerts.service';
+import { Router } from '@angular/router';
 
 const IMAGE_DIR = 'stored-images';
 interface LocalFile {
@@ -66,7 +67,7 @@ export class SellPage implements OnInit {
     private http: HttpClient,
     private authService: AuthService,
     private storage: Storage,
-    private navCtrl: NavController,
+    private routerPth: Router,
     private uiAlerts: UiAlertsService
   ) {
     this.platform = platform;
@@ -178,7 +179,8 @@ export class SellPage implements OnInit {
         console.log(data);
         loading.dismiss();
         this.resetForm(frm);
-        this.navCtrl.navigateRoot('/app/tabs/home', { animated: true });
+        this.serviceProduct.setReload(true);
+        this.routerPth.navigate(['/app/tabs/home']);
       },
       (err) => {
         console.error('Error:', err);
