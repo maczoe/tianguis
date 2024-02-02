@@ -78,4 +78,20 @@ export class ProductsService {
       return this.http.post(this.api, product, { headers });
     }
   }
+
+  updateProduct(product: Product, id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+    if (!urlApi) {
+      //TODO: make local JSON file requests
+    } else {
+      //TODO: make requests to the API server
+
+      return this.http.post(this.api + '/update/' + id, product, {
+        headers,
+      });
+    }
+  }
 }

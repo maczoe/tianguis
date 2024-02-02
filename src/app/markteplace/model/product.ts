@@ -13,7 +13,7 @@ enum ProductType {
 }
 
 export interface Product {
-  id?: string;
+  id?: number;
   name?: string;
   description?: string;
   status?: ProductStatus;
@@ -33,6 +33,10 @@ export interface Product {
   categories?: Category[];
   favorite?: boolean;
   profile?: Profile;
+  reviews?: [];
+  createAt?: string;
+  updateAt?: string;
+  activated?: boolean;
 }
 
 export interface ResponseProducts {

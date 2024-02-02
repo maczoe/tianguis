@@ -4,8 +4,8 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <app-notification-icon [newNotifications]="10"></app-notification-icon>
-      <app-chat-icon [newNotifications]="10"></app-chat-icon>
+      <!-- <app-notification-icon ></app-notification-icon> -->
+      <app-chat-icon ></app-chat-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -85,20 +85,31 @@
   </ion-card-content>
 </ion-content>
 <ion-footer *ngIf="isAuth">
-  <ion-button
-    *ngIf="type === 'info'"
-    expand="block"
-    shape="round"
-    (click)="sendMessage(product.id)"
-    >Crear Chat (Comprar)</ion-button
-  >
-  <ion-button
-    *ngIf="type === 'review'"
-    expand="block"
-    shape="round"
-    (click)="openReviewModal(product.id)"
-    >Enviar Reseña</ion-button
-  >
+  <div *ngIf="myProfile.id!==profile.id">
+    <ion-button
+      *ngIf="type === 'info'"
+      expand="block"
+      shape="round"
+      (click)="sendMessage(product.id)"
+      >Crear Chat (Comprar)</ion-button
+    >
+    <ion-button
+      *ngIf="type === 'review'"
+      expand="block"
+      shape="round"
+      (click)="openReviewModal(product.id)"
+      >Enviar Reseña</ion-button
+    >
+  </div>
+  <div  *ngIf="myProfile.id===profile.id">
+    <ion-button
+      *ngIf="type === 'info'"
+      expand="block"
+      shape="round"
+      (click)="editProduct(product.id)"
+      >Editar Producto</ion-button
+    >
+  </div>
 </ion-footer>
 
 <ion-footer *ngIf="!isAuth">

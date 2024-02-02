@@ -70,6 +70,10 @@ export class ProductPage implements OnInit {
         this.routerPath.navigateByUrl('/chat-list/' + res._id);
       });
   }
+
+  editProduct(id) {
+    this.routerPath.navigateByUrl('/edit-product/' + id);
+  }
   segmentChanged($event) {}
 
   async openReviewModal(productId: string) {

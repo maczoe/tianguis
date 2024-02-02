@@ -189,6 +189,10 @@ const routes: Routes = [
     path: 'image-modal',
     loadChildren: () => import('./modals/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
   },
+  {
+    path: 'edit-product/:idProduct',
+    loadChildren: () => import('./markteplace/pages/edit-product/edit-product.module').then( m => m.EditProductPageModule)
+  },
 
 
 ];
