@@ -12,17 +12,24 @@
 
   <ion-list>
     <div *ngIf="chats.length<1">
-      <ion-badge color="primary">Aun no tienes chats, selecciona desde un producto.</ion-badge>
+      <ion-badge color="primary"
+        >Aun no tienes chats, selecciona desde un producto.</ion-badge
+      >
     </div>
     <ion-card *ngFor="let chat of chats" (click)="sendMessage(chat._id)">
       <ion-item lines="none">
         <ion-avatar slot="start">
           <img src="{{chat.profile.photo}}" />
         </ion-avatar>
-        <ion-label>
+        <ion-label *ngIf="chat.messages && chat.messages.length > 0">
           <b> {{chat.profile.name}}</b> <br />
           <p>{{chat.messages[0].message}}</p>
           <div class="time">{{chat.messages[0].createdAt|date:'short'}}</div>
+        </ion-label>
+        <ion-label *ngIf="!chat.messages || chat.messages.length === 0">
+          <b> {{chat.profile.name}}</b> <br />
+          <p><strong>No hay Mensajes</strong></p>
+          <div class="time">Enviado.</div>
         </ion-label>
       </ion-item>
     </ion-card>

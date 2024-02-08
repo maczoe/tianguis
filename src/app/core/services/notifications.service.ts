@@ -1,49 +1,72 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'firebase/messaging';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 import { Capacitor } from '@capacitor/core';
 import { Device } from '@capacitor/device';
+import { Storage } from '@ionic/storage-angular';
 import {
   ActionPerformed,
   PushNotificationSchema,
   PushNotifications,
   Token,
 } from '@capacitor/push-notifications';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { environment } from 'src/environments/environment.mock';
-const urlNoti = environment.urlapiNoti + '/divice-movil';
-const keyFire = environment.privateKeyFirebase;
+import { Profile } from 'src/app/markteplace/model/profile';
+import { Observable, of } from 'rxjs';
+import { AlertController, ToastController } from '@ionic/angular';
+
+const urlNoti = environment.urlapi;
+const firebaseConfig = environment.firebase;
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationsService {
   url = urlNoti;
-  constructor(private router: Router, private http: HTTP) {}
+  myProfile: Profile = {};
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService,
+    private storage: Storage,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {}
 
-  public initPush() {
-    if (Capacitor.platform !== 'web') {
-      this.registerPush();
-    } else {
-      console.log('Vista Web Push');
-      this.registerWebPush();
-    }
-  }
-  registerPush() {
-    PushNotifications.requestPermissions().then((result) => {
-      if (result.receive === 'granted') {
-        // Register with Apple / Google to receive push via APNS/FCM
-        PushNotifications.register().catch((error) => {
-          console.error('Error registering for push notifications', error);
-        });
+  public async initPush() {
+    await this.storage.create();
+    this.storage.get('profile').then((profile) => {
+      this.myProfile = JSON.parse(profile);
+
+      if (Capacitor.platform !== 'web') {
+        this.registerPush();
       } else {
-        // Show some error
+        console.log('Vista Web Push');
+        this.registerWebPush();
       }
-    }).catch((error) => {
-      console.error('Error requesting push notifications permissions', error);
     });
+  }
 
-    PushNotifications.addListener('registration', (token: Token) => {
+  registerPush() {
+    PushNotifications.requestPermissions()
+      .then((result) => {
+        if (result.receive === 'granted') {
+          // Register with Apple / Google to receive push via APNS/FCM
+          PushNotifications.register().catch((error) => {
+            console.error('Error registering for push notifications', error);
+          });
+        } else {
+          // Show some error
+        }
+      })
+      .catch((error) => {
+        console.error('Error requesting push notifications permissions', error);
+      });
+
+    PushNotifications.addListener('registration', async (token: Token) => {
       console.log('Push registration success, token: ' + token.value);
-      this.registerDivice(token.value);
+      this.registerDeviceMobile(token.value);
     });
 
     // Some issue with our setup and push will not work
@@ -56,6 +79,7 @@ export class NotificationsService {
       'pushNotificationReceived',
       (notification: PushNotificationSchema) => {
         console.log('Push received: ' + notification);
+        this.showNotification(notification.title, notification.body);
       }
     );
 
@@ -72,82 +96,94 @@ export class NotificationsService {
     );
   }
 
-  registerWebPush() {
-    if ('Notification' in window) {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          console.log('Notification permission granted.');
-
-          // Register the service worker
-          navigator.serviceWorker.ready
-            .then((registration) => {
-              registration.pushManager
-                .subscribe({
-                  userVisibleOnly: true,
-                  applicationServerKey: keyFire, // Reemplazar con tu clave pública de Firebase
-                })
-                .then((subscription) => {
-                  console.log('Web Push registration success', subscription);
-                  const token = subscription.endpoint;
-                  this.registerDeviceWeb(token);
-                })
-                .catch((error) => {
-                  console.error('Web Push registration error', error);
-                  // Aquí puedes mostrar un mensaje al usuario
-                });
-            })
-            .catch((error) => {
-              console.error('Service Worker registration error', error);
-              // Aquí puedes mostrar un mensaje al usuario
-            });
-        }
-      });
-    }
-  }
+  registerWebPush() {}
 
   async registerDivice(key: any) {
     const info = await Device.getInfo();
     const model = info.model;
+    const memUsed = info.memUsed;
     const manufacturer = info.manufacturer;
-    const user = info.name;
+    const nameMobile = info.name;
     const body = {
-      divice: manufacturer,
+      divice: manufacturer + '-' + nameMobile + '-' + model,
       token: key,
-      user,
-      model,
+      userId: this.myProfile.id,
     };
     console.log(body);
 
-    this.http
-      .post(this.url, body, {})
-      .then((data) => {
-        console.log(data.status);
-        console.log('response:', JSON.parse(data.data)); // data received by server
-        console.log(data.headers);
-      })
-      .catch((error) => {
-        console.log(error.status);
-        console.log(error.error); // error message as string
-        console.log(error.headers);
-      });
-    /* this.http.post<any>(this.url, body).subscribe((res) => {
-      console.log(res);
-    }); */
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+
+    this.createDevice(body).subscribe(
+      (res) => {
+        console.log('Res-Noti:', res);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
   }
 
-  async registerDeviceWeb(key: any) {
+  async registerDeviceMobile(key: any) {
     const info = await Device.getInfo();
     const model = info.model;
+    const memUsed = info.memUsed;
     const manufacturer = info.manufacturer;
-    const user = info.name;
+    const nameMobile = info.name;
     const body = {
-      divice: manufacturer,
+      divice: manufacturer + '-' + nameMobile + '-' + memUsed + '-' + model,
       token: key,
-      user,
+      userId: this.myProfile.id,
       model,
     };
-    console.log(body);
+    console.log('Body- Noti:', body);
 
-    //this.http.post(this.url, body, {})
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+
+    this.createDevice(body).subscribe(
+      (res) => {
+        console.log('Res-Noti:', res);
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
+
+  createDevice(payload): Observable<any> {
+    const headers = new HttpHeaders({
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Authorization: `bearer ${this.authService.token}`,
+    });
+    return this.http.post(this.url + 'mobile-divice', payload, { headers });
+  }
+
+  async showAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Notificación',
+      message,
+      buttons: ['OK'],
+      cssClass: 'top-alert',
+    });
+
+    await alert.present();
+  }
+
+  async showNotification(title: string, message: string) {
+    const toast = await this.toastController.create({
+      header: title,
+      message,
+      position: 'top',
+      duration: 3000,
+      cssClass: 'top-alert',
+      translucent: true,
+    });
+
+    toast.present();
   }
 }

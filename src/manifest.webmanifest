@@ -1,6 +1,7 @@
 {
   "name": "Tianguis App",
   "short_name": "Tianguis",
+  "gcm_sender_id": "597171857974",
   "theme_color": "#6304cc",
   "background_color": "#fafafa",
   "display": "standalone",

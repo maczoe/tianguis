@@ -35,9 +35,9 @@ export class ChatsPage implements OnInit {
       this.myProfile = JSON.parse(profile);
 
       if (this.myProfile === null) {
-        this.authService.getUserData().then((res) => {
+        this.authService.getUserData().then(async (res) => {
           this.myProfile = res.profile;
-          this.getChats(this.myProfile.id.toString());
+          await this.getChats(this.myProfile.id.toString());
         });
       } else {
         this.getChats(this.myProfile.id.toString());
@@ -60,9 +60,15 @@ export class ChatsPage implements OnInit {
         switchMap((chats) => {
           if (chats.length > 0) {
             const profileObservables = chats.map((chat) =>
-              this.profilesService.getProfile(chat.receiver === this.myProfile.id ? chat.sender : chat.receiver).pipe(
-                map((profile) => ({ ...chat, profile })) // Agregar la información del perfil al chat
-              )
+              this.profilesService
+                .getProfile(
+                  chat.receiver === this.myProfile.id
+                    ? chat.sender
+                    : chat.receiver
+                )
+                .pipe(
+                  map((profile) => ({ ...chat, profile })) // Agregar la información del perfil al chat
+                )
             );
             return forkJoin(profileObservables);
           } else {
@@ -71,7 +77,12 @@ export class ChatsPage implements OnInit {
         })
       )
       .subscribe((chatsWithProfiles) => {
+
         this.chats = chatsWithProfiles;
+
+        this.chats.forEach((chat) => {
+          console.log(chat, chat.messages);
+        });
       });
   }
 

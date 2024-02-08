@@ -28,7 +28,7 @@
     </ng-template>
   </swiper>
   <ion-card-content>
-    <ion-item>
+    <ion-item (click)="viewProfile(profile.id)" >
       <ion-avatar item-start>
         <img src="{{profile.photo}}" />
       </ion-avatar>

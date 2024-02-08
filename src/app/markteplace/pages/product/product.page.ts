@@ -35,7 +35,7 @@ export class ProductPage implements OnInit {
     private modalController: ModalController,
     private storage: Storage,
     private navCtrl: NavController,
-    private chatSvc: ChatsService
+    private chatSvc: ChatsService,
   ) {
     this.productId = this.router.snapshot.paramMap.get('idProduct');
   }
@@ -107,5 +107,9 @@ export class ProductPage implements OnInit {
       componentProps: { img },
     });
     return await modal.present();
+  }
+
+  viewProfile(id) {
+    this.routerPath.navigateByUrl('/detail-profile/' + id);
   }
 }

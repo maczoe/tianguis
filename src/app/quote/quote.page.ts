@@ -6,9 +6,7 @@ import {
   ModalController,
 } from '@ionic/angular';
 import { QuotesService } from '../markteplace/services/quotes.service';
-import { NewQuotePage } from '../modals/new-quote/new-quote.page';
 import { AuthService } from '../auth/services/auth.service';
-import { Quote } from '../markteplace/model/quote';
 
 @Component({
   selector: 'app-quote',
@@ -69,7 +67,6 @@ export class QuotePage implements OnInit {
 
   async getMyQuote() {
     this.quotesService.getMyQuotes().subscribe((data) => {
-      console.log(data);
       this.myquotes = [];
       this.myquotes.push(data.quotes);
     });
