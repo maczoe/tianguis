@@ -21,23 +21,38 @@
         <ion-avatar slot="start">
           <img src="{{chat.profile.photo}}" />
         </ion-avatar>
+        
         <ion-label *ngIf="chat.messages && chat.messages.length > 0">
           <b> {{chat.profile.name}}</b> <br />
-          <p>{{chat.messages[0].message}}</p>
-          <div class="time">{{chat.messages[0].createdAt|date:'short'}}</div>
+          <p *ngIf="chat.product"><b>Producto:</b> {{chat.product.name}}</p>
+          <ion-row>
+            <ion-col col="8">
+              <p>{{chat.messages[0].message}}</p>
+            </ion-col>
+            <ion-col col="4">
+              <div class="time">
+                {{chat.messages[0].createdAt | customDate}}
+              </div>
+            </ion-col>
+          </ion-row>
         </ion-label>
+
         <ion-label *ngIf="!chat.messages || chat.messages.length === 0">
           <b> {{chat.profile.name}}</b> <br />
-          <p><strong>No hay Mensajes</strong></p>
-          <div class="time">Enviado.</div>
+          <p *ngIf="chat.product"><b>Producto:</b> {{chat.product.name}}</p>
+          <ion-row>
+            <ion-col col="8">
+              <p><strong>No hay Mensajes</strong></p>
+            </ion-col>
+            <ion-col col="4">
+              <div class="time">
+                <div class="time">Enviado.</div>
+              </div>
+            </ion-col>
+          </ion-row>
         </ion-label>
+
       </ion-item>
     </ion-card>
   </ion-list>
-
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="newchat()">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
 </ion-content>

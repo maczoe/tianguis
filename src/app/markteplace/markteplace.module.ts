@@ -22,6 +22,7 @@ import { ProductCardHrzComponent } from './components/product-card-hrz/product-c
 import { ListProductCardBigComponent } from './components/list-product-card-big/list-product-card-big.component';
 import { ProductCardBigComponent } from './components/product-card-big/product-card-big.component';
 import { ReviewComponent } from './components/review/review.component';
+import { CustomDatePipe } from '../core/pipes/customDate.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { ReviewComponent } from './components/review/review.component';
     ProductCardHrzComponent,
     ListProductCardBigComponent,
     ProductCardBigComponent,
-    ReviewComponent,
+    ReviewComponent
   ],
   imports: [CommonModule, IonicModule, SwiperModule],
   exports: [

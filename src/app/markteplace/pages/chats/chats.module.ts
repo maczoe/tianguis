@@ -7,14 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { ChatsPageRoutingModule } from './chats-routing.module';
 
 import { ChatsPage } from './chats.page';
+import { CustomDatePipe } from 'src/app/core/pipes/customDate.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ChatsPageRoutingModule
-  ],
-  declarations: [ChatsPage]
+  imports: [CommonModule, FormsModule, IonicModule, ChatsPageRoutingModule],
+  declarations: [ChatsPage, CustomDatePipe],
 })
 export class ChatsPageModule {}

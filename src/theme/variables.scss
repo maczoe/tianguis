@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-/*   --ion-color-primary: #3880ff;
+  /*   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -87,21 +87,20 @@
 
   --ion-color-tg-primary: #6304cc;
   --ion-color-tg-primary: #6304cc;
-      --ion-color-tg-primary-contrast: #ffffff;
-      --ion-color-tg-secondary: #ff5733;
-      --ion-color-tg-secondary-contrast: #ffffff;
-  
+  --ion-color-tg-primary-contrast: #ffffff;
+  --ion-color-tg-secondary: #ff5733;
+  --ion-color-tg-secondary-contrast: #ffffff;
 
   .button-primary {
     background-color: var(--ion-color-tg-primary);
     color: var(--ion-color-tg-primary-contrast);
   }
-  
+
   .header {
     background-color: var(--ion-color-tg-primary);
     color: var(--ion-color-tg-primary-contrast);
   }
-  
+
   .secondary-button {
     background-color: var(--ion-color-tg-secondary);
     color: var(--ion-color-tg-secondary-contrast);
@@ -110,8 +109,5 @@
   .top-alert {
     --background: linear-gradient(#6304cc, #000000);
   }
-  
-
 }
 /* @media (prefers-color-scheme: dark)  */
-

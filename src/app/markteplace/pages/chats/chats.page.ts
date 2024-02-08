@@ -4,11 +4,13 @@ import { UiAlertsService } from 'src/app/core/services/ui-alerts.service';
 import { ChatsService } from '../../services/chats.service';
 import { Chat } from '../../model/chat';
 import { ProfilesService } from '../../services/profiles.service';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, finalize } from 'rxjs/operators';
 import { forkJoin, of } from 'rxjs';
 import { Storage } from '@ionic/storage-angular';
 import { Profile } from '../../model/profile';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { ProductsService } from '../../services/products.service';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-chats',
@@ -23,10 +25,12 @@ export class ChatsPage implements OnInit {
     private router: Router,
     private chatsService: ChatsService,
     private profilesService: ProfilesService,
+    private productsService: ProductsService,
     private uiAlerts: UiAlertsService,
     private routerPath: Router,
     private authService: AuthService,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
   ) {}
 
   async ngOnInit() {
@@ -53,33 +57,40 @@ export class ChatsPage implements OnInit {
     this.routerPath.navigateByUrl('/chat-list/' + id);
   }
 
-  getChats(userId: string) {
+  async getChats(userId: string) {
+    // loader
+    const loading = await this.loadingController.create({
+      message: 'Cargando chats...',
+    });
+    await loading.present();
+
     this.chatsService
       .getChats(userId)
       .pipe(
         switchMap((chats) => {
           if (chats.length > 0) {
-            const profileObservables = chats.map((chat) =>
-              this.profilesService
-                .getProfile(
+            const chatObservables = chats.map((chat) =>
+              forkJoin({
+                profile: this.profilesService.getProfile(
                   chat.receiver === this.myProfile.id
                     ? chat.sender
                     : chat.receiver
-                )
-                .pipe(
-                  map((profile) => ({ ...chat, profile })) // Agregar la información del perfil al chat
-                )
+                ),
+                product: this.productsService.getProductId(chat.product), // Suponiendo que chat tiene una propiedad productId
+              }).pipe(
+                map(({ profile, product }) => ({ ...chat, profile, product })) // Agregar la información del perfil y del producto al chat
+              )
             );
-            return forkJoin(profileObservables);
+            return forkJoin(chatObservables);
           } else {
             return of([]);
           }
-        })
+        }),
+
+        finalize(() => loading.dismiss())
       )
-      .subscribe((chatsWithProfiles) => {
-
-        this.chats = chatsWithProfiles;
-
+      .subscribe((chatsWithProfilesAndProducts) => {
+        this.chats = chatsWithProfilesAndProducts;
         this.chats.forEach((chat) => {
           console.log(chat, chat.messages);
         });

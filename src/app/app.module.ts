@@ -15,6 +15,7 @@ import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Drivers } from '@ionic/storage';
 import { environment } from 'src/environments/environment.prod';
+import { CustomDatePipe } from './core/pipes/customDate.pipe';
 
 @NgModule({
   declarations: [AppComponent],
