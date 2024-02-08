@@ -15,6 +15,7 @@ import { FavoriteProductService } from '../../services/favorite-product.service'
 export class ProductsCategoryPage implements OnInit {
   categoryId = 0;
   products: Product[] = [];
+  filteredProducts: Product[] = [];
   category: Category = {
     id: 0,
     name: '',
@@ -37,6 +38,18 @@ export class ProductsCategoryPage implements OnInit {
     );
     this.getCategory(this.categoryId);
     this.getProductsCategory(this.categoryId);
+  }
+
+  onSearchChange(event: any) {
+    const searchValue = event.detail.value;
+    if (searchValue === '') {
+      this.filteredProducts = this.products;
+      return;
+    }
+    this.filteredProducts = this.products.filter((product) => product.name.toLowerCase().includes(searchValue.toLowerCase()));
+
+
+    console.log(this.filteredProducts);
   }
 
   getCategory(categoryId: number) {

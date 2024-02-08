@@ -15,8 +15,9 @@ import { MarkteplaceModule } from '../../markteplace.module';
     FormsModule,
     IonicModule,
     ProductsCategoryPageRoutingModule,
-    MarkteplaceModule
+    MarkteplaceModule,
   ],
-  declarations: [ProductsCategoryPage]
+  declarations: [ProductsCategoryPage],
 })
-export class ProductsCategoryPageModule {}
+export class ProductsCategoryPageModule {
+}

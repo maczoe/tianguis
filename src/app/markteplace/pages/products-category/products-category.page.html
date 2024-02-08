@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <ion-searchbar placeholder="Buscar" (ionChange)="onSearchChange($event)"></ion-searchbar>
   <ion-row *ngIf="productsFavorite.length>0">
-    <ion-col size="12" *ngFor="let product of products">
+    <ion-col size="12" *ngFor="let product of (filteredProducts.length > 0 ? filteredProducts : products)">
       <app-product-card-hrz [product]="product" [productsFavorite]="productsFavorite"></app-product-card-hrz>
     </ion-col>
   </ion-row>  
