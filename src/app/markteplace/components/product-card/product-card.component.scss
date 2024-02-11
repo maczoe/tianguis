@@ -36,7 +36,6 @@ ion-card-header {
   border-radius: 0.5em;
   display: grid;
   grid-template-rows: 2fr 0.5fr 0.5fr;
-  justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -84,6 +83,7 @@ ion-card-header {
   }
 
   &__title {
+    width: 100%;
     display: grid;
     grid-template-columns: 85% 15%;
     justify-content: space-between;
@@ -91,12 +91,16 @@ ion-card-header {
     text-align: left;
 
     &--name {
-      padding-right: 1rem;
+      padding-right: 0.8rem;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 0.8rem;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+    }
+
+    &--rating {
+      color: var(--ion-color-primary);
     }
   }
 }

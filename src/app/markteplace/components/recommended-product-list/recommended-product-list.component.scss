@@ -15,7 +15,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
@@ -32,6 +31,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 
 .title-section{
     font-weight: 700;
