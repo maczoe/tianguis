@@ -22,5 +22,8 @@
       "forceCodeForRefreshToken": true
     }
   },
-  "cordova": {}
+  "cordova": {},
+  "android": {
+    "allowMixedContent": true
+  }
 }
